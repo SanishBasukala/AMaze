@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D myRigidbody;
     private Vector3 change;
     //Player speed
-    private float speed = 20f;
+    private float speed = 29f;
     //displaying score
     public int score = 0;
     public Text ScoreBoard;
@@ -38,9 +38,12 @@ public class Player : MonoBehaviour
     private void Start()
     {
         StartCoroutine(placeNameCo());
-        myRigidbody = GetComponent<Rigidbody2D>();
-        
+
+        currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
+        myRigidbody = GetComponent<Rigidbody2D>();
+        animator.SetFloat("moveX", 0);
+        animator.SetFloat("moveY", -1);
 
         dialogBox.SetActive(true);
         dialogText.text = dialog;
@@ -50,7 +53,7 @@ public class Player : MonoBehaviour
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
-        if(Input.GetButtonDown("attack") && currentState != PlayerState.attack)
+        if(Input.GetButtonDown("attack"))
         {
             StartCoroutine(AttackCo());
         }
@@ -59,7 +62,6 @@ public class Player : MonoBehaviour
             UpdateAnimationAndMove();
         }
             
-        
         forConversation();
     }
     
@@ -70,17 +72,10 @@ public class Player : MonoBehaviour
         currentState = PlayerState.attack;
         yield return null; //wait one frame
         animator.SetBool("attacking", false);
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(.3f);
         currentState = PlayerState.walk;
     }
-    //Level text display
-    private IEnumerator placeNameCo()
-    {
-        text.SetActive(true);
-        placeText.text = placeName;
-        yield return new WaitForSeconds(2f);
-        text.SetActive(false);
-    }
+   
     //character move animations
     void UpdateAnimationAndMove()
     {
@@ -100,8 +95,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Character movement
     void MoveCharacter()
     {
+        change.Normalize();
         if (dialogActive != true)
         {
             myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
@@ -110,10 +107,8 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        try
-        {
-            // Collision on wall
-            if (collision.gameObject.tag == "Walls") { }
+        // Collision on wall
+        if (collision.gameObject.tag == "Walls") { }
         // Get keys
         if (collision.gameObject.tag == "Keys")
         {
@@ -131,13 +126,21 @@ public class Player : MonoBehaviour
             Destroy(collision.gameObject);
                 score--;
         }
-        }
-        catch (InvalidCastException) { print("key gone"); }
     }
 
+    //Level text display
+    private IEnumerator placeNameCo()
+    {
+        text.SetActive(true);
+        placeText.text = placeName;
+        yield return new WaitForSeconds(1.3f);
+        text.SetActive(false);
+    }
+
+    //For conversation 
     private void forConversation()
     {
-        if (Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (dialogBox.activeInHierarchy)
             {
