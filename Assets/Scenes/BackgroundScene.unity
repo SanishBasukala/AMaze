@@ -245,8 +245,8 @@ PolygonCollider2D:
     m_Paths:
     - - {x: 0.7763439, y: -0.49386647}
       - {x: 0.78129494, y: 0.28361708}
-      - {x: 0.023011707, y: 0.24401313}
-      - {x: 0.06941779, y: -0.18208414}
+      - {x: -0.1855858, y: 0.28964454}
+      - {x: -0.08051152, y: -0.045189954}
       - {x: 0.16754822, y: -0.38891733}
       - {x: 0.3209085, y: -0.52703136}
   m_UseDelaunayMesh: 0
@@ -424,7 +424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240894581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.16, y: -42.09, z: -10}
+  m_LocalPosition: {x: -0.8, y: -42.2, z: -10}
   m_LocalScale: {x: 0.32681227, y: 0.16443384, z: 0.16443384}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 1257784258}
   - component: {fileID: 1257784257}
   - component: {fileID: 1257784256}
+  - component: {fileID: 1257784262}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1011,7 +1012,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: f034a179d7e4a5c46b80af64dcbb6a2f, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -1112,6 +1113,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1257784262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257784255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de27a45d3784f6449df346c9681641f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 2
+  knockTime: 1
 --- !u!1 &1329060573
 GameObject:
   m_ObjectHideFlags: 0
@@ -5755,9 +5770,12 @@ GameObject:
   - component: {fileID: 1352504397}
   - component: {fileID: 1352504396}
   - component: {fileID: 1352504395}
+  - component: {fileID: 1352504399}
+  - component: {fileID: 1352504398}
+  - component: {fileID: 1352504400}
   m_Layer: 0
   m_Name: bat
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5842,13 +5860,80 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352504394}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 12.2, y: -42.5, z: 0}
+  m_LocalPosition: {x: 12.154, y: -42.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!61 &1352504398
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352504394}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.06721592, y: 0.09823799}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.67, y: 2.095}
+    newSize: {x: 2.67, y: 2.095}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.5355682, y: 1.1746635}
+  m_EdgeRadius: 0
+--- !u!50 &1352504399
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352504394}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 0
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &1352504400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352504394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64e3d7bef095c9d4f9348443df187310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 2
+  enemyName: red bat
+  baseAttack: 1
+  moveSpeed: 4
+  target: {fileID: 1257784261}
+  chaseRadius: 8
+  attackRadius: 2.2
+  homePosition: {fileID: 0}
 --- !u!1 &1702921816
 GameObject:
   m_ObjectHideFlags: 0
@@ -9768,8 +9853,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.6140222, y: -0.48613575}
-      - {x: 0.57259524, y: 0.39183512}
-      - {x: 0.13895589, y: 0.33676803}
+      - {x: 0.5595579, y: 0.50917125}
+      - {x: 0.12591855, y: 0.4149916}
       - {x: 0.06941779, y: -0.18208414}
       - {x: -0.0952584, y: -0.3502689}
       - {x: 0.25134194, y: -0.7202719}
