@@ -201,6 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
+  damage: 1
 --- !u!1 &118711664
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
+  damage: 1
 --- !u!1 &203803650
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
+  damage: 1
 --- !u!1 &1338444506
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,7 +5990,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  health: 2
+  maxhealth: {fileID: 11400000, guid: 9722571d4b0da554087280b77dccdd90, type: 2}
+  health: 1
   enemyName: red bat
   baseAttack: 1
   moveSpeed: 4
@@ -6010,6 +6014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 5
   knockTime: 0.3
+  damage: 0
 --- !u!61 &1352504402
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9976,6 +9981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 2
   knockTime: 0.3
+  damage: 1
 --- !u!1 &1899133499
 GameObject:
   m_ObjectHideFlags: 0
