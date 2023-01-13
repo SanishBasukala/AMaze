@@ -1,24 +1,26 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum PlayerState
 {
+    idle,
     walk,
     attack,
-    interact
+    interact,
+    stagger
 }
 public class Player : MonoBehaviour
 {
-    public PlayerState currentState;
+    public float speed;
     private Rigidbody2D myRigidbody;
     private Vector3 change;
-    //Player speed
-    private float speed = 29f;
+
+    public PlayerState currentState;
+
+
+
     //displaying score
     public int score = 0;
     public Text ScoreBoard;
@@ -38,10 +40,11 @@ public class Player : MonoBehaviour
     private void Start()
     {
         StartCoroutine(placeNameCo());
+        myRigidbody = GetComponent<Rigidbody2D>();
 
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
-        myRigidbody = GetComponent<Rigidbody2D>();
+
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
 
@@ -53,18 +56,22 @@ public class Player : MonoBehaviour
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
-        if(Input.GetButtonDown("attack"))
+        if (change != Vector3.zero)
+        {
+            MoveCharacter();
+        }
+        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
         {
             StartCoroutine(AttackCo());
         }
-        else if(currentState == PlayerState.walk)
+        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
             UpdateAnimationAndMove();
         }
-            
+
         forConversation();
     }
-    
+
     //attack animation wid delay
     private IEnumerator AttackCo()
     {
@@ -75,7 +82,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         currentState = PlayerState.walk;
     }
-   
+
     //character move animations
     void UpdateAnimationAndMove()
     {
@@ -101,9 +108,25 @@ public class Player : MonoBehaviour
         change.Normalize();
         if (dialogActive != true)
         {
+            // check this ____________________________________________________________________________________________________
             myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
         }
-        
+
+    }
+
+    public void Knock(float knockTime)
+    {
+        StartCoroutine(KnockCo(knockTime));
+    }
+    private IEnumerator KnockCo(float knockTime)
+    {
+        if (myRigidbody != null)
+        {
+            yield return new WaitForSeconds(knockTime);
+            myRigidbody.velocity = Vector2.zero;
+            currentState = PlayerState.idle;
+            myRigidbody.velocity = Vector2.zero;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -112,19 +135,19 @@ public class Player : MonoBehaviour
         // Get keys
         if (collision.gameObject.tag == "Keys")
         {
-             Destroy(collision.gameObject); 
-            
+            Destroy(collision.gameObject);
+
             score++;
             ScoreBoard.text = "Score: " + score;
         }
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         if (score >= 1 && collision.gameObject.tag == "Door")
         {
             Destroy(collision.gameObject);
-                score--;
+            score--;
         }
     }
 
@@ -149,6 +172,6 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
+
 }
 

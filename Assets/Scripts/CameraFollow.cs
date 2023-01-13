@@ -1,9 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UIElements;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -31,7 +26,7 @@ public class CameraFollow : MonoBehaviour
     //Camera follows the player
     private void LateUpdate()
     {
-        if(transform.position != target.position)
+        if (transform.position != target.position)
         {
             Vector3 targetPosition = new Vector3(target.position.x, target.position.y, transform.position.z);
             targetPosition.x = Mathf.Clamp(targetPosition.x, minPosition.x, maxPosition.x);
@@ -42,7 +37,7 @@ public class CameraFollow : MonoBehaviour
     private void Update()
     {
         PanCamera();
-        zoomInOut();      
+        zoomInOut();
     }
     //Panning camera
     private void PanCamera()
@@ -63,7 +58,7 @@ public class CameraFollow : MonoBehaviour
         }
     }
     //For zoom in and out
-   private void zoomInOut()
+    private void zoomInOut()
     {
         if (cam.orthographic)
         {
@@ -72,7 +67,7 @@ public class CameraFollow : MonoBehaviour
         }
         else
         {
-            float newSize =  cam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * zoom;
+            float newSize = cam.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * zoom;
             cam.fieldOfView = Mathf.Clamp(newSize, minCamSize, maxCamSize);
         }
 

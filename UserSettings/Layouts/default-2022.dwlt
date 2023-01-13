@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 110
+  controlID: 109
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 25
+  controlID: 56
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 26
+  controlID: 57
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -413,7 +413,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 24fbffff
+      m_ExpandedIDs: 24fbffffe05e0000345f0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -728,9 +728,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 12.524806, y: -41.79602, z: 0.13124734}
+    m_Target: {x: 3.1940126, y: -42.473793, z: 1.7931823}
     speed: 2
-    m_Value: {x: 12.524806, y: -41.79602, z: 0.13124734}
+    m_Value: {x: 3.1940126, y: -42.473793, z: 1.7931823}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -780,9 +780,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 2.2764978
+    m_Target: 1.540819
     speed: 2
-    m_Value: 2.2764978
+    m_Value: 1.540819
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1014,22 +1014,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Materials
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 68
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Materials
   m_LastFoldersGridSize: 68
   m_LastProjectPath: C:\Users\Acer\Desktop\unity\AMaze
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 60}
-    m_SelectedIDs: a6600000
-    m_LastClickedID: 24742
-    m_ExpandedIDs: 0000000082600000846000008660000000ca9a3b
+    scrollPos: {x: 0, y: 105.400024}
+    m_SelectedIDs: a0600000
+    m_LastClickedID: 24736
+    m_ExpandedIDs: 0000000076600000786000007a6000007c6000007e60000080600000826000008460000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1057,7 +1057,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000826000008460000086600000
+    m_ExpandedIDs: 0000000076600000786000007a6000007c6000007e600000806000008260000084600000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1085,7 +1085,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000206800002868000038610000c6600000d66000008e790000d65e00008abd00000000000044c000007cbd000096bd0000ca5e0000d2730000de5f00002c5f00008a5e000078ac000050ac000014ac00000cac00002eac0000ceab0000f2ab0000daab000074ac0000feab000090ac000054ac00003aac000064ac0000b8ab000032ac0000e2ab0000d4ab0000c0ab0000b2ac00005cac000084ac000012920000
+    m_ExpandedInstanceIDs: c6230000206800002868000038610000c6600000d66000008e790000d65e00008abd00000000000044c000007cbd000096bd0000ca5e0000d2730000de5f00002c5f00008a5e000078ac000050ac000014ac00000cac00002eac0000ceab0000f2ab0000daab000074ac0000feab000090ac000054ac00003aac000064ac0000b8ab000032ac0000e2ab0000d4ab0000c0ab0000b2ac00005cac000084ac000012920000725f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1204,7 +1204,7 @@ MonoBehaviour:
     m_CachedPref: 50
     m_ControlHash: 1964396721
     m_PrefName: Preview_TilemapBrushInspector
-  m_Palette: {fileID: 6817804686285354608, guid: 4c69876c16596754f94b04517062de34, type: 3}
+  m_Palette: {fileID: 7686080498859486566, guid: d84e69997e5b7a24a97a18a220b425ef, type: 3}
   m_DrawGridGizmo: 1
   m_DrawGizmos: 0
 --- !u!114 &20

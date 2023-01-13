@@ -7,13 +7,15 @@ public class bat : Enemy
     public float chaseRadius;
     public float attackRadius;
     public Transform homePosition;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
     {
         currentState = EnemyState.idle;
         myrigidbody = GetComponent<Rigidbody2D>();
-        target = GameObject.FindWithTag("player").transform;
+        anim = GetComponent<Animator>();
+        target = GameObject.FindWithTag("Player").transform;
 
     }
 
@@ -30,11 +32,39 @@ public class bat : Enemy
             if (currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+                changeAnim(temp - transform.position);
                 myrigidbody.MovePosition(temp);
                 ChangeState(EnemyState.walk);
+                anim.SetBool("moving", true);
             }
 
         }
+        else
+        {
+            anim.SetBool("moving", false);
+        }
+    }
+
+    private void SetAnimFloat(Vector2 setVector)
+    {
+        anim.SetFloat("moveX", setVector.x);
+        anim.SetFloat("moveY", setVector.y);
+
+    }
+    private void changeAnim(Vector2 direction)
+    {
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                SetAnimFloat(Vector2.right);
+            }
+            else if (direction.x < 0)
+            {
+                SetAnimFloat(Vector2.left);
+            }
+        }
+
     }
 
     private void ChangeState(EnemyState newState)
