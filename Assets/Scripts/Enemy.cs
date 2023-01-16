@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     public int baseAttack;
     public float moveSpeed;
 
+
     private void Awake()
     {
         health = maxhealth.initialValue;
@@ -47,4 +48,6 @@ public class Enemy : MonoBehaviour
             myRigidbody.velocity = Vector2.zero;
         }
     }
+
+
 }

@@ -8,6 +8,9 @@ public class bat : Enemy
     public float attackRadius;
     public Transform homePosition;
     public Animator anim;
+    //public int enemyDamage = 1;
+    //public PlayerHealth playerHealth;
+
 
     // Start is called before the first frame update
     void Start()
@@ -74,4 +77,12 @@ public class bat : Enemy
             currentState = newState;
         }
     }
+
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        playerHealth.TakeDamage(enemyDamage);
+    //    }
+    //}
 }
