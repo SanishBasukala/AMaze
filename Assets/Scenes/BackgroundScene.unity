@@ -199,7 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de27a45d3784f6449df346c9681641f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 5
   knockTime: 0.3
   damage: 1
 --- !u!1 &118711664
@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de27a45d3784f6449df346c9681641f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 5
   knockTime: 0.3
   damage: 1
 --- !u!1 &203803650
@@ -730,9 +730,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 767127518}
+  - component: {fileID: 767127519}
+  - component: {fileID: 767127520}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,6 +755,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &767127519
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767127517}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!114 &767127520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767127517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1de27a45d3784f6449df346c9681641f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrust: 5
+  knockTime: 0.3
+  damage: 1
 --- !u!1 &950240535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1422,10 +1460,6 @@ MonoBehaviour:
   dialogBox: {fileID: 1184946301}
   dialogText: {fileID: 373842670}
   dialog: Hello there!
-  KBForce: 6
-  KBCounter: 0
-  KBTotalTime: 0.2
-  KnockFromRight: 0
 --- !u!95 &1257784257
 Animator:
   serializedVersion: 4
@@ -1696,7 +1730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de27a45d3784f6449df346c9681641f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 5
   knockTime: 0.3
   damage: 1
 --- !u!1 &1338444506
@@ -6467,16 +6501,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
-  maxhealth: {fileID: 11400000, guid: 9722571d4b0da554087280b77dccdd90, type: 2}
-  health: 1
-  enemyName: red bat
-  baseAttack: 1
   moveSpeed: 4
+  maxhealth: {fileID: 11400000, guid: 9722571d4b0da554087280b77dccdd90, type: 2}
+  health: 0
+  baseAttack: 0
   target: {fileID: 1257784261}
   chaseRadius: 3
   attackRadius: 2.3
   homePosition: {fileID: 0}
-  anim: {fileID: 0}
+  anim: {fileID: 1352504395}
   enemyDamage: 1
   playerHealth: {fileID: 0}
 --- !u!114 &1352504401
@@ -6493,7 +6526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 5
   knockTime: 0.3
-  damage: 0
+  damage: 1
 --- !u!1 &1358987777
 GameObject:
   m_ObjectHideFlags: 0
@@ -6540,7 +6573,7 @@ GameObject:
   - component: {fileID: 1400231332}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6572,9 +6605,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2977c8d08a9c7e4188e1738a1cbbcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
+  moveSpeed: 2
+  maxhealth: {fileID: 0}
+  health: 0
+  baseAttack: 0
   damage: 1
   playerHealth: {fileID: 1257784264}
-  player: {fileID: 1257784256}
 --- !u!70 &1400231330
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -10753,7 +10790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de27a45d3784f6449df346c9681641f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 2
+  thrust: 5
   knockTime: 0.3
   damage: 1
 --- !u!1 &1862194641
