@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
 
     public PlayerState currentState;
 
-
-
     //displaying score
     public int score = 0;
     public Text ScoreBoard;

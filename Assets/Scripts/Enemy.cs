@@ -13,11 +13,37 @@ public enum EnemyState
 public class Enemy : MonoBehaviour
 {
     public EnemyState currentState;
+    public float moveSpeed;
+
+    //public int maxHealth;
+    //public int currentHealth;
+
+    //private void Start()
+    //{
+    //    currentHealth = maxHealth;
+    //}
+
+    //private void Update()
+    //{
+    //    if (currentHealth <= 0)
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    //public void HurtEnemy(int damageAmount)
+    //{
+    //    currentHealth -= damageAmount;
+    //}
+
+    //public void SetMaxHealth()
+    //{
+    //    currentHealth = maxHealth;
+    //}
     public FloatValue maxhealth;
     public float health;
-    public string enemyName;
     public int baseAttack;
-    public float moveSpeed;
+
 
 
     private void Awake()
@@ -44,6 +70,7 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(knockTime);
             myRigidbody.velocity = Vector2.zero;
+            print(currentState);
             currentState = EnemyState.idle;
             myRigidbody.velocity = Vector2.zero;
         }

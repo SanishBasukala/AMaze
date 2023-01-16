@@ -8,8 +8,8 @@ public class bat : Enemy
     public float attackRadius;
     public Transform homePosition;
     public Animator anim;
-    //public int enemyDamage = 1;
-    //public PlayerHealth playerHealth;
+    public int enemyDamage;
+    public PlayerHealth playerHealth;
 
 
     // Start is called before the first frame update
@@ -40,7 +40,6 @@ public class bat : Enemy
                 ChangeState(EnemyState.walk);
                 anim.SetBool("moving", true);
             }
-
         }
         else
         {
@@ -75,14 +74,15 @@ public class bat : Enemy
         if (currentState != newState)
         {
             currentState = newState;
+            print(currentState);
         }
     }
 
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        playerHealth.TakeDamage(enemyDamage);
-    //    }
-    //}
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            playerHealth.TakeDamage(enemyDamage);
+        }
+    }
 }
