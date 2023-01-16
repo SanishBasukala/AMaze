@@ -734,7 +734,7 @@ GameObject:
   - component: {fileID: 767127520}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1452,8 +1452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   currentState: 0
-  score: 0
-  ScoreBoard: {fileID: 0}
+  keyCount: 0
+  keyCounter: {fileID: 0}
   placeName: Level
   text: {fileID: 203803650}
   placeText: {fileID: 203803653}
@@ -6348,8 +6348,8 @@ GameObject:
   - component: {fileID: 1352504400}
   - component: {fileID: 1352504401}
   m_Layer: 0
-  m_Name: bat
-  m_TagString: enemy
+  m_Name: Bat
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6573,7 +6573,7 @@ GameObject:
   - component: {fileID: 1400231332}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

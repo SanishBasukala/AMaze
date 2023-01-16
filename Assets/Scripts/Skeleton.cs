@@ -3,7 +3,6 @@ using UnityEngine;
 public class Skeleton : Enemy
 {
     private Rigidbody2D myrigidbody;
-    public int damage;
     public PlayerHealth playerHealth;
 
     private void Start()
@@ -14,7 +13,7 @@ public class Skeleton : Enemy
     {
         if (collision.gameObject.tag == "Player")
         {
-            playerHealth.TakeDamage(damage);
+            playerHealth.TakeDamage(baseAttack);
         }
     }
 }

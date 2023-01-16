@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public enum PlayerState
@@ -20,14 +19,17 @@ public class Player : MonoBehaviour
     public PlayerState currentState;
 
     //displaying score
-    public int score = 0;
-    public Text ScoreBoard;
+    public int keyCount = 0;
+    public Text keyCounter;
+
     //for animation
     private Animator animator;
+
     //For showing level at the start
     public string placeName;
     public GameObject text;
     public Text placeText;
+
     //For conversation
     public GameObject dialogBox;
     public Text dialogText;
@@ -133,19 +135,15 @@ public class Player : MonoBehaviour
         // Get keys
         if (collision.gameObject.tag == "Keys")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
 
-            score++;
-            ScoreBoard.text = "Score: " + score;
+            keyCount++;
+            keyCounter.text = "Score: " + keyCount;
         }
-        if (collision.gameObject.tag == "Enemy")
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-        if (score >= 1 && collision.gameObject.tag == "Door")
+        if (keyCount >= 1 && collision.gameObject.tag == "Door")
         {
             Destroy(collision.gameObject);
-            score--;
+            keyCount--;
         }
     }
 

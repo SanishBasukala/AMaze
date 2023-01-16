@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class bat : Enemy
+public class Bat : Enemy
 {
     private Rigidbody2D myrigidbody;
     public Transform target;
@@ -8,7 +8,6 @@ public class bat : Enemy
     public float attackRadius;
     public Transform homePosition;
     public Animator anim;
-    public int enemyDamage;
     public PlayerHealth playerHealth;
 
 
@@ -25,17 +24,17 @@ public class bat : Enemy
     // Update is called once per frame
     void FixedUpdate()
     {
-        checkDistance();
+        CheckDistance();
     }
 
-    void checkDistance()
+    void CheckDistance()
     {
         if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) > attackRadius)
         {
             if (currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger)
             {
                 Vector3 temp = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
-                changeAnim(temp - transform.position);
+                ChangeAnim(temp - transform.position);
                 myrigidbody.MovePosition(temp);
                 ChangeState(EnemyState.walk);
                 anim.SetBool("moving", true);
@@ -53,7 +52,7 @@ public class bat : Enemy
         anim.SetFloat("moveY", setVector.y);
 
     }
-    private void changeAnim(Vector2 direction)
+    private void ChangeAnim(Vector2 direction)
     {
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
@@ -80,9 +79,9 @@ public class bat : Enemy
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(enemyDamage);
+            playerHealth.TakeDamage(baseAttack);
         }
     }
 }
