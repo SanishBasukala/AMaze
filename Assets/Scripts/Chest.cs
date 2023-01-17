@@ -9,15 +9,18 @@ public class Chest : MonoBehaviour
     public Text dialogText;
     public string dialog;
     public bool playerInRange;
+    public bool chestDialogActive = false;
 
     private void Start()
     {
         anim = GetComponent<Animator>();
+
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && playerInRange)
         {
+
             if (!isOpen)
             {
                 OpenChest();
@@ -31,7 +34,7 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !collision.isTrigger && !isOpen)
         {
             playerInRange = true;
         }
@@ -39,7 +42,7 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && !collision.isTrigger && !isOpen)
         {
             playerInRange = false;
         }
@@ -50,10 +53,13 @@ public class Chest : MonoBehaviour
         dialogBox.SetActive(true);
         dialogText.text = "Description";
         isOpen = true;
+        chestDialogActive = true;
+
+        anim.SetBool("opened", true);
     }
     public void ChestIsOpen()
     {
         dialogBox.SetActive(false);
-
+        chestDialogActive = false;
     }
 }

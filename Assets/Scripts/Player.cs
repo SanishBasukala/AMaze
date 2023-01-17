@@ -34,10 +34,12 @@ public class Player : MonoBehaviour
     public GameObject dialogBox;
     public Text dialogText;
     public string dialog;
-    private bool dialogActive = true;
+    public bool dialogActive;
 
     //for projectile
     public GameObject projectile;
+
+    public Chest chest;
 
     // Update is called once per frame
     private void Start()
@@ -56,31 +58,28 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        // is player in an interaction
-        if (currentState == PlayerState.interact)
+        if (dialogActive != true)
         {
-            return;
+            change = Vector3.zero;
+            change.x = Input.GetAxisRaw("Horizontal");
+            change.y = Input.GetAxisRaw("Vertical");
+            if (change != Vector3.zero)
+            {
+                MoveCharacter();
+            }
+            if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+            {
+                StartCoroutine(AttackCo());
+            }
+            else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+            {
+                StartCoroutine(SecondAttackCo());
+            }
+            else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+            {
+                UpdateAnimationAndMove();
+            }
         }
-        change = Vector3.zero;
-        change.x = Input.GetAxisRaw("Horizontal");
-        change.y = Input.GetAxisRaw("Vertical");
-        if (change != Vector3.zero)
-        {
-            MoveCharacter();
-        }
-        if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
-        {
-            StartCoroutine(AttackCo());
-        }
-        else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
-        {
-            StartCoroutine(SecondAttackCo());
-        }
-        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
-        {
-            UpdateAnimationAndMove();
-        }
-
         forConversation();
     }
 
@@ -92,11 +91,7 @@ public class Player : MonoBehaviour
         yield return null; //wait one frame
         animator.SetBool("attacking", false);
         yield return new WaitForSeconds(.3f);
-        if (currentState != PlayerState.interact)
-        {
-            currentState = PlayerState.walk;
-        }
-
+        currentState = PlayerState.walk;
     }
 
     private IEnumerator SecondAttackCo()
@@ -126,19 +121,16 @@ public class Player : MonoBehaviour
     //character move animations
     void UpdateAnimationAndMove()
     {
-        if (dialogActive != true)
+        if (change != Vector3.zero)
         {
-            if (change != Vector3.zero)
-            {
-                MoveCharacter();
-                animator.SetFloat("moveX", change.x);
-                animator.SetFloat("moveY", change.y);
-                animator.SetBool("moving", true);
-            }
-            else
-            {
-                animator.SetBool("moving", false);
-            }
+            MoveCharacter();
+            animator.SetFloat("moveX", change.x);
+            animator.SetFloat("moveY", change.y);
+            animator.SetBool("moving", true);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
         }
     }
 
@@ -146,12 +138,8 @@ public class Player : MonoBehaviour
     void MoveCharacter()
     {
         change.Normalize();
-        if (dialogActive != true)
-        {
-            // check this ____________________________________________________________________________________________________
-            myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
-        }
-
+        // check this ____________________________________________________________________________________________________
+        myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
     }
 
     public void Knock(float knockTime)
