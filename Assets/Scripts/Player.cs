@@ -18,9 +18,13 @@ public class Player : MonoBehaviour
 
     public PlayerState currentState;
 
-    //displaying score
-    public int keyCount = 0;
-    public Text keyCounter;
+    //displaying key counts
+    public int goldenKeyCount = 0;
+    public Text goldenKeyCounter;
+    public int redKeyCount = 0;
+    public Text redKeyCounter;
+    public int blackKeyCount = 0;
+    public Text blackKeyCounter;
 
     //for animation
     private Animator animator;
@@ -44,7 +48,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        StartCoroutine(placeNameCo());
+        StartCoroutine(PlaceNameCo());
         myRigidbody = GetComponent<Rigidbody2D>();
 
         currentState = PlayerState.walk;
@@ -159,24 +163,47 @@ public class Player : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Collision on wall
-        if (collision.gameObject.tag == "Walls") { }
-        // Get keys
-        if (collision.gameObject.tag == "Keys")
-        {
-            collision.gameObject.SetActive(false);
-
-            keyCount++;
-            keyCounter.text = "Score: " + keyCount;
-        }
-        if (keyCount >= 1 && collision.gameObject.tag == "Door")
+        //if (collision.gameObject.CompareTag("Walls")) { }
+        // Get black keys
+        if (collision.gameObject.CompareTag("BlackKey"))
         {
             Destroy(collision.gameObject);
-            keyCount--;
+            blackKeyCount++;
+            blackKeyCounter.text = "Score: " + blackKeyCount;
+        }
+        if (blackKeyCount >= 1 && collision.gameObject.CompareTag("BlackDoor"))
+        {
+            Destroy(collision.gameObject);
+            blackKeyCount--;
+        }
+        // Get red keys
+        if (collision.gameObject.CompareTag("RedKey"))
+        {
+            Destroy(collision.gameObject);
+            redKeyCount++;
+            redKeyCounter.text = "Score: " + redKeyCount;
+        }
+        if (redKeyCount >= 1 && collision.gameObject.CompareTag("RedDoor"))
+        {
+            Destroy(collision.gameObject);
+            redKeyCount--;
+        }
+        // Get golden keys
+        if (collision.gameObject.CompareTag("GoldenKey"))
+        {
+            Destroy(collision.gameObject);
+            goldenKeyCount++;
+            goldenKeyCounter.text = "Score: " + goldenKeyCount;
+        }
+        if (goldenKeyCount >= 1 && collision.gameObject.CompareTag("GoldenDoor"))
+        {
+            Destroy(collision.gameObject);
+            goldenKeyCount--;
         }
     }
 
     //Level text display
-    private IEnumerator placeNameCo()
+    private IEnumerator PlaceNameCo()
     {
         text.SetActive(true);
         placeText.text = placeName;

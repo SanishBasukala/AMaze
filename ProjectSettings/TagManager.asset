@@ -5,9 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - Walls
-  - Keys
   - Enemy
-  - Door
+  - BlackKey
+  - RedKey
+  - GoldenKey
+  - BlackDoor
+  - RedDoor
+  - GoldenDoor
   layers:
   - Default
   - TransparentFX
