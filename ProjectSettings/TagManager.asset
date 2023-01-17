@@ -15,8 +15,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player Projectile
+  - Player
   - 
   - 
   - 
@@ -47,4 +47,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 460352671
+    locked: 0
+  - name: Breakable
+    uniqueID: 3120084139
     locked: 0

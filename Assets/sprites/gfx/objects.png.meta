@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 14
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -311,10 +311,10 @@ TextureImporter:
       name: objects_9
       rect:
         serializedVersion: 2
-        x: 182
+        x: 181
         y: 304
-        width: 21
-        height: 15
+        width: 22
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -588,8 +588,8 @@ TextureImporter:
         y: 279
         width: 22
         height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.4970176, y: 0.44632974}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -609,8 +609,8 @@ TextureImporter:
         y: 279
         width: 22
         height: 18
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.44611275}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2816,7 +2816,7 @@ TextureImporter:
         height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 12, y: 12, z: 12, w: 12}
+      border: {x: 16, y: 17, z: 16, w: 17}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -3069,7 +3069,6 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      objects_127: 192475667
       objects_118: -1942430857
       objects_98: 1599535684
       objects_84: -162353062
@@ -3085,6 +3084,7 @@ TextureImporter:
       objects_41: -119009820
       objects_89: -163204143
       objects_109: -836206906
+      objects_128: -981000494
       objects_3: 1639287922
       objects_119: -1961915814
       objects_18: 1970786592
@@ -3130,11 +3130,11 @@ TextureImporter:
       objects_70: -1491059255
       objects_106: -2088500396
       objects_131: -2038792203
-      objects_87: -782012512
       objects_104: 1901628981
+      objects_107: 1686382608
+      objects_87: -782012512
       objects_80: -1756150410
       objects_7: 392579275
-      objects_107: 1686382608
       objects_22: 1229140268
       objects_47: -1409948398
       objects_42: -1432353277
@@ -3206,9 +3206,9 @@ TextureImporter:
       objects_111: 168690801
       objects_61: -1917169636
       objects_88: 966586932
+      objects_127: 192475667
       objects_4: 636234523
       objects_20: -639581260
-      objects_128: -981000494
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

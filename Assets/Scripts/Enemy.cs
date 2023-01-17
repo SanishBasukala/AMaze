@@ -48,7 +48,6 @@ public class Enemy : MonoBehaviour
     {
         health = maxhealth.initialValue;
     }
-
     private void TakeDamage(float damage)
     {
         health -= damage;
@@ -68,7 +67,6 @@ public class Enemy : MonoBehaviour
         {
             yield return new WaitForSeconds(knockTime);
             myRigidbody.velocity = Vector2.zero;
-            print(currentState);
             currentState = EnemyState.idle;
             myRigidbody.velocity = Vector2.zero;
         }

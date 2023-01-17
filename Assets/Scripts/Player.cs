@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
     public string dialog;
     private bool dialogActive = true;
 
+    //for projectile
+    public GameObject projectile;
+
     // Update is called once per frame
     private void Start()
     {
@@ -53,6 +56,11 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        // is player in an interaction
+        if (currentState == PlayerState.interact)
+        {
+            return;
+        }
         change = Vector3.zero;
         change.x = Input.GetAxisRaw("Horizontal");
         change.y = Input.GetAxisRaw("Vertical");
@@ -63,6 +71,10 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
         {
             StartCoroutine(AttackCo());
+        }
+        else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+        {
+            StartCoroutine(SecondAttackCo());
         }
         else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
         {
@@ -80,7 +92,35 @@ public class Player : MonoBehaviour
         yield return null; //wait one frame
         animator.SetBool("attacking", false);
         yield return new WaitForSeconds(.3f);
+        if (currentState != PlayerState.interact)
+        {
+            currentState = PlayerState.walk;
+        }
+
+    }
+
+    private IEnumerator SecondAttackCo()
+    {
+        //animator.SetBool("attacking", true);
+        currentState = PlayerState.attack;
+        yield return null; //wait one frame
+        MakeArrow();
+        //animator.SetBool("attacking", false);
+        yield return new WaitForSeconds(.3f);
         currentState = PlayerState.walk;
+    }
+
+    private void MakeArrow()
+    {
+        Vector2 tempDirection = new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        Arrow arrow = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Arrow>();
+        arrow.Setup(tempDirection, ChooseArrowDirection());
+    }
+
+    Vector3 ChooseArrowDirection()
+    {
+        float temp = Mathf.Atan2(animator.GetFloat("moveY"), animator.GetFloat("moveX")) * Mathf.Rad2Deg;
+        return new Vector3(0, 0, temp);
     }
 
     //character move animations

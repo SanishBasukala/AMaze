@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bat : Enemy
@@ -40,12 +41,22 @@ public class Bat : Enemy
                 anim.SetBool("moving", true);
             }
         }
-        else
+        else if (Vector3.Distance(target.position, transform.position) <= chaseRadius && Vector3.Distance(target.position, transform.position) <= attackRadius)
         {
-            anim.SetBool("moving", false);
+            if (currentState == EnemyState.idle || currentState == EnemyState.walk && currentState != EnemyState.stagger)
+            {
+                StartCoroutine(AttackCo());
+            }
         }
     }
-
+    private IEnumerator AttackCo()
+    {
+        ChangeState(EnemyState.attack);
+        anim.SetBool("attacking", true);
+        yield return new WaitForSeconds(1f);
+        ChangeState(EnemyState.walk);
+        anim.SetBool("attacking", false);
+    }
     private void SetAnimFloat(Vector2 setVector)
     {
         anim.SetFloat("moveX", setVector.x);
@@ -73,7 +84,6 @@ public class Bat : Enemy
         if (currentState != newState)
         {
             currentState = newState;
-            print(currentState);
         }
     }
 
