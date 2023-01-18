@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
             change = Vector3.zero;
             change.x = Input.GetAxisRaw("Horizontal");
             change.y = Input.GetAxisRaw("Vertical");
-            if (change != Vector3.zero)
+            if (change != Vector3.zero && currentState != PlayerState.stagger)
             {
                 MoveCharacter();
             }
@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
                 UpdateAnimationAndMove();
             }
         }
-        forConversation();
+        ForConversation();
     }
 
     //attack animation wid delay
@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
 
     private void MakeArrow()
     {
-        Vector2 tempDirection = new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        Vector2 tempDirection = new(animator.GetFloat("moveX"), animator.GetFloat("moveY")); //new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
         Arrow arrow = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Arrow>();
         arrow.Setup(tempDirection, ChooseArrowDirection());
     }
@@ -143,7 +143,7 @@ public class Player : MonoBehaviour
     {
         change.Normalize();
         // check this ____________________________________________________________________________________________________
-        myRigidbody.MovePosition(transform.position + change * speed * Time.deltaTime);
+        myRigidbody.MovePosition(transform.position + speed * Time.deltaTime * change);
     }
 
     public void Knock(float knockTime)
@@ -212,7 +212,7 @@ public class Player : MonoBehaviour
     }
 
     //For conversation 
-    private void forConversation()
+    private void ForConversation()
     {
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {

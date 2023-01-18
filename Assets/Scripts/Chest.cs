@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,6 @@ public class Chest : MonoBehaviour
     public Text dialogText;
     public string dialog;
     public bool playerInRange;
-    public bool chestDialogActive = false;
 
     private void Start()
     {
@@ -23,7 +23,8 @@ public class Chest : MonoBehaviour
 
             if (!isOpen)
             {
-                OpenChest();
+                StartCoroutine(OpenChest());
+
             }
             else
             {
@@ -48,18 +49,20 @@ public class Chest : MonoBehaviour
         }
     }
 
-    public void OpenChest()
+    private IEnumerator OpenChest()
     {
         dialogBox.SetActive(true);
+
         dialogText.text = "Description";
         isOpen = true;
-        chestDialogActive = true;
-
         anim.SetBool("opened", true);
+        yield return new WaitForSeconds(2);
+        dialogBox.SetActive(false);
     }
+
+
     public void ChestIsOpen()
     {
         dialogBox.SetActive(false);
-        chestDialogActive = false;
     }
 }

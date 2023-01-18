@@ -5,12 +5,6 @@ public class Arrow : MonoBehaviour
     public float speed;
     public Rigidbody2D myRigidbody2D;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
     public void Setup(Vector2 velocity, Vector3 direction)
     {
         myRigidbody2D.velocity = velocity.normalized * speed;

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int health;
+    public float health;
     public int numOfHearts;
     public Image[] hearts;
     public Sprite fullHeart;
@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damageAmount)
+    public void TakeDamage(float damageAmount)
     {
         print("running");
         health -= damageAmount;
