@@ -24,7 +24,6 @@ public class Chest : MonoBehaviour
             if (!isOpen)
             {
                 StartCoroutine(OpenChest());
-
             }
             else
             {
@@ -59,7 +58,6 @@ public class Chest : MonoBehaviour
         yield return new WaitForSeconds(2);
         dialogBox.SetActive(false);
     }
-
 
     public void ChestIsOpen()
     {

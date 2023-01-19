@@ -42,13 +42,19 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        print("running");
         health -= damageAmount;
-        print(health);
         if (health <= 0)
         {
             playerSr.enabled = false;
             player.enabled = false;
+        }
+    }
+    public void GainHealth()
+    {
+        health += 1;
+        if (health >= numOfHearts)
+        {
+            health = numOfHearts;
         }
     }
 }

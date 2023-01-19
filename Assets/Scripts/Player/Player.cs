@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
     //for projectile
     public GameObject projectile;
 
-    public Chest chest;
+    public PlayerHealth playerHealth;
 
     // Update is called once per frame
     private void Start()
@@ -199,6 +199,11 @@ public class Player : MonoBehaviour
         {
             Destroy(collision.gameObject);
             goldenKeyCount--;
+        }
+        if (collision.gameObject.CompareTag("Heart"))
+        {
+            Destroy(collision.gameObject);
+            playerHealth.GainHealth();
         }
     }
 
