@@ -91,7 +91,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 5663363581119788240}
-  countText: {fileID: 6712649197471525284}
   item: {fileID: 0}
   count: 1
   parentAfterDrag: {fileID: 0}
@@ -112,7 +111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4752003432066608549
 RectTransform:
   m_ObjectHideFlags: 0
