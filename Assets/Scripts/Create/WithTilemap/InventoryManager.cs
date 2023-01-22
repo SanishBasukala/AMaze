@@ -4,7 +4,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     public Item[] startItems; //collection of items at the start
-    public int maxStackedItem = 4;
+    public int maxStackedItem = 100;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
@@ -92,7 +92,7 @@ public class InventoryManager : MonoBehaviour
             Item item = itemInSlot.item;
             if (use)
             {
-                itemInSlot.count--;
+                //itemInSlot.count--;
                 if (itemInSlot.count <= 0)
                 {
                     Destroy(itemInSlot.gameObject);
@@ -104,8 +104,6 @@ public class InventoryManager : MonoBehaviour
             }
             return item;
         }
-
         return null;
-
     }
 }

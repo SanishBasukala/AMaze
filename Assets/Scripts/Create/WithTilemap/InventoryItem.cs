@@ -9,9 +9,8 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Text countText;
 
     [HideInInspector] public Item item;
-    [HideInInspector] public int count = 1;
+    [HideInInspector] public int count = 2147483647;
     [HideInInspector] public Transform parentAfterDrag;
-
     public void InitialiseItem(Item newItem)
     {
         item = newItem;
