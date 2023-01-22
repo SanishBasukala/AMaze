@@ -15,4 +15,4 @@ MonoBehaviour:
   tile: {fileID: 0}
   type: 0
   stackable: 1
-  image: {fileID: 21300000, guid: 236ef4dd7f4217f409333079e851eb8d, type: 3}
+  image: {fileID: 21300000, guid: 7b199940facc6b0439e500e4929c82ab, type: 3}

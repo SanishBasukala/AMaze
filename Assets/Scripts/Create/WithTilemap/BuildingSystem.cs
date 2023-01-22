@@ -10,17 +10,12 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField]
     private Tilemap tempTilemap;
 
-    [SerializeField] private GameObject lootPrefab;
-
-    //private Vector3Int playerPos;
     private Vector3Int highlightedTilePos;
     private bool highlighted;
 
     private void Update()
     {
         Item item = InventoryManager.instance.GetSelectedItem(false);
-
-        //playerPos = mainTilemap.WorldToCell(transform.position);
         if (item != null)
         {
             HighlightTile(item);
@@ -34,10 +29,6 @@ public class BuildingSystem : MonoBehaviour
                 {
                     Build(highlightedTilePos, item);
                 }
-                //else if (item.type == ItemType.Tool)
-                //{
-                //    Destroy(highlightedTilePos);
-                //}
             }
         }
     }
@@ -57,9 +48,6 @@ public class BuildingSystem : MonoBehaviour
         if (highlightedTilePos != mouseGridPos)
         {
             tempTilemap.SetTile(highlightedTilePos, null);
-
-            //if (InRange(playerPos, mouseGridPos, (Vector3Int)currentItem.range)) //Checking range. If need go to Item
-            //{
             if (CheckCondition(mainTilemap.GetTile<RuleTileWithData>(mouseGridPos), currentItem))
             {
                 tempTilemap.SetTile(mouseGridPos, highlightTile);
@@ -71,24 +59,8 @@ public class BuildingSystem : MonoBehaviour
             {
                 highlighted = false;
             }
-            //}
-            //else
-            //{
-            //    highlighted = false;
-            //}
         }
     }
-
-    //private bool InRange(Vector3Int positionA, Vector3Int positionB, Vector3Int range)
-    //{
-    //    Vector3Int distance = positionA - positionB;
-    //    if (Math.Abs(distance.x) >= range.x ||
-    //        Math.Abs(distance.y) >= range.y)
-    //    {
-    //        return false;
-    //    }
-    //    return true;
-    //}
 
     private bool CheckCondition(RuleTileWithData tile, Item currentItem)
     {
@@ -98,17 +70,6 @@ public class BuildingSystem : MonoBehaviour
             {
                 return true;
             }
-            //else if (currentItem.type == ItemType.Tool)
-            //{
-            //if (tile)
-            //{
-            //    if (tile.item.actionType == currentItem.actionType)
-            //    {
-            //return true;
-            //    }
-            //}
-            //}
-
         }
         return false;
     }
@@ -121,16 +82,4 @@ public class BuildingSystem : MonoBehaviour
         highlighted = false;
         mainTilemap.SetTile(position, itemToBuild.tile);
     }
-    //private void Destroy(Vector3Int position)
-    //{
-    //    tempTilemap.SetTile(position, null);
-    //    highlighted = false;
-
-    //    RuleTileWithData tile = mainTilemap.GetTile<RuleTileWithData>(position);
-    //    mainTilemap.SetTile(position, null);
-
-    //    Vector3 pos = mainTilemap.GetCellCenterWorld(position);
-    //GameObject loot = Instantiate(lootPrefab, pos, Quaternion.identity);
-    //loot.GetComponent<Loot>().Initialize(tile.item);
-    //}
 }

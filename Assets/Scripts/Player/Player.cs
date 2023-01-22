@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,16 +31,8 @@ public class Player : MonoBehaviour
     //for animation
     private Animator animator;
 
-    //For showing level at the start
-    public string placeName;
-    public GameObject text;
-    public Text placeText;
-
     //For conversation
-    public GameObject dialogBox;
-    public Text dialogText;
-    public string dialog;
-    public bool dialogActive;
+    public Conversation conversation;
 
     //for projectile
     public GameObject projectile;
@@ -48,7 +42,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     private void Start()
     {
-        StartCoroutine(PlaceNameCo());
         myRigidbody = GetComponent<Rigidbody2D>();
 
         currentState = PlayerState.walk;
@@ -57,12 +50,42 @@ public class Player : MonoBehaviour
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
 
-        dialogBox.SetActive(true);
-        dialogText.text = dialog;
+
     }
     void Update()
     {
-        if (dialogActive != true)
+        try
+        {
+            if (conversation.dialogActive.IsUnityNull())
+            {
+                return;
+            }
+            else if (conversation.dialogActive != "true")
+            {
+                change = Vector3.zero;
+                change.x = Input.GetAxisRaw("Horizontal");
+                change.y = Input.GetAxisRaw("Vertical");
+                if (change != Vector3.zero && currentState != PlayerState.stagger)
+                {
+                    MoveCharacter();
+                }
+                if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+                {
+                    StartCoroutine(AttackCo());
+                }
+                else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+                {
+                    StartCoroutine(SecondAttackCo());
+                }
+                else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+                {
+                    UpdateAnimationAndMove();
+                }
+            }
+
+            conversation.ForConversation();
+        }
+        catch (NullReferenceException)
         {
             change = Vector3.zero;
             change.x = Input.GetAxisRaw("Horizontal");
@@ -84,7 +107,6 @@ public class Player : MonoBehaviour
                 UpdateAnimationAndMove();
             }
         }
-        ForConversation();
     }
 
     //attack animation wid delay
@@ -208,26 +230,9 @@ public class Player : MonoBehaviour
     }
 
     //Level text display
-    private IEnumerator PlaceNameCo()
-    {
-        text.SetActive(true);
-        placeText.text = placeName;
-        yield return new WaitForSeconds(1.3f);
-        text.SetActive(false);
-    }
 
-    //For conversation 
-    private void ForConversation()
-    {
-        if (Input.GetKeyUp(KeyCode.Mouse0))
-        {
-            if (dialogBox.activeInHierarchy)
-            {
-                dialogBox.SetActive(false);
-                dialogActive = false;
-            }
-        }
-    }
+
+
 
 }
 
