@@ -3,7 +3,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    //public Item[] startItems; //collection of items at the start
+    public Item[] startItems; //collection of items at the start
     public int maxStackedItem = 4;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
@@ -16,10 +16,10 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         ChangeSelectedSlot(0);
-        //foreach (var item in startItems)  //collection of items at the start
-        //{
-        //    AddItem(item);
-        //}
+        foreach (var item in startItems)  //collection of items at the start
+        {
+            AddItem(item);
+        }
     }
     private void Update()
     {

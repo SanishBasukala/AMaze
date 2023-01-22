@@ -4369,6 +4369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba75c42e7cd94554f8252df92b5ce19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startItems:
+  - {fileID: 11400000, guid: bb73b5078e11b264fbfd05510f565045, type: 2}
+  - {fileID: 11400000, guid: 3ca2d431315f444488a5b2e4c82e61b8, type: 2}
   maxStackedItem: 4
   inventorySlots:
   - {fileID: 1799773088}
@@ -9576,8 +9579,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlightTile: {fileID: 11400000, guid: 35aadb17f55c0e24eb05e10d2473b731, type: 2}
-  mainTilemap: {fileID: 272067503}
+  mainTilemap: {fileID: 100644039}
   tempTilemap: {fileID: 189343762}
+  lootPrefab: {fileID: 8241508656227068501, guid: fc7641eaba83d2444802a4c4fb4a05cd, type: 3}
 --- !u!1001 &361472526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10028,7 +10032,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496149603}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.3, y: -32, z: -10}
+  m_LocalPosition: {x: 6.56, y: -33.79, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
