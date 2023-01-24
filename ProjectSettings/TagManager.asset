@@ -6,12 +6,14 @@ TagManager:
   tags:
   - Walls
   - Enemy
-  - BlackKey
   - RedKey
-  - GoldenKey
-  - BlackDoor
   - RedDoor
-  - GoldenDoor
+  - Keys
+  - Heart
+  - BlueDoor
+  - BlueKey
+  - YellowDoor
+  - YellowKey
   layers:
   - Default
   - TransparentFX

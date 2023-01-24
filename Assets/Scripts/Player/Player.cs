@@ -187,13 +187,13 @@ public class Player : MonoBehaviour
         // Collision on wall
         //if (collision.gameObject.CompareTag("Walls")) { }
         // Get black keys
-        if (collision.gameObject.CompareTag("BlackKey"))
+        if (collision.gameObject.CompareTag("BlueKey"))
         {
             Destroy(collision.gameObject);
             blackKeyCount++;
             blackKeyCounter.text = "Score: " + blackKeyCount;
         }
-        if (blackKeyCount >= 1 && collision.gameObject.CompareTag("BlackDoor"))
+        if (blackKeyCount >= 1 && collision.gameObject.CompareTag("BlueDoor"))
         {
             Destroy(collision.gameObject);
             blackKeyCount--;
@@ -211,13 +211,13 @@ public class Player : MonoBehaviour
             redKeyCount--;
         }
         // Get golden keys
-        if (collision.gameObject.CompareTag("GoldenKey"))
+        if (collision.gameObject.CompareTag("YellowKey"))
         {
             Destroy(collision.gameObject);
             goldenKeyCount++;
             goldenKeyCounter.text = "Score: " + goldenKeyCount;
         }
-        if (goldenKeyCount >= 1 && collision.gameObject.CompareTag("GoldenDoor"))
+        if (goldenKeyCount >= 1 && collision.gameObject.CompareTag("YellowDoor"))
         {
             Destroy(collision.gameObject);
             goldenKeyCount--;

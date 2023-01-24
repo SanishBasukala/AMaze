@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 public class BuildingSystem : MonoBehaviour
@@ -15,7 +16,7 @@ public class BuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        Item item = InventoryManager.instance.GetSelectedItem(false);
+        Item item = InventoryManager.instance.GetSelectedItem(); //false
         if (item != null)
         {
             HighlightTile(item);
@@ -76,10 +77,14 @@ public class BuildingSystem : MonoBehaviour
 
     private void Build(Vector3Int position, Item itemToBuild)
     {
-        InventoryManager.instance.GetSelectedItem(true);
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            InventoryManager.instance.GetSelectedItem(); //true
 
-        tempTilemap.SetTile(position, null);
-        highlighted = false;
-        mainTilemap.SetTile(position, itemToBuild.tile);
+            tempTilemap.SetTile(position, null);
+            highlighted = false;
+            mainTilemap.SetTile(position, itemToBuild.tile);
+        }
+
     }
 }
