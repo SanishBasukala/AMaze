@@ -2850,6 +2850,8 @@ GameObject:
   - component: {fileID: 1257784263}
   - component: {fileID: 1257784256}
   - component: {fileID: 1257784264}
+  - component: {fileID: 1257784265}
+  - component: {fileID: 1257784266}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -2877,7 +2879,7 @@ MonoBehaviour:
   redKeyCounter: {fileID: 0}
   blackKeyCount: 0
   blackKeyCounter: {fileID: 0}
-  conversation: {fileID: 0}
+  conversation: {fileID: 1257784265}
   projectile: {fileID: 3251506981425189692, guid: b3beb0e9e7ea6de468cbac2b6c203b67, type: 3}
   playerHealth: {fileID: 0}
 --- !u!95 &1257784257
@@ -3073,6 +3075,37 @@ MonoBehaviour:
   emptyHeart: {fileID: 392579275, guid: 517637c313ff913478f5fb9a0c8feca0, type: 3}
   playerSr: {fileID: 1257784260}
   player: {fileID: 1257784256}
+--- !u!114 &1257784265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257784255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fdaf53e34e1b9944be1e701a33502a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogBox: {fileID: 1184946301}
+  dialogText: {fileID: 373842670}
+  dialog: helo
+  dialogActive: 
+--- !u!114 &1257784266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257784255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47c3f1da349c7b44d9cdebc2333852bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeName: Level 1
+  text: {fileID: 203803650}
+  placeText: {fileID: 203803653}
 --- !u!1 &1329060573
 GameObject:
   m_ObjectHideFlags: 0
