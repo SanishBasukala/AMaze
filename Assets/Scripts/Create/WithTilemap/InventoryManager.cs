@@ -20,22 +20,22 @@ public class InventoryManager : MonoBehaviour
             AddItem(item);
         }
     }
-    private void Update()
-    {
-        if (Input.inputString != null)
-        {
-            bool isNumber = int.TryParse(Input.inputString, out int number);
-            if (isNumber && number > 0 && number < 7)
-            {
-                ChangeSelectedSlot(number - 1);
-            }
-        }
-        else
-        {
-            return;
-        }
-    }
-    private void ChangeSelectedSlot(int newValue)
+    //private void Update()
+    //{
+    //    if (Input.inputString != null)
+    //    {
+    //        bool isNumber = int.TryParse(Input.inputString, out int number);
+    //        if (isNumber && number > 0 && number < 7)
+    //        {
+    //            ChangeSelectedSlot(number - 1);
+    //        }
+    //    }
+    //    else
+    //    {
+    //        return;
+    //    }
+    //}
+    public void ChangeSelectedSlot(int newValue)
     {
         if (selectedSlot >= 0)
         {
@@ -47,21 +47,21 @@ public class InventoryManager : MonoBehaviour
     public bool AddItem(Item item)
     {
         // Check if any slot has the sam eitem with count lower than max
-        print("inventory length" + inventorySlots.Length);
-        for (int i = 0; i < inventorySlots.Length; i++)
-        {
+        //print("inventory length" + inventorySlots.Length);
+        //for (int i = 0; i < inventorySlots.Length; i++)
+        //{
 
-            InventorySlot slot = inventorySlots[i];
-            InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
-            if (itemInSlot != null &&
-                itemInSlot.item == item &&
-                itemInSlot.item.stackable == true)
-            {
-                itemInSlot.count++;
-                //itemInSlot.RefreshCount();
-                return true;
-            }
-        }
+        //    InventorySlot slot = inventorySlots[i];
+        //    InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+        //    if (itemInSlot != null &&
+        //        itemInSlot.item == item &&
+        //        itemInSlot.item.stackable == true)
+        //    {
+        //        itemInSlot.count++;
+        //        return true;
+        //    }
+        //}
+
         //Find any empty slot
         for (int i = 0; i < inventorySlots.Length; i++)
         {
@@ -90,15 +90,10 @@ public class InventoryManager : MonoBehaviour
             Item item = itemInSlot.item;
             if (use)
             {
-                //itemInSlot.count--;
                 if (itemInSlot.count <= 0)
                 {
                     Destroy(itemInSlot.gameObject);
                 }
-                //else
-                //{
-                //    itemInSlot.RefreshCount();
-                //}
             }
             return item;
         }

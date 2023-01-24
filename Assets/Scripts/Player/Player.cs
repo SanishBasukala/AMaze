@@ -228,11 +228,5 @@ public class Player : MonoBehaviour
             playerHealth.GainHealth();
         }
     }
-
-    //Level text display
-
-
-
-
 }
 
