@@ -4,8 +4,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     public Item[] startItems; //collection of items at the start
-    public InventorySlot[] generalSlots;
-    public InventorySlot[] CollectableSlots;
+    public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
     int selectedSlot = -1;
@@ -40,9 +39,9 @@ public class InventoryManager : MonoBehaviour
     {
         if (selectedSlot >= 0)
         {
-            generalSlots[selectedSlot].Deselect();
+            inventorySlots[selectedSlot].Deselect();
         }
-        generalSlots[newValue].Select();
+        inventorySlots[newValue].Select();
         selectedSlot = newValue;
     }
     public bool AddItem(Item item)
@@ -63,9 +62,9 @@ public class InventoryManager : MonoBehaviour
         //    }
         //}
         //Find any empty slot
-        for (int i = 0; i < generalSlots.Length; i++)
+        for (int i = 0; i < inventorySlots.Length; i++)
         {
-            InventorySlot slot = generalSlots[i];
+            InventorySlot slot = inventorySlots[i];
             InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
             if (itemInSlot == null)
             {
@@ -83,7 +82,7 @@ public class InventoryManager : MonoBehaviour
     }
     public Item GetSelectedItem()//bool use
     {
-        InventorySlot slot = generalSlots[selectedSlot];
+        InventorySlot slot = inventorySlots[selectedSlot];
         InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
         if (itemInSlot != null)
         {

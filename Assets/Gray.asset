@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
-  m_Name: Key
+  m_Script: {fileID: 11500000, guid: c59bb3111741fdc47964cc387f3f76c0, type: 3}
+  m_Name: Gray
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 88f70ed8e7bfa3143b5d986c4b8aaec6, type: 2}
-  type: 0
-  stackable: 1
-  image: {fileID: 21300000, guid: bc8e9bf628599ad458c9a5287ca7eeb6, type: 3}
+  tile: {fileID: 11400000, guid: 4d0d635c2a99d5b4dab0cd8c52f090d0, type: 2}
+  id: gray
