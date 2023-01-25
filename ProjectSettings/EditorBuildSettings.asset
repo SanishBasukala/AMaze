@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/MenuScene.unity
     guid: 2fd2ccc333f3b1c40b51f1a29918d157
   - enabled: 1
-    path: Assets/Scenes/BackgroundScene.unity
-    guid: 101cbb6e483286a4887d796c6a9592e1
+    path: Assets/Scenes/LevelScene.unity
+    guid: 918152b5c178cc647a626c486c10e5b9
   - enabled: 1
-    path: Assets/Scenes/CreateMapScene.unity
-    guid: 83e20345e9af9b940a58fe116aa72a45
+    path: Assets/Scenes/Level1.unity
+    guid: 372b884e0a8b1964fa42ea672117e99f
+  - enabled: 1
+    path: Assets/Scenes/CreateWithTileMaps.unity
+    guid: 4b45e16fd9a247f4ab2f7c11daffcd77
   m_configObjects: {}

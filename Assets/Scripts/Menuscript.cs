@@ -1,19 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class Menuscript : MonoBehaviour
 {
-    public void getMainScene()
+    public void GetMainScene()
     {
         SceneManager.LoadScene("BackgroundScene");
     }
-    public void getCreateScene()
+    public void GetLevelScene()
     {
-        SceneManager.LoadScene("CreateMapScene");
+        SceneManager.LoadScene("LevelScene");
     }
-    public void exitgame()
+    public void GetLevel1Scene()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+    public void GetCreateScene()
+    {
+        SceneManager.LoadScene("CreateWithTileMaps");
+    }
+    public void Exitgame()
     {
         Application.Quit();
     }

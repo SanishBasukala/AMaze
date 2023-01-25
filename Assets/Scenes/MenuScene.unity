@@ -201,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 92988f008c1c8734381667825ddad3a3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b0b6b0d0c3dc07449a6b959fd044669, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -420,7 +420,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819058168}
         m_TargetAssemblyTypeName: Menuscript, Assembly-CSharp
-        m_MethodName: getCreateScene
+        m_MethodName: GetCreateScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -634,7 +634,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819058168}
         m_TargetAssemblyTypeName: Menuscript, Assembly-CSharp
-        m_MethodName: getMainScene
+        m_MethodName: GetLevel1Scene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -812,7 +812,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819058168}
         m_TargetAssemblyTypeName: Menuscript, Assembly-CSharp
-        m_MethodName: exitgame
+        m_MethodName: Exitgame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

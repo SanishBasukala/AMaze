@@ -21,7 +21,7 @@ public class SaveHandler : MonoBehaviour
     public void SaveLevel()
     {
         BoundsInt bounds = tilemap.cellBounds;
-        LevelData levelData = new LevelData();
+        LevelData levelData = new();
 
         Debug.Log("level saved");
 
@@ -57,6 +57,6 @@ public class SaveHandler : MonoBehaviour
 
 public class LevelData
 {
-    public List<TileBase> tiles = new List<TileBase>();
-    public List<Vector3Int> pos = new List<Vector3Int>();
+    public List<TileBase> tiles = new();
+    public List<Vector3Int> pos = new();
 }
