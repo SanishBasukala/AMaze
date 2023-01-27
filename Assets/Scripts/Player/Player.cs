@@ -21,12 +21,13 @@ public class Player : MonoBehaviour
     public PlayerState currentState;
 
     //displaying key counts
-    public int goldenKeyCount = 0;
-    public Text goldenKeyCounter;
+    public int yellowKeyCount = 0;
+    public Text yellowKeyCounter;
     public int redKeyCount = 0;
     public Text redKeyCounter;
-    public int blackKeyCount = 0;
-    public Text blackKeyCounter;
+    public int blueKeyCount = 0;
+    public Text blueKeyCounter;
+    public int FinalDoorItemCount = 0;
 
     //for animation
     private Animator animator;
@@ -190,20 +191,20 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("BlueKey"))
         {
             Destroy(collision.gameObject);
-            blackKeyCount++;
-            blackKeyCounter.text = "Score: " + blackKeyCount;
+            blueKeyCount++;
+            blueKeyCounter.text = "" + blueKeyCount;
         }
-        if (blackKeyCount >= 1 && collision.gameObject.CompareTag("BlueDoor"))
+        if (blueKeyCount >= 1 && collision.gameObject.CompareTag("BlueDoor"))
         {
             Destroy(collision.gameObject);
-            blackKeyCount--;
+            blueKeyCount--;
         }
         // Get red keys
         if (collision.gameObject.CompareTag("RedKey"))
         {
             Destroy(collision.gameObject);
             redKeyCount++;
-            redKeyCounter.text = "Score: " + redKeyCount;
+            redKeyCounter.text = "" + redKeyCount;
         }
         if (redKeyCount >= 1 && collision.gameObject.CompareTag("RedDoor"))
         {
@@ -214,19 +215,29 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("YellowKey"))
         {
             Destroy(collision.gameObject);
-            goldenKeyCount++;
-            goldenKeyCounter.text = "Score: " + goldenKeyCount;
+            yellowKeyCount++;
+            yellowKeyCounter.text = "" + yellowKeyCount;
         }
-        if (goldenKeyCount >= 1 && collision.gameObject.CompareTag("YellowDoor"))
+        if (yellowKeyCount >= 1 && collision.gameObject.CompareTag("YellowDoor"))
         {
             Destroy(collision.gameObject);
-            goldenKeyCount--;
+            yellowKeyCount--;
         }
         if (collision.gameObject.CompareTag("Heart"))
         {
             Destroy(collision.gameObject);
             playerHealth.GainHealth();
         }
+        if (collision.gameObject.CompareTag("FinalDoorItem"))
+        {
+            Destroy(collision.gameObject);
+            FinalDoorItemCount++;
+        }
+        if (collision.gameObject.CompareTag("FinalDoor") && FinalDoorItemCount == 1)
+        {
+            Destroy(collision.gameObject);
+        }
+
     }
 }
 

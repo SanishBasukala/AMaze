@@ -8584,12 +8584,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 18
   currentState: 0
-  goldenKeyCount: 0
-  goldenKeyCounter: {fileID: 0}
+  yellowKeyCount: 0
+  yellowKeyCounter: {fileID: 0}
   redKeyCount: 0
   redKeyCounter: {fileID: 0}
-  blackKeyCount: 0
-  blackKeyCounter: {fileID: 0}
+  blueKeyCount: 0
+  blueKeyCounter: {fileID: 0}
+  FinalDoorItemCount: 0
   conversation: {fileID: 0}
   projectile: {fileID: 3251506981425189692, guid: b3beb0e9e7ea6de468cbac2b6c203b67, type: 3}
   playerHealth: {fileID: 318612713}

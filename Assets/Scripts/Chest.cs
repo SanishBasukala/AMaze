@@ -36,6 +36,7 @@ public class Chest : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collision.isTrigger && !isOpen)
         {
+            print("in range");
             playerInRange = true;
         }
     }

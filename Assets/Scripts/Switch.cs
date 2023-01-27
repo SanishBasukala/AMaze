@@ -15,12 +15,10 @@ public class Switch : MonoBehaviour
 
             if (!isActive)
             {
-                print("pressed to start");
                 StartCoroutine(StartMechanism());
             }
             else if (isActive)
             {
-                print("pressed to stop");
                 StartCoroutine(MechanismActive());
             }
         }
