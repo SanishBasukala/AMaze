@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -33,14 +32,14 @@ public class Player : MonoBehaviour
     private Animator animator;
 
     //For conversation
-    public Conversation conversation;
+    public Message[] messages;
+    public Actor[] actors;
 
     //for projectile
     public GameObject projectile;
 
     public PlayerHealth playerHealth;
 
-    // Update is called once per frame
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -57,34 +56,31 @@ public class Player : MonoBehaviour
     {
         try
         {
-            if (conversation.dialogActive.IsUnityNull())
-            {
+            if (DialogManager.isActive == true)
                 return;
-            }
-            else if (conversation.dialogActive != "true")
-            {
-                change = Vector3.zero;
-                change.x = Input.GetAxisRaw("Horizontal");
-                change.y = Input.GetAxisRaw("Vertical");
-                if (change != Vector3.zero && currentState != PlayerState.stagger)
-                {
-                    MoveCharacter();
-                }
-                if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
-                {
-                    StartCoroutine(AttackCo());
-                }
-                else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
-                {
-                    StartCoroutine(SecondAttackCo());
-                }
-                else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
-                {
-                    UpdateAnimationAndMove();
-                }
-            }
 
-            conversation.ForConversation();
+            change = Vector3.zero;
+            change.x = Input.GetAxisRaw("Horizontal");
+            change.y = Input.GetAxisRaw("Vertical");
+            if (change != Vector3.zero && currentState != PlayerState.stagger)
+            {
+                MoveCharacter();
+            }
+            if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+            {
+                StartCoroutine(AttackCo());
+            }
+            else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+            {
+                StartCoroutine(SecondAttackCo());
+            }
+            else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+            {
+                UpdateAnimationAndMove();
+            }
+            //}
+
+            //conversation.ForConversation();
         }
         catch (NullReferenceException)
         {
@@ -240,4 +236,3 @@ public class Player : MonoBehaviour
 
     }
 }
-

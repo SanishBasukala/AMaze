@@ -6,10 +6,10 @@ public class Chest : MonoBehaviour
 {
     public bool isOpen;
     private Animator anim;
-    public GameObject dialogBox;
-    public Text dialogText;
-    public string dialog;
     public bool playerInRange;
+    public Text dialogText;
+    public GameObject dialogBox;
+
 
     private void Start()
     {
@@ -36,7 +36,6 @@ public class Chest : MonoBehaviour
     {
         if (collision.CompareTag("Player") && !collision.isTrigger && !isOpen)
         {
-            print("in range");
             playerInRange = true;
         }
     }
@@ -52,8 +51,6 @@ public class Chest : MonoBehaviour
     private IEnumerator OpenChest()
     {
         dialogBox.SetActive(true);
-
-        dialogText.text = "Description";
         isOpen = true;
         anim.SetBool("opened", true);
         yield return new WaitForSeconds(2);
