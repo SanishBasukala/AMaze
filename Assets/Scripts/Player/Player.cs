@@ -49,8 +49,6 @@ public class Player : MonoBehaviour
 
         animator.SetFloat("moveX", 0);
         animator.SetFloat("moveY", -1);
-
-
     }
     void Update()
     {
