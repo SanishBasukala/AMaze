@@ -22,10 +22,13 @@ public class DialogManager : MonoBehaviour
     }
     private void Update()
     {
+        //if (!EventSystem.current.IsPointerOverGameObject())
+        //{
         if (Input.GetKeyDown(KeyCode.Mouse0) && isActive == true)
         {
             NextMessage();
         }
+        //}
     }
     public void OpenDialogue(Message[] messages, Actor[] actors)
     {
