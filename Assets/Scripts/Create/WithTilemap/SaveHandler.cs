@@ -2,28 +2,60 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
+
 public class SaveHandler : MonoBehaviour
 {
     public static SaveHandler instance;
     public Tilemap tilemap;
+    public Text[] slotState;
+    public int saveSlot;
+    private string filename;
 
     private void Awake()
     {
+        saveSlot = 0;
         if (instance == null) instance = this;
         else Destroy(this);
     }
-
-    private void Update()
+    public void SaveSlot1()
     {
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.A)) SaveLevel();
-        if (Input.GetKey(KeyCode.LeftControl) && Input.GetKeyDown(KeyCode.L)) LoadLevel();
+        filename = "/AMaze1.json";
+        saveSlot = 1;
     }
-    public void SaveLevel()
+    public void SaveSlot2()
+    {
+        filename = "/AMaze2.json";
+        saveSlot = 2;
+    }
+    public void SaveSlot3()
+    {
+        filename = "/AMaze3.json";
+        saveSlot = 3;
+    }
+    public void SaveButton()
+    {
+        if (saveSlot == 1)
+        {
+            slotState[0].text = "AMaze1";
+            slotState[3].text = "AMaze1";
+        }
+        else if (saveSlot == 2)
+        {
+            slotState[1].text = "AMaze2";
+            slotState[4].text = "AMaze2";
+        }
+        else if (saveSlot == 3)
+        {
+            slotState[2].text = "AMaze3";
+            slotState[5].text = "AMaze3";
+        }
+        SaveLevel(filename);
+    }
+    public void SaveLevel(string filename)
     {
         BoundsInt bounds = tilemap.cellBounds;
         LevelData levelData = new();
-
-        Debug.Log("level saved");
 
         for (int x = bounds.min.x; x < bounds.max.x; x++)
         {
@@ -38,12 +70,26 @@ public class SaveHandler : MonoBehaviour
             }
         }
         string json = JsonUtility.ToJson(levelData, true);
-        File.WriteAllText(Application.dataPath + "/AMaze.json", json);
+        //File.WriteAllText(Application.dataPath + "/AMaze.json", json);
+        File.WriteAllText(Application.dataPath + filename, json);
     }
 
-    public void LoadLevel()
+    public void LoadSlot1()
     {
-        string json = File.ReadAllText(Application.dataPath + "/AMaze.json");
+        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
+    }
+    public void LoadSlot2()
+    {
+        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
+    }
+    public void LoadSlot3()
+    {
+        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
+    }
+    public void LoadLevel(string json)
+    {
+        print("loaded");
+        //json = File.ReadAllText(Application.dataPath + "/AMaze.json");
         LevelData data = JsonUtility.FromJson<LevelData>(json);
 
         tilemap.ClearAllTiles();
