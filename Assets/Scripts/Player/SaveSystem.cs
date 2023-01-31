@@ -8,9 +8,9 @@ public static class SaveSystem
     {
         BinaryFormatter formatter = new();
         string path = Application.persistentDataPath + "/Player.txt";
-        FileStream stream = new FileStream(path, FileMode.Create);
+        FileStream stream = new(path, FileMode.Create);
 
-        PlayerData data = new PlayerData(playerHealth);
+        PlayerData data = new(playerHealth);
 
         formatter.Serialize(stream, data);
         stream.Close();
@@ -21,8 +21,8 @@ public static class SaveSystem
         string path = Application.persistentDataPath + "/Player.txt";
         if (File.Exists(path))
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            BinaryFormatter formatter = new();
+            FileStream stream = new(path, FileMode.Open);
 
             PlayerData data = formatter.Deserialize(stream) as PlayerData;
             stream.Close();

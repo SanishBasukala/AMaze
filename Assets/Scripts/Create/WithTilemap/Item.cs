@@ -18,5 +18,6 @@ public class Item : ScriptableObject
 public enum ItemType
 {
     BuildingBlock,
-    PanTool
+    PanTool,
+    Prefab
 }

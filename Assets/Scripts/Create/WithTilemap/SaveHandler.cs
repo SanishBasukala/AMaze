@@ -9,7 +9,7 @@ public class SaveHandler : MonoBehaviour
     public static SaveHandler instance;
     public Tilemap tilemap;
     public Text[] slotState;
-    public int saveSlot;
+    private int saveSlot;
     private string filename;
 
     private void Awake()

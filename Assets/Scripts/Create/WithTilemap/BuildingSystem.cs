@@ -14,6 +14,22 @@ public class BuildingSystem : MonoBehaviour
     private Vector3Int highlightedTilePos;
     private bool highlighted;
 
+    public GameObject myPrefab;
+    public Vector3Int changeposition;
+
+    private void Start()
+    {
+
+        //Instantiate(myPrefab, highlightedTilePos, Quaternion.identity);
+
+
+        //GridLayout gridLayout = transform.parent.GetComponentInParent<GridLayout>();
+        //Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
+        //transform.position = gridLayout.CellToWorld(cellPosition);
+        //print(gridLayout);
+        //print(cellPosition);
+        //print(transform.position);
+    }
     private void Update()
     {
         Item item = InventoryManager.instance.GetSelectedItem(); //false
@@ -30,9 +46,16 @@ public class BuildingSystem : MonoBehaviour
                 {
                     Build(highlightedTilePos, item);
                 }
+                else if (item.type == ItemType.Prefab)
+                {
+                    BuildPrefab();
+                }
             }
         }
     }
+
+
+
     private Vector3Int GetMourseOnGirdPos()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -65,7 +88,7 @@ public class BuildingSystem : MonoBehaviour
 
     private bool CheckCondition(RuleTileWithData tile, Item currentItem)
     {
-        if (currentItem.type == ItemType.BuildingBlock)
+        if (currentItem.type == ItemType.BuildingBlock || currentItem.type == ItemType.Prefab)
         {
             if (!tile)
             {
@@ -85,6 +108,9 @@ public class BuildingSystem : MonoBehaviour
             highlighted = false;
             mainTilemap.SetTile(position, itemToBuild.tile);
         }
-
+    }
+    private void BuildPrefab()
+    {
+        Instantiate(myPrefab, highlightedTilePos * changeposition, Quaternion.identity);
     }
 }
