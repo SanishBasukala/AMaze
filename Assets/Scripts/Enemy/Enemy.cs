@@ -15,31 +15,6 @@ public class Enemy : MonoBehaviour
     public EnemyState currentState;
     public float moveSpeed;
 
-    //public int maxHealth;
-    //public int currentHealth;
-
-    //private void Start()
-    //{
-    //    currentHealth = maxHealth;
-    //}
-
-    //private void Update()
-    //{
-    //    if (currentHealth <= 0)
-    //    {
-    //        Destroy(gameObject);
-    //    }
-    //}
-
-    //public void HurtEnemy(int damageAmount)
-    //{
-    //    currentHealth -= damageAmount;
-    //}
-
-    //public void SetMaxHealth()
-    //{
-    //    currentHealth = maxHealth;
-    //}
     public FloatValue maxhealth;
     public float health;
     public int baseAttack;
@@ -82,6 +57,7 @@ public class Enemy : MonoBehaviour
             myRigidbody.velocity = Vector2.zero;
         }
     }
+
 
 
 }
