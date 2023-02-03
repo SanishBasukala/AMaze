@@ -60,11 +60,11 @@ public class Bandit : Enemy
             new Vector3(boxCollider.bounds.size.x * range, boxCollider.bounds.size.y, boxCollider.bounds.size.z));
     }
 
-    //private void DamagePlayer()
-    //{
-    //    if (PlayerInSight())
-    //    {
-    //        playerHealth.TakeDamage(baseAttack);
-    //    }
-    //}
+    private void DamagePlayer()
+    {
+        if (PlayerInSight())
+        {
+            playerHealth.TakeDamage(baseAttack);
+        }
+    }
 }

@@ -14,6 +14,10 @@ TagManager:
   - BlueKey
   - YellowDoor
   - YellowKey
+  - FinalDoorItem
+  - FinalDoor
+  - Switch
+  - RecallPoint
   layers:
   - Default
   - TransparentFX
@@ -25,8 +29,8 @@ TagManager:
   - Player
   - Character collider blocker
   - Enemy Projectile
-  - 
-  - 
+  - FinalItem
+  - FinalItemShadow
   - 
   - 
   - 

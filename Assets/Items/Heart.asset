@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
   m_Name: Heart
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 28a1769001b0e1541bb8cf11ee623da1, type: 2}
+  tile: {fileID: 0}
   myPrefab: {fileID: 4846861373877859887, guid: 76eaf8f0f77fdb1419604853bdf5ec8d, type: 3}
   type: 2
   stackable: 1

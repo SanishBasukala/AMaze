@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
   m_Name: Altar
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 35aadb17f55c0e24eb05e10d2473b731, type: 2}
+  tile: {fileID: 0}
   myPrefab: {fileID: 859617255876574802, guid: 60b59504aaf863e4394ca506756f01ff, type: 3}
   type: 2
   stackable: 1

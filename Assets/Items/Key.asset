@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
   m_Name: Key
   m_EditorClassIdentifier: 
-  tile: {fileID: 11400000, guid: 88f70ed8e7bfa3143b5d986c4b8aaec6, type: 2}
+  tile: {fileID: 0}
   myPrefab: {fileID: 1261093855825863316, guid: 8094fd1f152dc914b899c5600de5ccd5, type: 3}
   type: 2
   stackable: 1

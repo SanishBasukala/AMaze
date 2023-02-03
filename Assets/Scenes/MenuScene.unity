@@ -634,7 +634,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 819058168}
         m_TargetAssemblyTypeName: Menuscript, Assembly-CSharp
-        m_MethodName: GetLevel1Scene
+        m_MethodName: GetLevelScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

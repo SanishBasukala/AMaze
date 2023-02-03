@@ -933,7 +933,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240894581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.77, y: -42.06, z: -10}
+  m_LocalPosition: {x: 3.62, y: -42.13, z: -10}
   m_LocalScale: {x: 0.32681227, y: 0.16443384, z: 0.16443384}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1082,10 +1082,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpen: 0
-  dialogBox: {fileID: 0}
-  dialogText: {fileID: 0}
-  dialog: Chest is here
   playerInRange: 0
+  dialogText: {fileID: 0}
+  dialogBox: {fileID: 0}
 --- !u!61 &278018162
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1890,12 +1889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2977c8d08a9c7e4188e1738a1cbbcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  moveSpeed: 2
-  maxhealth: {fileID: 11400000, guid: 9722571d4b0da554087280b77dccdd90, type: 2}
-  health: 0
   baseAttack: 2
-  deathEffect: {fileID: 0}
   playerHealth: {fileID: 1257784264}
 --- !u!50 &686167276
 Rigidbody2D:
@@ -1983,7 +1977,7 @@ SpriteRenderer:
   m_Size: {x: 2.125, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &686167279
@@ -8526,12 +8520,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2977c8d08a9c7e4188e1738a1cbbcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  moveSpeed: 2
-  maxhealth: {fileID: 11400000, guid: 9722571d4b0da554087280b77dccdd90, type: 2}
-  health: 0
   baseAttack: 2
-  deathEffect: {fileID: 0}
   playerHealth: {fileID: 1257784264}
 --- !u!70 &1400231330
 CapsuleCollider2D:
@@ -8598,7 +8587,7 @@ SpriteRenderer:
   m_Size: {x: 2.125, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1400231332
@@ -13844,12 +13833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2977c8d08a9c7e4188e1738a1cbbcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  moveSpeed: 2
-  maxhealth: {fileID: 11400000, guid: 9722571d4b0da554087280b77dccdd90, type: 2}
-  health: 0
   baseAttack: 2
-  deathEffect: {fileID: 0}
   playerHealth: {fileID: 1257784264}
 --- !u!50 &2008665742
 Rigidbody2D:
@@ -13937,7 +13921,7 @@ SpriteRenderer:
   m_Size: {x: 2.125, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &2008665745
