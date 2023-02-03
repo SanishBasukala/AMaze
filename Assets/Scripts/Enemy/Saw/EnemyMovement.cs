@@ -13,26 +13,26 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isChasing)
+        if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance)
         {
-            if (transform.position.x > playerTransform.position.x)
+            isChasing = true;
+            if (isChasing)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
-                transform.position += Vector3.left * moveSpeed * Time.deltaTime;
-            }
-            if (transform.position.x < playerTransform.position.x)
-            {
-                transform.localScale = new Vector3(1, 1, 1);
-                transform.position += Vector3.right * moveSpeed * Time.deltaTime;
+                if (transform.position.x > playerTransform.position.x)
+                {
+                    transform.localScale = new Vector3(-1, 1, 1);
+                    transform.position += moveSpeed * Time.deltaTime * Vector3.left;
+                }
+                if (transform.position.x < playerTransform.position.x)
+                {
+                    transform.localScale = new Vector3(1, 1, 1);
+                    transform.position += moveSpeed * Time.deltaTime * Vector3.right;
+                }
             }
         }
         else
         {
-            if (Vector2.Distance(transform.position, playerTransform.position) < chaseDistance)
-            {
-                isChasing = true;
-            }
-
+            isChasing = false;
             if (patrolDestination == 0)
             {
                 transform.position = Vector2.MoveTowards(transform.position, patrolPoints[0].position, moveSpeed * Time.deltaTime);
@@ -52,6 +52,7 @@ public class EnemyMovement : MonoBehaviour
                 }
             }
         }
+
     }
 }
 

@@ -9061,12 +9061,12 @@ GameObject:
   - component: {fileID: 1400231328}
   - component: {fileID: 1400231331}
   - component: {fileID: 1400231330}
-  - component: {fileID: 1400231334}
   - component: {fileID: 1400231329}
   - component: {fileID: 1400231332}
   - component: {fileID: 1400231333}
+  - component: {fileID: 1400231335}
   m_Layer: 0
-  m_Name: Skeleton
+  m_Name: Saw
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9099,12 +9099,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2977c8d08a9c7e4188e1738a1cbbcaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
-  moveSpeed: 2
-  maxhealth: {fileID: 11400000, guid: 9722571d4b0da554087280b77dccdd90, type: 2}
-  health: 0
   baseAttack: 2
-  deathEffect: {fileID: 4027054078158785658, guid: 22784f545fb30334ea59f22b734ef951, type: 3}
   playerHealth: {fileID: 1257784264}
 --- !u!70 &1400231330
 CapsuleCollider2D:
@@ -9163,7 +9158,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1055543255, guid: 78ddac3a2d96c1748b50f52dd26dfa97, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ca5ce7f3f3ac3bb499d37119b1867d7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9193,7 +9188,7 @@ MonoBehaviour:
   patrolDestination: 1
   playerTransform: {fileID: 1257784261}
   isChasing: 0
-  chaseDistance: 3
+  chaseDistance: 4
 --- !u!114 &1400231333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9208,28 +9203,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrust: 5
   knockTime: 0.3
-  damage: 0
---- !u!50 &1400231334
-Rigidbody2D:
+  damage: 2
+--- !u!95 &1400231335
+Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400231327}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 500
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89debc6df612a9043a13fc73ba9413aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1400441565
 GameObject:
   m_ObjectHideFlags: 0
@@ -14274,7 +14268,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1994711169
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -14613,6 +14607,22 @@ PrefabInstance:
     - target: {fileID: 805808767242363593, guid: f19700f53749f3840b9e358061049559, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 805808767242363595, guid: f19700f53749f3840b9e358061049559, type: 3}
+      propertyPath: m_Size.x
+      value: 0.13937508
+      objectReference: {fileID: 0}
+    - target: {fileID: 805808767242363595, guid: f19700f53749f3840b9e358061049559, type: 3}
+      propertyPath: m_Size.y
+      value: 0.20120263
+      objectReference: {fileID: 0}
+    - target: {fileID: 805808767242363595, guid: f19700f53749f3840b9e358061049559, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.005312465
+      objectReference: {fileID: 0}
+    - target: {fileID: 805808767242363595, guid: f19700f53749f3840b9e358061049559, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.009398684
       objectReference: {fileID: 0}
     - target: {fileID: 805808767242363596, guid: f19700f53749f3840b9e358061049559, type: 3}
       propertyPath: redKeyCounter
