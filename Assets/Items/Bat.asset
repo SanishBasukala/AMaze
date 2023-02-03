@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
-  m_Name: Pan tool 1
+  m_Name: Bat
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
-  type: 1
+  myPrefab: {fileID: 4318525522638170771, guid: 62e43f004b216584382ae1ad5ee6da7a, type: 3}
+  type: 2
   stackable: 1
-  image: {fileID: 21300000, guid: aa0e6be292fa0f74d9e934c41e0d4ef4, type: 3}
+  image: {fileID: 29521076, guid: 7ff08f72093cbee46bbeb08735a050ef, type: 3}

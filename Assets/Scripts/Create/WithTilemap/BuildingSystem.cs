@@ -14,21 +14,13 @@ public class BuildingSystem : MonoBehaviour
     private Vector3Int highlightedTilePos;
     private bool highlighted;
 
-    public GameObject myPrefab;
     public Vector3Int changeposition;
+
+    public Camera cam;
 
     private void Start()
     {
-
-        //Instantiate(myPrefab, highlightedTilePos, Quaternion.identity);
-
-
-        //GridLayout gridLayout = transform.parent.GetComponentInParent<GridLayout>();
-        //Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
-        //transform.position = gridLayout.CellToWorld(cellPosition);
-        //print(gridLayout);
-        //print(cellPosition);
-        //print(transform.position);
+        cam = Camera.main;
     }
     private void Update()
     {
@@ -48,13 +40,25 @@ public class BuildingSystem : MonoBehaviour
                 }
                 else if (item.type == ItemType.Prefab)
                 {
-                    BuildPrefab();
+                    BuildPrefab(highlightedTilePos, item);
+                }
+            }
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            Vector2 rayOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero);
+
+            if (hit)
+            {
+                if (item.type == ItemType.BuildingBlock)
+                {
+                    Destroy(hit.collider.gameObject);
                 }
             }
         }
     }
-
-
 
     private Vector3Int GetMourseOnGirdPos()
     {
@@ -109,8 +113,9 @@ public class BuildingSystem : MonoBehaviour
             mainTilemap.SetTile(position, itemToBuild.tile);
         }
     }
-    private void BuildPrefab()
+    private void BuildPrefab(Vector3Int position, Item myPrefab)
     {
-        Instantiate(myPrefab, highlightedTilePos * changeposition, Quaternion.identity);
+        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity); // position - changeposition
     }
 }

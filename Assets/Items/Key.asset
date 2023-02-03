@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Key
   m_EditorClassIdentifier: 
   tile: {fileID: 11400000, guid: 88f70ed8e7bfa3143b5d986c4b8aaec6, type: 2}
-  type: 0
+  myPrefab: {fileID: 1261093855825863316, guid: 8094fd1f152dc914b899c5600de5ccd5, type: 3}
+  type: 2
   stackable: 1
   image: {fileID: 21300000, guid: bc8e9bf628599ad458c9a5287ca7eeb6, type: 3}

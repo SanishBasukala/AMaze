@@ -88,7 +88,6 @@ public class SaveHandler : MonoBehaviour
     }
     public void LoadLevel(string json)
     {
-        print("loaded");
         //json = File.ReadAllText(Application.dataPath + "/AMaze.json");
         LevelData data = JsonUtility.FromJson<LevelData>(json);
 

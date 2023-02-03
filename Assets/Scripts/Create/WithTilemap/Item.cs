@@ -6,6 +6,7 @@ public class Item : ScriptableObject
 {
     [Header("Only gameplay")]
     public TileBase tile;
+    public GameObject myPrefab;
     public ItemType type;
 
     [Header("Only UI")]
