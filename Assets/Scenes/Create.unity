@@ -4060,7 +4060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dae65fbbca5e62d429791b1d076ebdb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 100644039}
+  tilemap: {fileID: 682563709}
   slotState:
   - {fileID: 719931782}
   - {fileID: 299178164}
@@ -4068,6 +4068,7 @@ MonoBehaviour:
   - {fileID: 101428706}
   - {fileID: 832513055}
   - {fileID: 1177509345}
+  inCreate: 0
 --- !u!114 &212243732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9050,7 +9051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 18
   currentState: 0
-  inCreate: 0
   yellowKeyCount: 0
   yellowKeyCounter: {fileID: 0}
   redKeyCount: 0
@@ -9062,6 +9062,7 @@ MonoBehaviour:
   actors: []
   projectile: {fileID: 3251506981425189692, guid: b3beb0e9e7ea6de468cbac2b6c203b67, type: 3}
   playerHealth: {fileID: 318612713}
+  saveHandler: {fileID: 212243731}
 --- !u!1 &321199213
 GameObject:
   m_ObjectHideFlags: 0

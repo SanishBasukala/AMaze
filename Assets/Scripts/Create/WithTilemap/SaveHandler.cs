@@ -12,6 +12,7 @@ public class SaveHandler : MonoBehaviour
     private int saveSlot;
     private string filename;
 
+    public bool inCreate;
     //public Camera mainCamera;
     //public Camera playerCamera;
 
@@ -23,16 +24,20 @@ public class SaveHandler : MonoBehaviour
     }
     public void SaveSlot1()
     {
+        inCreate = true;
+
         filename = "/AMaze1.json";
         saveSlot = 1;
     }
     public void SaveSlot2()
     {
+        inCreate = true;
         filename = "/AMaze2.json";
         saveSlot = 2;
     }
     public void SaveSlot3()
     {
+        inCreate = true;
         filename = "/AMaze3.json";
         saveSlot = 3;
     }
@@ -92,21 +97,20 @@ public class SaveHandler : MonoBehaviour
     public void LoadLevel(string json)
     {
 
-        //Player player = new();
-        //player.inCreate = false;
+
+        inCreate = false;
         //playerCamera.enabled = true;
         //mainCamera.enabled = false;
 
         //json = File.ReadAllText(Application.dataPath + "/AMaze.json");
         LevelData data = JsonUtility.FromJson<LevelData>(json);
-
+        print(data.tiles.Count);
         tilemap.ClearAllTiles();
 
         for (int i = 0; i < data.tiles.Count; i++)
         {
             tilemap.SetTile(data.pos[i], data.tiles[i]);
         }
-
     }
 }
 
