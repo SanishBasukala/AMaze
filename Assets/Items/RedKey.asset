@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
+  m_Name: RedKey
+  m_EditorClassIdentifier: 
+  tile: {fileID: 0}
+  myPrefab: {fileID: 4459929679938257566, guid: 81109f8ff5938574fa1b6ae732a44abc, type: 3}
+  type: 2
+  stackable: 1
+  image: {fileID: 21300000, guid: ead40657a07c02f43ad902a5303a2448, type: 3}

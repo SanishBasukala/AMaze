@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private Vector3 change;
 
     public PlayerState currentState;
+    public bool inCreate;
 
     //displaying key counts
     public int yellowKeyCount = 0;
@@ -42,6 +43,16 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        string currentScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (currentScene == "Create")
+        {
+            inCreate = true;
+        }
+        else
+        {
+            inCreate = false;
+        }
+
         myRigidbody = GetComponent<Rigidbody2D>();
 
         currentState = PlayerState.walk;
@@ -54,7 +65,7 @@ public class Player : MonoBehaviour
     {
         try
         {
-            if (DialogManager.isActive == true)
+            if (DialogManager.isActive == true || inCreate == true)
                 return;
 
             change = Vector3.zero;

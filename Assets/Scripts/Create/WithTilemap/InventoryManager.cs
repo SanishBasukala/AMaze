@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
@@ -25,7 +26,7 @@ public class InventoryManager : MonoBehaviour
         if (Input.inputString != null)
         {
             bool isNumber = int.TryParse(Input.inputString, out int number);
-            if (isNumber && number > 0 && number < 7)
+            if (isNumber && number > 0 && number < startItems.Count())
             {
                 ChangeSelectedSlot(number - 1);
             }

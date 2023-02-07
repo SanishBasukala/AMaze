@@ -115,7 +115,10 @@ public class BuildingSystem : MonoBehaviour
     }
     private void BuildPrefab(Vector3Int position, Item myPrefab)
     {
-        Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity); // position - changeposition
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity); // position - changeposition
+        }
     }
 }

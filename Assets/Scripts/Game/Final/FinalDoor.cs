@@ -18,12 +18,9 @@ public class FinalDoor : MonoBehaviour
         {
             transform.GetChild(0).gameObject.SetActive(true);
         }
-        print(currentPoints);
-
     }
     public void AddPoint()
     {
         currentPoints++;
-
     }
 }

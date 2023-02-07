@@ -12,6 +12,9 @@ public class SaveHandler : MonoBehaviour
     private int saveSlot;
     private string filename;
 
+    //public Camera mainCamera;
+    //public Camera playerCamera;
+
     private void Awake()
     {
         saveSlot = 0;
@@ -88,6 +91,12 @@ public class SaveHandler : MonoBehaviour
     }
     public void LoadLevel(string json)
     {
+
+        //Player player = new();
+        //player.inCreate = false;
+        //playerCamera.enabled = true;
+        //mainCamera.enabled = false;
+
         //json = File.ReadAllText(Application.dataPath + "/AMaze.json");
         LevelData data = JsonUtility.FromJson<LevelData>(json);
 
@@ -97,6 +106,7 @@ public class SaveHandler : MonoBehaviour
         {
             tilemap.SetTile(data.pos[i], data.tiles[i]);
         }
+
     }
 }
 
