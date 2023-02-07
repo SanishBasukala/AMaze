@@ -13,8 +13,8 @@ public class SaveHandler : MonoBehaviour
     private string filename;
 
     public bool inCreate;
-    //public Camera mainCamera;
-    //public Camera playerCamera;
+    public Camera mainCamera;
+    public Camera playerCamera;
 
     private void Awake()
     {
@@ -99,8 +99,8 @@ public class SaveHandler : MonoBehaviour
 
 
         inCreate = false;
-        //playerCamera.enabled = true;
-        //mainCamera.enabled = false;
+        playerCamera.gameObject.SetActive(true);
+        mainCamera.gameObject.SetActive(false);
 
         //json = File.ReadAllText(Application.dataPath + "/AMaze.json");
         LevelData data = JsonUtility.FromJson<LevelData>(json);

@@ -4069,6 +4069,8 @@ MonoBehaviour:
   - {fileID: 832513055}
   - {fileID: 1177509345}
   inCreate: 0
+  mainCamera: {fileID: 496149605}
+  playerCamera: {fileID: 983915485}
 --- !u!114 &212243732
 MonoBehaviour:
   m_ObjectHideFlags: 0
