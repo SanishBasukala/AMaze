@@ -5,6 +5,7 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     public Item[] startItems; //collection of items at the start
+    public GameObject[] prefabs;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
@@ -16,9 +17,15 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         ChangeSelectedSlot(0);
-        foreach (var item in startItems)  //collection of items at the start
+        //foreach (var item in startItems)  //collection of items at the start
+        //{
+        //    AddItem(item);
+        //}
+
+        for (int i = 0; i < startItems.Count(); i++)
         {
-            AddItem(item);
+            startItems[i].itemId = i;
+            AddItem(startItems[i]);
         }
     }
     private void Update()

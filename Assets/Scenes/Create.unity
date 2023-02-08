@@ -4017,6 +4017,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 02e3e06e2aaa5144299828524f5659f1, type: 2}
   - {fileID: 11400000, guid: 9de1df2e3bcabd44196042b305703624, type: 2}
   - {fileID: 11400000, guid: 47ebb0991fae1f1428b85db47c5f4135, type: 2}
+  prefabs:
+  - {fileID: 859617255876574802, guid: 60b59504aaf863e4394ca506756f01ff, type: 3}
+  - {fileID: 4846861373877859887, guid: 76eaf8f0f77fdb1419604853bdf5ec8d, type: 3}
+  - {fileID: 1261093855825863316, guid: 8094fd1f152dc914b899c5600de5ccd5, type: 3}
+  - {fileID: 4459929679938257566, guid: 81109f8ff5938574fa1b6ae732a44abc, type: 3}
+  - {fileID: 1531979563297589723, guid: 6fcc087b78cafef4784ce98a20cbd486, type: 3}
+  - {fileID: 4318525522638170771, guid: 62e43f004b216584382ae1ad5ee6da7a, type: 3}
+  - {fileID: 3032086377426194569, guid: 25500def05826ee499086c5e89e2d9bd, type: 3}
+  - {fileID: 3496019556828779472, guid: 61fd08d822c7b664db986d960312afd5, type: 3}
+  - {fileID: 1765965245655235298, guid: 8d86d0fc1c0e827489568f15426af1b1, type: 3}
+  - {fileID: 4972919430211360572, guid: 7695c03def1181346b3bc24c41b043f1, type: 3}
+  - {fileID: 1783323286052491244, guid: 0fff6d7d9ea13b04db8aca49e06cd020, type: 3}
   inventorySlots:
   - {fileID: 1648601807}
   - {fileID: 561644446}
@@ -4071,6 +4083,7 @@ MonoBehaviour:
   inCreate: 0
   mainCamera: {fileID: 496149605}
   playerCamera: {fileID: 983915485}
+  inventoryManager: {fileID: 212243729}
 --- !u!114 &212243732
 MonoBehaviour:
   m_ObjectHideFlags: 0

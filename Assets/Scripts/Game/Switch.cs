@@ -26,7 +26,6 @@ public class Switch : MonoBehaviour
             }
         }
 
-
         if (Input.GetKeyDown(KeyCode.F) && playerInRange)
         {
             if (!isActive)

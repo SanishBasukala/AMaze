@@ -19,10 +19,6 @@ public class BuildingSystem : MonoBehaviour
     public Camera cam;
     public SaveHandler saveHandler;
 
-    private void Start()
-    {
-        cam = Camera.main;
-    }
     private void Update()
     {
         Item item = InventoryManager.instance.GetSelectedItem(); //false
@@ -41,7 +37,7 @@ public class BuildingSystem : MonoBehaviour
                 }
                 else if (item.type == ItemType.Prefab)
                 {
-                    BuildPrefab(item);
+                    BuildPrefab(item, item.itemId);
                 }
             }
         }
@@ -114,13 +110,13 @@ public class BuildingSystem : MonoBehaviour
             mainTilemap.SetTile(position, itemToBuild.tile);
         }
     }
-    private void BuildPrefab(Item myPrefab)
+    private void BuildPrefab(Item myPrefab, int itemId)
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity); // position - changeposition
-            saveHandler.CollectPrefabs(mousePos, myPrefab.myPrefab);
+            Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity);
+            saveHandler.CollectPrefabs(mousePos, itemId);
         }
     }
 }

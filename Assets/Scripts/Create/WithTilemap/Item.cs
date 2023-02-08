@@ -5,6 +5,8 @@ using UnityEngine.Tilemaps;
 public class Item : ScriptableObject
 {
     [Header("Only gameplay")]
+    public int itemId;
+
     public TileBase tile;
     public GameObject myPrefab;
     public ItemType type;
