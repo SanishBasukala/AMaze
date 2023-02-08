@@ -16,6 +16,9 @@ public class SaveHandler : MonoBehaviour
     public Camera mainCamera;
     public Camera playerCamera;
 
+    private List<GameObject> prefabsData = new();
+    private List<Vector2> prefabPositionData = new();
+
     private void Awake()
     {
         saveSlot = 0;
@@ -77,6 +80,15 @@ public class SaveHandler : MonoBehaviour
                 }
             }
         }
+        foreach (GameObject pre in prefabsData)
+        {
+            levelData.prefabs.Add(pre);
+        }
+        foreach (Vector2 prePos in prefabPositionData)
+        {
+            levelData.prefabsPosition.Add(prePos);
+        }
+
         string json = JsonUtility.ToJson(levelData, true);
         //File.WriteAllText(Application.dataPath + "/AMaze.json", json);
         File.WriteAllText(Application.dataPath + filename, json);
@@ -96,21 +108,28 @@ public class SaveHandler : MonoBehaviour
     }
     public void LoadLevel(string json)
     {
-
-
         inCreate = false;
         playerCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
 
         //json = File.ReadAllText(Application.dataPath + "/AMaze.json");
         LevelData data = JsonUtility.FromJson<LevelData>(json);
-        print(data.tiles.Count);
         tilemap.ClearAllTiles();
 
         for (int i = 0; i < data.tiles.Count; i++)
         {
             tilemap.SetTile(data.pos[i], data.tiles[i]);
         }
+        for (int i = 0; i < data.prefabs.Count; i++)
+        {
+            Instantiate(data.prefabs[i], data.prefabsPosition[i], Quaternion.identity);
+        }
+    }
+
+    public void CollectPrefabs(Vector2 pos, GameObject Prefab)
+    {
+        prefabsData.Add(Prefab);
+        prefabPositionData.Add(pos);
     }
 }
 
@@ -118,4 +137,6 @@ public class LevelData
 {
     public List<TileBase> tiles = new();
     public List<Vector3Int> pos = new();
+    public List<GameObject> prefabs = new();
+    public List<Vector2> prefabsPosition = new();
 }
