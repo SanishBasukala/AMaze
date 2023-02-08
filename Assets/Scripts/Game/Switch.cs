@@ -1,18 +1,34 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    public Tree tree;
+    public List<BoxCollider2D> coll;
+    public List<Animator> anim;
     //public tree tree2;
     public bool isActive;
     public bool playerInRange;
 
     private void Update()
     {
+        for (int i = 0; i < coll.Count; i++)
+        {
+            AnimatorStateInfo state = anim[i].GetCurrentAnimatorStateInfo(0);
+            string animationName = state.shortNameHash.ToString();
+            if (animationName == "2081823275")
+            {
+                coll[i].enabled = true;
+            }
+            else if (animationName == "-1736577384") // -1736577384 is IdleNotGrown
+            {
+                coll[i].enabled = false;
+            }
+        }
+
+
         if (Input.GetKeyDown(KeyCode.F) && playerInRange)
         {
-
             if (!isActive)
             {
                 StartCoroutine(StartMechanism());
@@ -26,20 +42,23 @@ public class Switch : MonoBehaviour
 
     private IEnumerator StartMechanism()
     {
-        print("started");
-        tree.anim.SetBool("isGrowing", false);
-        tree.coll.enabled = false;
-        //tree2.coll.enabled = false;
+        for (int i = 0; i < coll.Count; i++)
+        {
+            anim[i].SetTrigger("ChangeState");
+            coll[i].enabled = false;
+        }
+
         isActive = true;
         yield return new WaitForSeconds(1);
     }
 
     private IEnumerator MechanismActive()
     {
-        print("ended");
-        tree.anim.SetBool("isGrowing", true);
-        tree.coll.enabled = true;
-        //tree2.coll.enabled = true;
+        for (int i = 0; i < coll.Count; i++)
+        {
+            anim[i].SetTrigger("ChangeState");
+            coll[i].enabled = true;
+        }
         isActive = false;
         yield return new WaitForSeconds(1);
 
