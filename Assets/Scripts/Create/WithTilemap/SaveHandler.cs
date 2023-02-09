@@ -91,6 +91,7 @@ public class SaveHandler : MonoBehaviour
         //        }
         //    }
         //}
+        // Saving tiles
         foreach (int tile in tileData)
         {
             levelData.tiles.Add(tile);
@@ -99,7 +100,7 @@ public class SaveHandler : MonoBehaviour
         {
             levelData.tilePosition.Add(tilePos);
         }
-
+        // Saving prefabs
         foreach (int pre in prefabsData)
         {
             levelData.prefabs.Add(pre);
