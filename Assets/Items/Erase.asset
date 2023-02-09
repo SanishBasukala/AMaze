@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
   m_Name: Erase
   m_EditorClassIdentifier: 
+  itemId: 1
   tile: {fileID: 0}
-  type: 0
+  myPrefab: {fileID: 0}
+  type: 3
   stackable: 1
   image: {fileID: 21300000, guid: 7b199940facc6b0439e500e4929c82ab, type: 3}

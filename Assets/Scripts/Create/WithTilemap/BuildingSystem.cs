@@ -35,6 +35,10 @@ public class BuildingSystem : MonoBehaviour
                 {
                     Build(highlightedTilePos, item, item.itemId);
                 }
+                else if (item.type == ItemType.Eraser)
+                {
+                    mainTilemap.SetTile(highlightedTilePos, null);
+                }
                 else if (item.type == ItemType.Prefab)
                 {
                     BuildPrefab(item, item.itemId);
@@ -49,7 +53,7 @@ public class BuildingSystem : MonoBehaviour
 
             if (hit)
             {
-                if (item.type == ItemType.BuildingBlock)
+                if (item.type == ItemType.BuildingBlock || item.type == ItemType.Eraser)
                 {
                     if (!hit.collider.gameObject.CompareTag("Player"))
                     {
@@ -92,7 +96,7 @@ public class BuildingSystem : MonoBehaviour
 
     private bool CheckCondition(RuleTileWithData tile, Item currentItem)
     {
-        if (currentItem.type == ItemType.BuildingBlock || currentItem.type == ItemType.Prefab)
+        if (currentItem.type == ItemType.BuildingBlock || currentItem.type == ItemType.Prefab || currentItem.type == ItemType.Eraser)
         {
             if (!tile)
             {
