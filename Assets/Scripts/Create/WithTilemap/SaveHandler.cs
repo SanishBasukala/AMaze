@@ -16,8 +16,15 @@ public class SaveHandler : MonoBehaviour
     public Camera mainCamera;
     public Camera playerCamera;
 
+    private List<int> tileData = new();
+    private List<Vector3Int> tilePositionData = new();
     private List<int> prefabsData = new();
     private List<Vector2> prefabPositionData = new();
+
+    private List<GameObject> prefabs = new();
+    private List<Vector2> prefabPositions = new();
+    private List<TileBase> tiles = new();
+    private List<Vector3Int> tilePositions = new();
 
     public InventoryManager inventoryManager;
     private void Awake()
@@ -69,25 +76,36 @@ public class SaveHandler : MonoBehaviour
         BoundsInt bounds = tilemap.cellBounds;
         LevelData levelData = new();
 
-        for (int x = bounds.min.x; x < bounds.max.x; x++)
+        //for (int x = bounds.min.x; x < bounds.max.x; x++)
+        //{
+        //    for (int y = bounds.min.y; y < bounds.max.y; y++)
+        //    {
+        //        TileBase temp = tilemap.GetTile(new Vector3Int(x, y, 0));
+        //        CustomTile tempTile = tiles.Find(t => t.tile == temp);
+        //        if (tempTile != null)
+        //        {
+        //            levelData.tiles.Add(tempTile.id);
+        //            levelData.pos_x.Add(x);
+        //            levelData.pos_y.Add(y);
+        //        }
+        //    }
+        //}
+        foreach (int tile in tileData)
         {
-            for (int y = bounds.min.y; y < bounds.max.y; y++)
-            {
-                TileBase temp = tilemap.GetTile(new Vector3Int(x, y, 0));
-                if (temp != null)
-                {
-                    levelData.tiles.Add(temp);
-                    levelData.pos.Add(new Vector3Int(x, y, 0));
-                }
-            }
+            levelData.tiles.Add(tile);
         }
+        foreach (Vector3Int tilePos in tilePositionData)
+        {
+            levelData.tilePosition.Add(tilePos);
+        }
+
         foreach (int pre in prefabsData)
         {
             levelData.prefabs.Add(pre);
         }
         foreach (Vector2 prePos in prefabPositionData)
         {
-            levelData.prefabsPosition.Add(prePos);
+            levelData.prefabPosition.Add(prePos);
         }
 
         //File.WriteAllText(Application.dataPath + "/AMaze.json", json);
@@ -110,7 +128,6 @@ public class SaveHandler : MonoBehaviour
     }
     public void LoadLevel(string json)
     {
-
         inCreate = false;
         playerCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
@@ -119,27 +136,47 @@ public class SaveHandler : MonoBehaviour
         LevelData data = JsonUtility.FromJson<LevelData>(json);
         tilemap.ClearAllTiles();
 
+        // for tiles
         for (int i = 0; i < data.tiles.Count; i++)
         {
-            tilemap.SetTile(data.pos[i], data.tiles[i]);
+            tiles.Add(inventoryManager.tiles[data.tiles[i] - 2]);
+            tilePositions.Add(new Vector3Int(Mathf.FloorToInt(data.tilePosition[i].x), Mathf.FloorToInt(data.tilePosition[i].y), 0));
         }
-        foreach (int i in data.prefabs)
+
+        for (int i = 0; i < tiles.Count; i++)
         {
-            Instantiate(inventoryManager.prefabs[i - 3], data.prefabsPosition[i - 3], Quaternion.identity);
+            tilemap.SetTile(tilePositions[i], tiles[i]);
+        }
+        // for prefabs
+        for (int i = 0; i < data.prefabs.Count; i++)
+        {
+            prefabs.Add(inventoryManager.prefabs[data.prefabs[i] - 3]);
+            prefabPositions.Add(new Vector2(data.prefabPosition[i].x, data.prefabPosition[i].y));
+        }
+
+        for (int i = 0; i < prefabs.Count; i++)
+        {
+            GameObject prefabInstance = Instantiate(prefabs[i], prefabPositions[i], Quaternion.identity);
+            prefabInstance.transform.SetParent(transform);
         }
     }
-
-    public void CollectPrefabs(Vector2 pos, int itemId)
+    public void CollectTiles(Vector3Int pos, int tileId)
     {
-        prefabsData.Add(itemId);
+        tileData.Add(tileId);
+        tilePositionData.Add(pos);
+    }
+    public void CollectPrefabs(Vector2 pos, int prefabId)
+    {
+        print("add " + prefabId + " position " + pos);
+        prefabsData.Add(prefabId);
         prefabPositionData.Add(pos);
     }
 }
 
 public class LevelData
 {
-    public List<TileBase> tiles = new();
-    public List<Vector3Int> pos = new();
+    public List<int> tiles = new();
+    public List<Vector3Int> tilePosition = new();
     public List<int> prefabs = new();
-    public List<Vector2> prefabsPosition = new();
+    public List<Vector2> prefabPosition = new();
 }

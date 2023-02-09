@@ -33,7 +33,7 @@ public class BuildingSystem : MonoBehaviour
             {
                 if (item.type == ItemType.BuildingBlock)
                 {
-                    Build(highlightedTilePos, item);
+                    Build(highlightedTilePos, item, item.itemId);
                 }
                 else if (item.type == ItemType.Prefab)
                 {
@@ -99,7 +99,7 @@ public class BuildingSystem : MonoBehaviour
         return false;
     }
 
-    private void Build(Vector3Int position, Item itemToBuild)
+    private void Build(Vector3Int position, Item itemToBuild, int tileId)
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
@@ -108,15 +108,16 @@ public class BuildingSystem : MonoBehaviour
             tempTilemap.SetTile(position, null);
             highlighted = false;
             mainTilemap.SetTile(position, itemToBuild.tile);
+            saveHandler.CollectTiles(position, tileId);
         }
     }
-    private void BuildPrefab(Item myPrefab, int itemId)
+    private void BuildPrefab(Item myPrefab, int prefabId)
     {
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity);
-            saveHandler.CollectPrefabs(mousePos, itemId);
+            saveHandler.CollectPrefabs(mousePos, prefabId);
         }
     }
 }

@@ -1,11 +1,13 @@
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
     public Item[] startItems; //collection of items at the start
     public GameObject[] prefabs;
+    public TileBase[] tiles;
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
