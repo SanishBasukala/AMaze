@@ -23,5 +23,6 @@ public enum ItemType
 {
     BuildingBlock,
     PanTool,
-    Prefab
+    Prefab,
+    Eraser
 }
