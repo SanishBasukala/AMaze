@@ -58,6 +58,7 @@ public class SaveHandler : MonoBehaviour
         {
             slotState[0].text = "AMaze1";
             slotState[3].text = "AMaze1";
+            //Check if this is null or empty and if not null empty then show 2 button, edit current and create new
         }
         else if (saveSlot == 2)
         {
@@ -167,7 +168,6 @@ public class SaveHandler : MonoBehaviour
     }
     public void CollectPrefabs(Vector2 pos, int prefabId)
     {
-        print("add " + prefabId + " position " + pos);
         prefabsData.Add(prefabId);
         prefabPositionData.Add(pos);
     }

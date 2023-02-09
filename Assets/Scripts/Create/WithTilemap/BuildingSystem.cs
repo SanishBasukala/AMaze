@@ -51,7 +51,10 @@ public class BuildingSystem : MonoBehaviour
             {
                 if (item.type == ItemType.BuildingBlock)
                 {
-                    Destroy(hit.collider.gameObject);
+                    if (!hit.collider.gameObject.CompareTag("Player"))
+                    {
+                        Destroy(hit.collider.gameObject);
+                    }
                 }
             }
         }
