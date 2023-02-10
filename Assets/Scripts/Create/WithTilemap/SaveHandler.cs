@@ -30,7 +30,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     public InventoryManager inventoryManager;
     private void Awake()
     {
-        saveSlot = 0;
         if (instance == null) instance = this;
         else Destroy(this);
     }
@@ -38,52 +37,59 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.slotText = this.slotText;
+        data.saveSlot = this.saveSlot;
     }
     // For loading data of slots
     public void LoadData(GameData data)
     {
+        print("before");
+
         this.slotText = data.slotText;
+        this.saveSlot = data.saveSlot;
+        print("after");
+
+        if (this.saveSlot == 1)
+        {
+            slotState[0].text = this.slotText;
+            slotState[3].text = this.slotText;
+            //Check if this is null or empty and if not null empty then show 2 button, edit current and create new
+        }
+        else if (this.saveSlot == 2)
+        {
+            slotState[1].text = this.slotText;
+            slotState[4].text = this.slotText;
+        }
+        else if (this.saveSlot == 3)
+        {
+            slotState[2].text = this.slotText;
+            slotState[5].text = this.slotText;
+        }
     }
 
     public void SaveSlot1()
     {
         inCreate = true;
         filename = "/AMaze1.json";
+        slotText = "AMaze1";
         saveSlot = 1;
     }
     public void SaveSlot2()
     {
         inCreate = true;
         filename = "/AMaze2.json";
+        slotText = "AMaze2";
         saveSlot = 2;
     }
     public void SaveSlot3()
     {
         inCreate = true;
         filename = "/AMaze3.json";
+        slotText = "AMaze3";
         saveSlot = 3;
     }
     public void SaveButton()
     {
-        if (saveSlot == 1)
-        {
-            slotText = "AMaze1";
-            slotState[0].text = this.slotText;
-            slotState[3].text = this.slotText;
-            //Check if this is null or empty and if not null empty then show 2 button, edit current and create new
-        }
-        else if (saveSlot == 2)
-        {
-            slotText = "AMaze2";
-            slotState[1].text = this.slotText;
-            slotState[4].text = this.slotText;
-        }
-        else if (saveSlot == 3)
-        {
-            slotText = "AMaze3";
-            slotState[2].text = this.slotText;
-            slotState[5].text = this.slotText;
-        }
+
         SaveLevel(filename);
     }
     public void SaveLevel(string filename)
