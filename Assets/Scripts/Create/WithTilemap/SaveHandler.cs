@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class SaveHandler : MonoBehaviour
+public class SaveHandler : MonoBehaviour, IDataPersistence
 {
     public static SaveHandler instance;
     public Tilemap tilemap;
     public Text[] slotState;
+    private string slotText;
     private int saveSlot;
     private string filename;
 
@@ -33,10 +34,20 @@ public class SaveHandler : MonoBehaviour
         if (instance == null) instance = this;
         else Destroy(this);
     }
+    // For saving data of slots
+    public void SaveData(ref GameData data)
+    {
+        data.slotText = this.slotText;
+    }
+    // For loading data of slots
+    public void LoadData(GameData data)
+    {
+        this.slotText = data.slotText;
+    }
+
     public void SaveSlot1()
     {
         inCreate = true;
-
         filename = "/AMaze1.json";
         saveSlot = 1;
     }
@@ -56,25 +67,28 @@ public class SaveHandler : MonoBehaviour
     {
         if (saveSlot == 1)
         {
-            slotState[0].text = "AMaze1";
-            slotState[3].text = "AMaze1";
+            slotText = "AMaze1";
+            slotState[0].text = this.slotText;
+            slotState[3].text = this.slotText;
             //Check if this is null or empty and if not null empty then show 2 button, edit current and create new
         }
         else if (saveSlot == 2)
         {
-            slotState[1].text = "AMaze2";
-            slotState[4].text = "AMaze2";
+            slotText = "AMaze2";
+            slotState[1].text = this.slotText;
+            slotState[4].text = this.slotText;
         }
         else if (saveSlot == 3)
         {
-            slotState[2].text = "AMaze3";
-            slotState[5].text = "AMaze3";
+            slotText = "AMaze3";
+            slotState[2].text = this.slotText;
+            slotState[5].text = this.slotText;
         }
         SaveLevel(filename);
     }
     public void SaveLevel(string filename)
     {
-        BoundsInt bounds = tilemap.cellBounds;
+        //BoundsInt bounds = tilemap.cellBounds;
         LevelData levelData = new();
 
         //for (int x = bounds.min.x; x < bounds.max.x; x++)
