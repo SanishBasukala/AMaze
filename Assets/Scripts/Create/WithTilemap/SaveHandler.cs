@@ -9,8 +9,11 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     public static SaveHandler instance;
     public Tilemap tilemap;
     public Text[] slotState;
-    private string slotText;
-    private int saveSlot;
+
+    private string slotText1;
+    private string slotText2;
+    private string slotText3;
+
     private string filename;
 
     public bool inCreate;
@@ -33,59 +36,48 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         if (instance == null) instance = this;
         else Destroy(this);
     }
+    private void Update()
+    {
+        slotState[0].text = this.slotText1;
+        slotState[3].text = this.slotText1;
+        //Check if this is null or empty and if not null empty then show 2 button, edit current and create new
+        slotState[1].text = this.slotText2;
+        slotState[4].text = this.slotText2;
+        slotState[2].text = this.slotText3;
+        slotState[5].text = this.slotText3;
+    }
     // For saving data of slots
     public void SaveData(ref GameData data)
     {
-        data.slotText = this.slotText;
-        data.saveSlot = this.saveSlot;
+        data.slotText1 = this.slotText1;
+        data.slotText2 = this.slotText2;
+        data.slotText3 = this.slotText3;
     }
     // For loading data of slots
     public void LoadData(GameData data)
     {
-        print("before");
-
-        this.slotText = data.slotText;
-        this.saveSlot = data.saveSlot;
-        print("after");
-
-        if (this.saveSlot == 1)
-        {
-            slotState[0].text = this.slotText;
-            slotState[3].text = this.slotText;
-            //Check if this is null or empty and if not null empty then show 2 button, edit current and create new
-        }
-        else if (this.saveSlot == 2)
-        {
-            slotState[1].text = this.slotText;
-            slotState[4].text = this.slotText;
-        }
-        else if (this.saveSlot == 3)
-        {
-            slotState[2].text = this.slotText;
-            slotState[5].text = this.slotText;
-        }
+        this.slotText1 = data.slotText1;
+        this.slotText2 = data.slotText2;
+        this.slotText3 = data.slotText3;
     }
 
     public void SaveSlot1()
     {
         inCreate = true;
         filename = "/AMaze1.json";
-        slotText = "AMaze1";
-        saveSlot = 1;
+        slotText1 = "AMaze1";
     }
     public void SaveSlot2()
     {
         inCreate = true;
         filename = "/AMaze2.json";
-        slotText = "AMaze2";
-        saveSlot = 2;
+        slotText2 = "AMaze2";
     }
     public void SaveSlot3()
     {
         inCreate = true;
         filename = "/AMaze3.json";
-        slotText = "AMaze3";
-        saveSlot = 3;
+        slotText3 = "AMaze3";
     }
     public void SaveButton()
     {
@@ -111,6 +103,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         //        }
         //    }
         //}
+
         // Saving tiles
         foreach (int tile in tileData)
         {
@@ -138,15 +131,37 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 
     public void LoadSlot1()
     {
-        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
+        if (!(slotText1 == "Empty"))
+        {
+            LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
+        }
+        else
+        {
+            Debug.LogError("File not found");
+            //ALSO CREATE A NEW CANVAS FOR NO FILES
+        }
     }
     public void LoadSlot2()
     {
-        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
+        if (!(slotText1 == "Empty"))
+        {
+            LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
+        }
+        else
+        {
+            Debug.LogError("File not found");
+        }
     }
     public void LoadSlot3()
     {
-        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
+        if (!(slotText1 == "Empty"))
+        {
+            LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
+        }
+        else
+        {
+            Debug.LogError("File not found");
+        }
     }
     public void LoadLevel(string json)
     {
