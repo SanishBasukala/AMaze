@@ -41,8 +41,9 @@ public class Player : MonoBehaviour
 
     public PlayerHealth playerHealth;
 
-    public SaveHandler saveHandler;
+    public SaveHandler saveHandler;//replace
 
+    [SerializeField] private AudioSource walkAudio;
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -162,6 +163,11 @@ public class Player : MonoBehaviour
     //Character movement
     void MoveCharacter()
     {
+        if (change != Vector3.zero)
+        {
+            walkAudio.Play();
+        }
+
         change.Normalize();
         // check this ____________________________________________________________________________________________________
         myRigidbody.MovePosition(transform.position + speed * Time.deltaTime * change);
