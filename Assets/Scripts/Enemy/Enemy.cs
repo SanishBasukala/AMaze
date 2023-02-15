@@ -58,6 +58,14 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
+    IEnumerator DamageIndicator()
+    {
+        print("start");
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.05f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+        yield return new WaitForSeconds(.08f);
+        this.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+    }
 
 }

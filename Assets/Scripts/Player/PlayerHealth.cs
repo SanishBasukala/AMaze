@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -42,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        StartCoroutine(DamageIndicator());
         health -= damageAmount;
         if (health <= 0)
         {
@@ -56,5 +58,14 @@ public class PlayerHealth : MonoBehaviour
         {
             health = numOfHearts;
         }
+    }
+
+    IEnumerator DamageIndicator()
+    {
+        playerSr.material.color = Color.red;
+        yield return new WaitForSeconds(0.05f);
+        playerSr.material.color = new Color(255, 255, 254);
+        yield return new WaitForSeconds(.05f);
+        playerSr.material.color = Color.white;
     }
 }

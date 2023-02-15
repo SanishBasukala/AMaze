@@ -58,10 +58,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -1.2924194, y: 0.7335396}
+    - - {x: -1.4509172, y: 0.7418823}
       - {x: 1.0604668, y: 0.7897451}
       - {x: -0.07532352, y: -0.74496067}
-      - {x: -1.2263893, y: -0.7134702}
+      - {x: -1.3348354, y: -0.7301519}
   m_UseDelaunayMesh: 0
 --- !u!114 &4318525522391889410
 MonoBehaviour:
@@ -115,7 +115,7 @@ Transform:
   - {fileID: 4318525523766127852}
   - {fileID: 4318525522391889411}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &4318525522638170773
 SpriteRenderer:
@@ -223,7 +223,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0028209686, y: -0.050786972}
+  m_Offset: {x: -0.0061678886, y: -0.01731491}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -234,7 +234,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1127529, y: 1.2538872}
+  m_Size: {x: 0.8115206, y: 0.7198715}
   m_EdgeRadius: 0
 --- !u!114 &4318525522638170761
 MonoBehaviour:
@@ -333,10 +333,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.1310787, y: 0.5982895}
+    - - {x: 1.3312874, y: 0.58994675}
       - {x: -0.8255034, y: 0.76159644}
       - {x: -0.07532352, y: -0.74496067}
-      - {x: 1.1310345, y: -0.6259954}
+      - {x: 1.2311379, y: -0.60096717}
   m_UseDelaunayMesh: 0
 --- !u!114 &4318525523766127855
 MonoBehaviour:

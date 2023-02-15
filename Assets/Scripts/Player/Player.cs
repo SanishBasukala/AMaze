@@ -33,8 +33,8 @@ public class Player : MonoBehaviour
     private Animator animator;
 
     //For conversation
-    public Message[] messages;
-    public Actor[] actors;
+    //public Message[] messages;
+    //public Actor[] actors;
 
     //for projectile
     public GameObject projectile;
@@ -44,9 +44,15 @@ public class Player : MonoBehaviour
     public SaveHandler saveHandler;//replace
 
     [SerializeField] private AudioSource walkAudio;
+    [SerializeField] private AudioSource gainHeartAudio;
+    [SerializeField] private AudioSource attackAudio;
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+
+        walkAudio = GetComponent<AudioSource>();
+        gainHeartAudio = GetComponent<AudioSource>();
+        attackAudio = GetComponent<AudioSource>();
 
         currentState = PlayerState.walk;
         animator = GetComponent<Animator>();
@@ -56,7 +62,27 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        //print(inCreate);
+        if (change != Vector3.zero)
+        {
+            if (!walkAudio.isPlaying)
+            {
+                walkAudio.Play();
+            }
+        }
+        else if (change == Vector3.zero)
+        {
+            walkAudio.Stop();
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            gainHeartAudio.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            attackAudio.Play();
+            attackAudio.loop = true;
+        }
+
         try
         {
             if (DialogManager.isActive == true || saveHandler.inCreate == true)
@@ -71,6 +97,7 @@ public class Player : MonoBehaviour
             }
             if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
             {
+                attackAudio.Play();
                 StartCoroutine(AttackCo());
             }
             else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
@@ -113,6 +140,7 @@ public class Player : MonoBehaviour
     private IEnumerator AttackCo()
     {
         animator.SetBool("attacking", true);
+
         currentState = PlayerState.attack;
         yield return null; //wait one frame
         animator.SetBool("attacking", false);
@@ -163,10 +191,7 @@ public class Player : MonoBehaviour
     //Character movement
     void MoveCharacter()
     {
-        if (change != Vector3.zero)
-        {
-            walkAudio.Play();
-        }
+
 
         change.Normalize();
         // check this ____________________________________________________________________________________________________
@@ -229,6 +254,7 @@ public class Player : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("Heart"))
         {
+            gainHeartAudio.Play();
             Destroy(collision.gameObject);
             playerHealth.GainHealth();
         }
