@@ -17,18 +17,19 @@ public class DialogManager : MonoBehaviour
     private void Start()
     {
         isActive = true;
-        DialogueTrigger dialogueTrigger = new();
-        dialogueTrigger.StartDialogue();
     }
     private void Update()
     {
-        //if (!EventSystem.current.IsPointerOverGameObject())
-        //{
+        if (isActive)
+        {
+            Time.timeScale = 0f;
+        }
+
+
         if (Input.GetKeyDown(KeyCode.Mouse0) && isActive == true)
         {
             NextMessage();
         }
-        //}
     }
     public void OpenDialogue(Message[] messages, Actor[] actors)
     {
@@ -39,7 +40,6 @@ public class DialogManager : MonoBehaviour
 
         DisplayMessage();
     }
-
     void DisplayMessage()
     {
         try
@@ -57,7 +57,6 @@ public class DialogManager : MonoBehaviour
         }
 
     }
-
     public void NextMessage()
     {
         activeMessage++;
@@ -67,10 +66,9 @@ public class DialogManager : MonoBehaviour
         }
         else
         {
+            Time.timeScale = 1f;
             isActive = false;
             backgroundBox.SetActive(false);
         }
     }
-
-
 }

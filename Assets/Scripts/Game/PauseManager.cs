@@ -6,6 +6,7 @@ public class PauseManager : MonoBehaviour
     private bool isPaused;
     public GameObject pausePanel;
     public string mainMenu;
+
     private void Start()
     {
         isPaused = false;
@@ -17,10 +18,8 @@ public class PauseManager : MonoBehaviour
             ChangePause();
         }
     }
-
     public void ChangePause()
     {
-        isPaused = !isPaused;
         isPaused = !isPaused;
         if (isPaused)
         {
