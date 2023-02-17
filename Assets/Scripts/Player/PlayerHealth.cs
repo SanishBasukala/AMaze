@@ -12,7 +12,6 @@ public class PlayerHealth : MonoBehaviour
 
     public SpriteRenderer playerSr;
     public Player player;
-
     private void Update()
     {
         if (health > numOfHearts)

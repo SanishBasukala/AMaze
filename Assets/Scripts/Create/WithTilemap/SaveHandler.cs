@@ -31,6 +31,8 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     private List<Vector3Int> tilePositions = new();
 
     public InventoryManager inventoryManager;
+
+    [SerializeField] private GameObject prefabCollector;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -66,22 +68,24 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         inCreate = true;
         filename = "/AMaze1.json";
         slotText1 = "AMaze1";
+        Time.timeScale = 0f;
     }
     public void SaveSlot2()
     {
         inCreate = true;
         filename = "/AMaze2.json";
         slotText2 = "AMaze2";
+        Time.timeScale = 0f;
     }
     public void SaveSlot3()
     {
         inCreate = true;
         filename = "/AMaze3.json";
         slotText3 = "AMaze3";
+        Time.timeScale = 0f;
     }
     public void SaveButton()
     {
-
         SaveLevel(filename);
     }
     public void SaveLevel(string filename)
@@ -143,7 +147,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     }
     public void LoadSlot2()
     {
-        if (!(slotText1 == "Empty"))
+        if (!(slotText2 == "Empty"))
         {
             LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
         }
@@ -154,7 +158,8 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     }
     public void LoadSlot3()
     {
-        if (!(slotText1 == "Empty"))
+        print("called load 3");
+        if (!(slotText3 == "Empty"))
         {
             LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
         }
@@ -165,6 +170,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     }
     public void LoadLevel(string json)
     {
+        prefabCollector.SetActive(false);
         inCreate = false;
         playerCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);

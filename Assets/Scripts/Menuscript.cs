@@ -17,7 +17,7 @@ public class Menuscript : MonoBehaviour
     }
     public void GetCreateScene()
     {
-        SceneManager.LoadScene("CreateWithTileMaps");
+        SceneManager.LoadScene("Create");
     }
     public void Exitgame()
     {

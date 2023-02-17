@@ -19,6 +19,7 @@ public class BuildingSystem : MonoBehaviour
     public Camera cam;
     public SaveHandler saveHandler;
 
+    [SerializeField] private Transform prefabCollector;
     private void Update()
     {
         Item item = InventoryManager.instance.GetSelectedItem(); //false
@@ -96,7 +97,10 @@ public class BuildingSystem : MonoBehaviour
 
     private bool CheckCondition(RuleTileWithData tile, Item currentItem)
     {
-        if (currentItem.type == ItemType.BuildingBlock || currentItem.type == ItemType.Prefab || currentItem.type == ItemType.Eraser)
+        if ((currentItem.type == ItemType.BuildingBlock ||
+            currentItem.type == ItemType.Prefab ||
+            currentItem.type == ItemType.Eraser) &&
+            saveHandler.inCreate)
         {
             if (!tile)
             {
@@ -123,7 +127,8 @@ public class BuildingSystem : MonoBehaviour
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity);
+            Instantiate(myPrefab.myPrefab, mousePos, Quaternion.identity, prefabCollector);
+
             saveHandler.CollectPrefabs(mousePos, prefabId);
         }
     }

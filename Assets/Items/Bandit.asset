@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82066a0bcfda89b4782f226d583272b7, type: 3}
   m_Name: Bandit
   m_EditorClassIdentifier: 
+  itemId: 9
   tile: {fileID: 0}
   myPrefab: {fileID: 3032086377426194569, guid: 25500def05826ee499086c5e89e2d9bd, type: 3}
   type: 2

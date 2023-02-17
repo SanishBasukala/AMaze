@@ -41,8 +41,6 @@ public class Player : MonoBehaviour
 
     public PlayerHealth playerHealth;
 
-    public SaveHandler saveHandler;//replace
-
     [SerializeField] private AudioSource walkAudio;
     [SerializeField] private AudioSource gainHeartAudio;
     [SerializeField] private AudioSource attackAudio;
@@ -85,7 +83,7 @@ public class Player : MonoBehaviour
 
         try
         {
-            if (DialogManager.isActive == true || saveHandler.inCreate == true)
+            if (DialogManager.isActive == true)
                 return;
 
             change = Vector3.zero;

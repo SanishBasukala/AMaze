@@ -24,7 +24,7 @@ public class CameraForCreate : MonoBehaviour
     private void Update()
     {
         PanCamera();
-        zoomInOut();
+        ZoomInOut();
     }
     //Panning camera
     private void PanCamera()
@@ -45,7 +45,7 @@ public class CameraForCreate : MonoBehaviour
         }
     }
     //For zoom in and out
-    private void zoomInOut()
+    private void ZoomInOut()
     {
         if (cam.orthographic)
         {

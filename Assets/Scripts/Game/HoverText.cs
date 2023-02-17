@@ -15,6 +15,7 @@ public class HoverText : MonoBehaviour
     }
     private IEnumerator PlaceNameCo()
     {
+        Time.timeScale = 1f;
         text.SetActive(true);
         hoverText.text = textString;
         yield return new WaitForSeconds(1.3f);

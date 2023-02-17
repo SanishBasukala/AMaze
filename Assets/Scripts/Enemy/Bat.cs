@@ -4,14 +4,11 @@ using UnityEngine;
 public class Bat : Enemy
 {
     private Rigidbody2D myrigidbody;
-    public Transform target;
+    private Transform target;
     public float chaseRadius;
     public float attackRadius;
     public Transform homePosition;
     public Animator anim;
-    public PlayerHealth playerHealth;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,13 +16,27 @@ public class Bat : Enemy
         myrigidbody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         target = GameObject.FindWithTag("Player").transform;
-
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         CheckDistance();
+    }
+    private void Update()
+    {
+        if (Vector3.Distance(target.position, transform.position) <= chaseRadius)
+        {
+            if (transform.position.x > target.position.x)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            if (transform.position.x < transform.position.x)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
+
     }
 
     void CheckDistance()
@@ -91,7 +102,8 @@ public class Bat : Enemy
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerHealth.TakeDamage(baseAttack);
+            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            playerHealth.TakeDamage(1);
         }
     }
 }
