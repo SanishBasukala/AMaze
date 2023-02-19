@@ -158,7 +158,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     }
     public void LoadSlot3()
     {
-        print("called load 3");
         if (!(slotText3 == "Empty"))
         {
             LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
@@ -212,6 +211,18 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     {
         prefabsData.Add(prefabId);
         prefabPositionData.Add(pos);
+    }
+
+    private void CheckExistingFile()
+    {
+        if (!(slotText1 == "Empty"))
+        {
+            //yes no dialog box
+        }
+    }
+    private void CheckEmptyFile()
+    {
+        // ok dialog box
     }
 }
 

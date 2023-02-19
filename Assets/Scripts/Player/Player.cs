@@ -71,6 +71,8 @@ public class Player : MonoBehaviour
         {
             walkAudio.Stop();
         }
+
+
         if (Input.GetKeyDown(KeyCode.H))
         {
             gainHeartAudio.Play();
