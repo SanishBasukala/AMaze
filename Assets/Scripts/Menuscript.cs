@@ -3,6 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class Menuscript : MonoBehaviour
 {
+    Scene currentScene;
+
+    private void Update()
+    {
+        currentScene = SceneManager.GetActiveScene();
+    }
     public void GetMainScene()
     {
         SceneManager.LoadScene("BackgroundScene");
@@ -18,6 +24,18 @@ public class Menuscript : MonoBehaviour
     public void GetCreateScene()
     {
         SceneManager.LoadScene("Create");
+    }
+    public void GetFinalDoorScene()
+    {
+        SceneManager.LoadScene("FinalDoor");
+    }
+    public void ChangeScene()
+    {
+        print("called");
+        if (currentScene == SceneManager.GetSceneByName("Level1"))
+        {
+            //SceneManager.LoadScene("Level2");
+        }
     }
     public void Exitgame()
     {

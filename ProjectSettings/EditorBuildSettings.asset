@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Create.unity
     guid: 4b45e16fd9a247f4ab2f7c11daffcd77
+  - enabled: 1
+    path: Assets/Scenes/FinalDoor.unity
+    guid: e0f50d666911ad540b8e700a4e9411e0
   m_configObjects: {}

@@ -7,14 +7,16 @@ public class Chest : MonoBehaviour
     public bool isOpen;
     private Animator anim;
     public bool playerInRange;
-    public Text dialogText;
+
     public GameObject dialogBox;
+    public Image imageHolder;
+    public Sprite image;
 
 
     private void Start()
     {
         anim = GetComponent<Animator>();
-
+        imageHolder.GetComponent<Image>().sprite = image;
     }
     private void Update()
     {
@@ -23,6 +25,7 @@ public class Chest : MonoBehaviour
 
             if (!isOpen)
             {
+                GameObject.Find("FinalDoor").GetComponent<FinalDoor>().AddPoint();
                 StartCoroutine(OpenChest());
             }
             else

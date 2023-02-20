@@ -2,25 +2,34 @@ using UnityEngine;
 
 public class FinalDoor : MonoBehaviour
 {
-    private int pointsToWin = 3;
-    private int currentPoints = 0;
-    public GameObject myFinalItems;
-    // Start is called before the first frame update
-    void Start()
-    {
-        pointsToWin = myFinalItems.transform.childCount;
-    }
-
-    // Update is called once per frame
+    private int pointsToWin = 1;
+    private int currentPoints;
+    private bool playerInRange;
     void Update()
     {
-        if (currentPoints >= pointsToWin)
+        if (currentPoints >= pointsToWin && playerInRange)
         {
-            transform.GetChild(0).gameObject.SetActive(true);
+            Menuscript menuscript = new();
+            menuscript.GetFinalDoorScene();
         }
     }
     public void AddPoint()
     {
         currentPoints++;
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && !collision.isTrigger)
+        {
+            playerInRange = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && !collision.isTrigger)
+        {
+            playerInRange = false;
+        }
     }
 }

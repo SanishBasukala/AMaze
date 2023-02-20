@@ -9,7 +9,7 @@ public class RecallPoint : MonoBehaviour
         if (playerInRange)
         {
             Menuscript menuscript = new();
-            menuscript.GetLevel1Scene();
+            menuscript.GetCreateScene();
         }
     }
 
