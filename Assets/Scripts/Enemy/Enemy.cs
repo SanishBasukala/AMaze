@@ -19,7 +19,8 @@ public class Enemy : MonoBehaviour
     public float health;
     public int baseAttack;
     public GameObject deathEffect;
-
+    [SerializeField] private AudioSource deathAudio;
+    [SerializeField] private AudioClip deathAudioClip;
     private void Awake()
     {
         health = maxhealth.initialValue;
@@ -38,6 +39,7 @@ public class Enemy : MonoBehaviour
     {
         if (deathEffect != null)
         {
+            deathAudio.PlayOneShot(deathAudioClip);
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(effect, 1f);
         }
