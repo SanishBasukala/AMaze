@@ -12,6 +12,9 @@ public class PlayerHealth : MonoBehaviour
 
     public SpriteRenderer playerSr;
     public Player player;
+
+    [SerializeField]
+    private AudioSource hurtAudio;
     private void Update()
     {
         if (health > numOfHearts)
@@ -42,8 +45,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
+        hurtAudio.Play();
         StartCoroutine(DamageIndicator());
         health -= damageAmount;
+
         if (health <= 0)
         {
             playerSr.enabled = false;

@@ -9,6 +9,8 @@ public class Switch : MonoBehaviour
     //public tree tree2;
     public bool isActive;
     public bool playerInRange;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private void Update()
     {
@@ -18,10 +20,12 @@ public class Switch : MonoBehaviour
             string animationName = state.shortNameHash.ToString();
             if (animationName == "2081823275")
             {
+                audioSource.Play();
                 coll[i].enabled = true;
             }
             else if (animationName == "-1736577384")
             {
+                audioSource.Play();
                 coll[i].enabled = false;
             }
         }

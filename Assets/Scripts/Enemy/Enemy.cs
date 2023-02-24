@@ -19,19 +19,26 @@ public class Enemy : MonoBehaviour
     public float health;
     public int baseAttack;
     public GameObject deathEffect;
-    [SerializeField] private AudioSource deathAudio;
-    [SerializeField] private AudioClip deathAudioClip;
+    public AudioSource audioSource;
+    public AudioClip attackClip;
+    public AudioClip hurtClip;
+    public AudioClip deathClip;
     private void Awake()
     {
         health = maxhealth.initialValue;
     }
+
     private void TakeDamage(float damage)
     {
         health -= damage;
+        audioSource.PlayOneShot(hurtClip);
         if (health <= 0)
         {
+            print("hi");
+            audioSource.PlayOneShot(deathClip);
             DeathEffect();
             this.gameObject.SetActive(false);
+            print("hi2");
         }
     }
 
@@ -39,7 +46,6 @@ public class Enemy : MonoBehaviour
     {
         if (deathEffect != null)
         {
-            deathAudio.PlayOneShot(deathAudioClip);
             GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(effect, 1f);
         }
@@ -47,6 +53,7 @@ public class Enemy : MonoBehaviour
     public void Knock(Rigidbody2D myRigidbody, float knockTime, float damage)
     {
         StartCoroutine(KnockCo(myRigidbody, knockTime));
+        StartCoroutine(DamageIndicator());
         TakeDamage(damage);
     }
     private IEnumerator KnockCo(Rigidbody2D myRigidbody, float knockTime)
@@ -62,7 +69,6 @@ public class Enemy : MonoBehaviour
 
     IEnumerator DamageIndicator()
     {
-        print("start");
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(0.05f);
         this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;

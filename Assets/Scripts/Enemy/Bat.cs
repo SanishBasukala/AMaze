@@ -36,7 +36,6 @@ public class Bat : Enemy
                 transform.localScale = new Vector3(1, 1, 1);
             }
         }
-
     }
 
     void CheckDistance()
@@ -64,6 +63,7 @@ public class Bat : Enemy
     {
         ChangeState(EnemyState.attack);
         anim.SetBool("attacking", true);
+        audioSource.PlayOneShot(attackClip);
         yield return new WaitForSeconds(1f);
         ChangeState(EnemyState.walk);
         anim.SetBool("attacking", false);
@@ -87,7 +87,6 @@ public class Bat : Enemy
                 SetAnimFloat(Vector2.left);
             }
         }
-
     }
 
     private void ChangeState(EnemyState newState)
@@ -103,6 +102,7 @@ public class Bat : Enemy
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+
             playerHealth.TakeDamage(1);
         }
     }

@@ -35,14 +35,18 @@ public class Player : MonoBehaviour
 
     public PlayerHealth playerHealth;
 
-    [SerializeField]
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     [SerializeField]
     private AudioSource walkAudio;
     [SerializeField]
     private AudioClip gainHeartClip;
     [SerializeField]
     private AudioClip attackClip;
+    [SerializeField]
+    private AudioClip keyClip;
+    [SerializeField]
+    private AudioClip doorClip;
+
 
     private void Start()
     {
@@ -74,55 +78,42 @@ public class Player : MonoBehaviour
         {
             if (DialogManager.isActive == true)
                 return;
-
-            change = Vector3.zero;
-            change.x = Input.GetAxisRaw("Horizontal");
-            change.y = Input.GetAxisRaw("Vertical");
-            if (change != Vector3.zero && currentState != PlayerState.stagger)
-            {
-                MoveCharacter();
-            }
-            if (Input.GetButtonDown("attack") &&
-                currentState != PlayerState.attack &&
-                currentState != PlayerState.stagger &&
-                currentState != PlayerState.walk)
-            {
-
-                StartCoroutine(AttackCo());
-            }
-            else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
-            {
-                StartCoroutine(SecondAttackCo());
-            }
-            else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
-            {
-                UpdateAnimationAndMove();
-            }
+            PlayerMovementAndAttack();
         }
         catch (NullReferenceException)
         {
-            change = Vector3.zero;
-            change.x = Input.GetAxisRaw("Horizontal");
-            change.y = Input.GetAxisRaw("Vertical");
-            if (change != Vector3.zero && currentState != PlayerState.stagger)
-            {
-                MoveCharacter();
-            }
-            if (Input.GetButtonDown("attack") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
-            {
-                StartCoroutine(AttackCo());
-            }
-            else if (Input.GetButtonDown("Second Weapon") && currentState != PlayerState.attack && currentState != PlayerState.stagger)
-            {
-                StartCoroutine(SecondAttackCo());
-            }
-            else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
-            {
-                UpdateAnimationAndMove();
-            }
+            PlayerMovementAndAttack();
         }
     }
 
+    private void PlayerMovementAndAttack()
+    {
+        change = Vector3.zero;
+        change.x = Input.GetAxisRaw("Horizontal");
+        change.y = Input.GetAxisRaw("Vertical");
+        if (change != Vector3.zero && currentState != PlayerState.stagger)
+        {
+            MoveCharacter();
+        }
+        if (Input.GetButtonDown("attack") &&
+            currentState != PlayerState.attack &&
+            currentState != PlayerState.stagger &&
+            currentState != PlayerState.walk)
+        {
+
+            StartCoroutine(AttackCo());
+        }
+        else if (Input.GetButtonDown("Second Weapon") &&
+            currentState != PlayerState.attack &&
+            currentState != PlayerState.stagger)
+        {
+            StartCoroutine(SecondAttackCo());
+        }
+        else if (currentState == PlayerState.walk || currentState == PlayerState.idle)
+        {
+            UpdateAnimationAndMove();
+        }
+    }
     //attack animation wid delay
     private IEnumerator AttackCo()
     {
@@ -203,18 +194,21 @@ public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("BlueKey"))
         {
             Destroy(collision.gameObject);
+            PlayClip("key");
             blueKeyCount++;
             DisplayKeyCount(blueKeyCounter, blueKeyCount);
         }
         if (collision.gameObject.CompareTag("RedKey"))
         {
             Destroy(collision.gameObject);
+            PlayClip("key");
             redKeyCount++;
             DisplayKeyCount(redKeyCounter, redKeyCount);
         }
         if (collision.gameObject.CompareTag("YellowKey"))
         {
             Destroy(collision.gameObject);
+            PlayClip("key");
             yellowKeyCount++;
             DisplayKeyCount(yellowKeyCounter, yellowKeyCount);
         }
@@ -223,18 +217,21 @@ public class Player : MonoBehaviour
         if (blueKeyCount >= 1 && collision.gameObject.CompareTag("BlueDoor"))
         {
             Destroy(collision.gameObject);
+            PlayClip("door");
             blueKeyCount--;
             DisplayKeyCount(blueKeyCounter, blueKeyCount);
         }
         if (redKeyCount >= 1 && collision.gameObject.CompareTag("RedDoor"))
         {
             Destroy(collision.gameObject);
+            PlayClip("door");
             redKeyCount--;
             DisplayKeyCount(redKeyCounter, redKeyCount);
         }
         if (yellowKeyCount >= 1 && collision.gameObject.CompareTag("YellowDoor"))
         {
             Destroy(collision.gameObject);
+            PlayClip("door");
             yellowKeyCount--;
             DisplayKeyCount(yellowKeyCounter, yellowKeyCount);
         }
@@ -242,10 +239,25 @@ public class Player : MonoBehaviour
         // increase player hearts and destroy heart
         if (collision.gameObject.CompareTag("Heart"))
         {
-            audioSource.PlayOneShot(gainHeartClip);
+            PlayClip("heart");
             Destroy(collision.gameObject);
             playerHealth.GainHealth();
         }
     }
     public void DisplayKeyCount(Text keyCounter, int keyCount) => keyCounter.text = keyCount.ToString();
+    public void PlayClip(string objectName)
+    {
+        if (objectName == "key")
+        {
+            audioSource.PlayOneShot(keyClip);
+        }
+        else if (objectName == "door")
+        {
+            audioSource.PlayOneShot(doorClip);
+        }
+        else if (objectName == "heart")
+        {
+            audioSource.PlayOneShot(gainHeartClip);
+        }
+    }
 }

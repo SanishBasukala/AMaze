@@ -32,6 +32,7 @@ public class Bandit : Enemy
             {
                 cooldownTimer = 0;
                 anim.SetTrigger("meleeAttack");
+                audioSource.PlayOneShot(attackClip);
             }
         }
 
