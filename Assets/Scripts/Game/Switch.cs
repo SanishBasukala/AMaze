@@ -20,7 +20,7 @@ public class Switch : MonoBehaviour
             {
                 coll[i].enabled = true;
             }
-            else if (animationName == "-1736577384") // -1736577384 is IdleNotGrown
+            else if (animationName == "-1736577384")
             {
                 coll[i].enabled = false;
             }
@@ -65,7 +65,7 @@ public class Switch : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !collision.isTrigger && !isActive)
+        if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             playerInRange = true;
         }
@@ -73,7 +73,7 @@ public class Switch : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !collision.isTrigger && !isActive)
+        if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             playerInRange = false;
         }

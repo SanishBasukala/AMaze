@@ -16,9 +16,7 @@ public class Player : MonoBehaviour
     public float speed;
     private Rigidbody2D myRigidbody;
     private Vector3 change;
-
     public PlayerState currentState;
-
 
     //displaying key counts
     public int yellowKeyCount = 0;
@@ -31,10 +29,6 @@ public class Player : MonoBehaviour
 
     //for animation
     private Animator animator;
-
-    //For conversation
-    //public Message[] messages;
-    //public Actor[] actors;
 
     //for projectile
     public GameObject projectile;
@@ -50,7 +44,6 @@ public class Player : MonoBehaviour
     [SerializeField]
     private AudioClip attackClip;
 
-    private bool childActive;
     private void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -105,9 +98,6 @@ public class Player : MonoBehaviour
             {
                 UpdateAnimationAndMove();
             }
-            //}
-
-            //conversation.ForConversation();
         }
         catch (NullReferenceException)
         {
@@ -188,8 +178,6 @@ public class Player : MonoBehaviour
     //Character movement
     void MoveCharacter()
     {
-
-
         change.Normalize();
         // check this ____________________________________________________________________________________________________
         myRigidbody.MovePosition(transform.position + speed * Time.deltaTime * change);
@@ -211,59 +199,53 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // Collision on wall
-        //if (collision.gameObject.CompareTag("Walls")) { }
-        // Get black keys
+        // increase key count and destroy key
         if (collision.gameObject.CompareTag("BlueKey"))
         {
             Destroy(collision.gameObject);
             blueKeyCount++;
-            blueKeyCounter.text = "" + blueKeyCount;
+            DisplayKeyCount(blueKeyCounter, blueKeyCount);
         }
-        if (blueKeyCount >= 1 && collision.gameObject.CompareTag("BlueDoor"))
-        {
-            Destroy(collision.gameObject);
-            blueKeyCount--;
-        }
-        // Get red keys
         if (collision.gameObject.CompareTag("RedKey"))
         {
             Destroy(collision.gameObject);
             redKeyCount++;
-            redKeyCounter.text = "" + redKeyCount;
+            DisplayKeyCount(redKeyCounter, redKeyCount);
+        }
+        if (collision.gameObject.CompareTag("YellowKey"))
+        {
+            Destroy(collision.gameObject);
+            yellowKeyCount++;
+            DisplayKeyCount(yellowKeyCounter, yellowKeyCount);
+        }
+
+        // decrease key count and destroy door
+        if (blueKeyCount >= 1 && collision.gameObject.CompareTag("BlueDoor"))
+        {
+            Destroy(collision.gameObject);
+            blueKeyCount--;
+            DisplayKeyCount(blueKeyCounter, blueKeyCount);
         }
         if (redKeyCount >= 1 && collision.gameObject.CompareTag("RedDoor"))
         {
             Destroy(collision.gameObject);
             redKeyCount--;
-        }
-        // Get golden keys
-        if (collision.gameObject.CompareTag("YellowKey"))
-        {
-            Destroy(collision.gameObject);
-            yellowKeyCount++;
-            yellowKeyCounter.text = "" + yellowKeyCount;
+            DisplayKeyCount(redKeyCounter, redKeyCount);
         }
         if (yellowKeyCount >= 1 && collision.gameObject.CompareTag("YellowDoor"))
         {
             Destroy(collision.gameObject);
             yellowKeyCount--;
+            DisplayKeyCount(yellowKeyCounter, yellowKeyCount);
         }
+
+        // increase player hearts and destroy heart
         if (collision.gameObject.CompareTag("Heart"))
         {
             audioSource.PlayOneShot(gainHeartClip);
             Destroy(collision.gameObject);
             playerHealth.GainHealth();
         }
-        if (collision.gameObject.CompareTag("FinalDoorItem"))
-        {
-            Destroy(collision.gameObject);
-            FinalDoorItemCount++;
-        }
-        if (collision.gameObject.CompareTag("FinalDoor") && FinalDoorItemCount == 1)
-        {
-            Destroy(collision.gameObject);
-        }
-
     }
+    public void DisplayKeyCount(Text keyCounter, int keyCount) => keyCounter.text = keyCount.ToString();
 }

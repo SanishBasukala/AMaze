@@ -31,7 +31,6 @@ public class Menuscript : MonoBehaviour
     }
     public void ChangeScene()
     {
-        print("called");
         if (currentScene == SceneManager.GetSceneByName("Level1"))
         {
             //SceneManager.LoadScene("Level2");

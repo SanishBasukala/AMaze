@@ -16,16 +16,15 @@ public class Chest : MonoBehaviour
     private void Start()
     {
         anim = GetComponent<Animator>();
-        imageHolder.GetComponent<Image>().sprite = image;
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F) && playerInRange)
         {
-
             if (!isOpen)
             {
                 GameObject.Find("FinalDoor").GetComponent<FinalDoor>().AddPoint();
+                imageHolder.GetComponent<Image>().sprite = image;
                 StartCoroutine(OpenChest());
             }
             else
@@ -37,7 +36,7 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !collision.isTrigger && !isOpen)
+        if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             playerInRange = true;
         }
@@ -45,7 +44,7 @@ public class Chest : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !collision.isTrigger && !isOpen)
+        if (collision.CompareTag("Player") && !collision.isTrigger)
         {
             playerInRange = false;
         }
