@@ -16,7 +16,7 @@ public class Tree : MonoBehaviour
             anim.SetBool("Idle", true);
             coll.enabled = true;
         }
-        else if (isActive)
+        else
         {
             anim.SetBool("Idle", false);
             coll.enabled = false;
