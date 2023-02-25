@@ -14,7 +14,12 @@ public class PlayerHealth : MonoBehaviour
     public Player player;
 
     [SerializeField]
-    private AudioSource hurtAudio;
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip hurtClip;
+    [SerializeField]
+    private AudioClip gameOverClip;
+
     private void Update()
     {
         if (health > numOfHearts)
@@ -45,12 +50,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damageAmount)
     {
-        hurtAudio.Play();
+        audioSource.PlayOneShot(hurtClip);
         StartCoroutine(DamageIndicator());
         health -= damageAmount;
 
         if (health <= 0)
         {
+            audioSource.PlayOneShot(gameOverClip);
             playerSr.enabled = false;
             player.enabled = false;
         }

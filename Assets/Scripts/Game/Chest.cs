@@ -12,6 +12,9 @@ public class Chest : MonoBehaviour
     public Image imageHolder;
     public Sprite image;
 
+    [SerializeField]
+    private AudioSource openAudio;
+
 
     private void Start()
     {
@@ -52,6 +55,7 @@ public class Chest : MonoBehaviour
 
     private IEnumerator OpenChest()
     {
+        openAudio.Play();
         dialogBox.SetActive(true);
         isOpen = true;
         anim.SetBool("opened", true);

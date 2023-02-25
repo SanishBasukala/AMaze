@@ -160,7 +160,7 @@ MonoBehaviour:
   - {fileID: 0}
   isActive: 0
   playerInRange: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 8837161460884291565}
 --- !u!82 &8837161460884291565
 AudioSource:
   m_ObjectHideFlags: 0
@@ -172,7 +172,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6b872a5c2f1a84f639ec3e0b0071d301, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
