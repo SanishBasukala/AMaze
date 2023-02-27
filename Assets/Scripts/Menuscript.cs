@@ -38,7 +38,13 @@ public class Menuscript : MonoBehaviour
     }
     public void Exitgame()
     {
-        Application.Quit();
+        PopUpDialog.Instance.ShowDialog("Are you sure you want to quit?", () =>
+        {
+            Debug.Log("bye");//Application.Quit();
+        }, () =>
+        {
+            // Do nothing on close
+        });
     }
 
 }

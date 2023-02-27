@@ -60,6 +60,16 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            PopUpDialog.Instance.ShowDialog("this is it", () =>
+            {
+                Debug.Log("Yes");
+            }, () =>
+            {
+                Debug.Log("No");
+            });
+        }
         if (change != Vector3.zero)
         {
             currentState = PlayerState.walk;

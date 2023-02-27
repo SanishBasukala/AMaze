@@ -21,21 +21,17 @@ public class PopUpDialog : MonoBehaviour
     [SerializeField] private Button noButton;
     private void Awake()
     {
+        yesButton = transform.Find("YesButton").GetComponent<Button>();
+        noButton = transform.Find("NoButton").GetComponent<Button>();
+        textMeshPro = transform.Find("AlertText").GetComponent<TextMeshProUGUI>();
+
+
         Instance = this;
-
-        ShowDialog("this is it", () =>
-        {
-            Debug.Log("Yes");
-        }, () =>
-        {
-            Debug.Log("no");
-        });
-
-        //Hide();
+        Hide();
     }
     public void ShowDialog(string dialogText, Action yesAction, Action noAction)
     {
-        //gameObject.SetActive(true);
+        gameObject.SetActive(true);
         textMeshPro.text = dialogText;
         yesButton.onClick.AddListener(() =>
         {
