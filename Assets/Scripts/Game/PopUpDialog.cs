@@ -18,6 +18,7 @@ public class PopUpDialog : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI textMeshPro;
     [SerializeField] private Button yesButton;
+    [SerializeField] private Button noButton;
     private void Awake()
     {
         Instance = this;
@@ -25,11 +26,14 @@ public class PopUpDialog : MonoBehaviour
         ShowDialog("this is it", () =>
         {
             Debug.Log("Yes");
+        }, () =>
+        {
+            Debug.Log("no");
         });
 
         //Hide();
     }
-    public void ShowDialog(string dialogText, Action yesAction)
+    public void ShowDialog(string dialogText, Action yesAction, Action noAction)
     {
         //gameObject.SetActive(true);
         textMeshPro.text = dialogText;
@@ -37,6 +41,11 @@ public class PopUpDialog : MonoBehaviour
         {
             Hide();
             yesAction();
+        });
+        noButton.onClick.AddListener(() =>
+        {
+            Hide();
+            noAction();
         });
     }
 

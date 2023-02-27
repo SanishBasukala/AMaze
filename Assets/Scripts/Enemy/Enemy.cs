@@ -32,13 +32,11 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         audioSource.PlayOneShot(hurtClip);
-        if (health <= 0)
+        if (health == 0)
         {
-            print("hi");
             audioSource.PlayOneShot(deathClip);
             DeathEffect();
             this.gameObject.SetActive(false);
-            print("hi2");
         }
     }
 
