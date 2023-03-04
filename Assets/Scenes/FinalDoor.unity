@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 945658393}
   - component: {fileID: 945658392}
   m_Layer: 0
-  m_Name: Win
+  m_Name: LevelClear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

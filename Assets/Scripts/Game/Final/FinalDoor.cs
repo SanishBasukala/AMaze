@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FinalDoor : MonoBehaviour
 {
-    private int pointsToWin = 1;
+    private int pointsToWin = 0;
     private int currentPoints;
     private bool playerInRange;
     void Update()

@@ -56,31 +56,31 @@ public class Menuscript : MonoBehaviour
     }
     public void GetLevel1Scene()
     {
-        currentScene = "Level1";
+        PlayerPrefs.SetString("currentScene", "Level1");
         SceneManager.LoadScene("Level1");
     }
     public void GetLevel2Scene()
     {
         levelPassed = 1;
-        currentScene = "Level2";
+        PlayerPrefs.SetString("currentScene", "Level2");
         SceneManager.LoadScene("Level2");
     }
     public void GetLevel3Scene()
     {
         levelPassed = 2;
-        currentScene = "Level3";
+        PlayerPrefs.SetString("currentScene", "Level3");
         SceneManager.LoadScene("Level3");
     }
     public void GetLevel4Scene()
     {
         levelPassed = 3;
-        currentScene = "Level4";
+        PlayerPrefs.SetString("currentScene", "Level4");
         SceneManager.LoadScene("Level4");
     }
     public void GetLevel5Scene()
     {
         levelPassed = 4;
-        currentScene = "Level5";
+        PlayerPrefs.SetString("currentScene", "Level5");
         SceneManager.LoadScene("Level5");
     }
     public void GetCreateScene()
@@ -93,6 +93,8 @@ public class Menuscript : MonoBehaviour
     }
     public void ChangeScene()
     {
+        print(PlayerPrefs.GetString("currentScene"));
+        currentScene = PlayerPrefs.GetString("currentScene");
         if (currentScene == "Level1")
         {
             GetLevel2Scene();
