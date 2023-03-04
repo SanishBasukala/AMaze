@@ -9,11 +9,14 @@ public class Menuscript : MonoBehaviour
     public Button level2Button, level3Button, level4Button, level5Button;
     private void Start()
     {
+        PlayerPrefs.SetInt("levelPassed", 0);
         level2Button.interactable = false;
         level3Button.interactable = false;
         level4Button.interactable = false;
         level5Button.interactable = false;
-
+    }
+    private void Update()
+    {
         switch (levelPassed)
         {
             case 1:
@@ -26,6 +29,7 @@ public class Menuscript : MonoBehaviour
                 level3Button.interactable = true;
                 level3Button.transform.Find("Locked").gameObject.SetActive(false);
                 break;
+
             case 3:
                 level2Button.interactable = true;
                 level2Button.transform.Find("Locked").gameObject.SetActive(false);
@@ -61,25 +65,25 @@ public class Menuscript : MonoBehaviour
     }
     public void GetLevel2Scene()
     {
-        levelPassed = 1;
+        PlayerPrefs.SetInt("levelPassed", 1);
         PlayerPrefs.SetString("currentScene", "Level2");
         SceneManager.LoadScene("Level2");
     }
     public void GetLevel3Scene()
     {
-        levelPassed = 2;
+        PlayerPrefs.SetInt("levelPassed", 2);
         PlayerPrefs.SetString("currentScene", "Level3");
         SceneManager.LoadScene("Level3");
     }
     public void GetLevel4Scene()
     {
-        levelPassed = 3;
+        PlayerPrefs.SetInt("levelPassed", 3);
         PlayerPrefs.SetString("currentScene", "Level4");
         SceneManager.LoadScene("Level4");
     }
     public void GetLevel5Scene()
     {
-        levelPassed = 4;
+        PlayerPrefs.SetInt("levelPassed", 4);
         PlayerPrefs.SetString("currentScene", "Level5");
         SceneManager.LoadScene("Level5");
     }
