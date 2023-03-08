@@ -21,6 +21,5 @@ public class HoverText : MonoBehaviour
         yield return new WaitForSeconds(1.3f);
         text.SetActive(false);
         saveAndLoad.SetActive(true);
-
     }
 }

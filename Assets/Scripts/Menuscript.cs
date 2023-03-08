@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Menuscript : MonoBehaviour
 {
     string currentScene;
-    public int levelPassed;
+    //public int levelPassed;
     public Button level2Button, level3Button, level4Button, level5Button;
     private void Start()
     {
@@ -17,7 +17,8 @@ public class Menuscript : MonoBehaviour
     }
     private void Update()
     {
-        switch (levelPassed)
+        //print(PlayerPrefs.GetInt("levelPassed"));
+        switch (PlayerPrefs.GetInt("levelPassed"))
         {
             case 1:
                 level2Button.interactable = true;
@@ -97,7 +98,6 @@ public class Menuscript : MonoBehaviour
     }
     public void ChangeScene()
     {
-        print(PlayerPrefs.GetString("currentScene"));
         currentScene = PlayerPrefs.GetString("currentScene");
         if (currentScene == "Level1")
         {
@@ -113,6 +113,7 @@ public class Menuscript : MonoBehaviour
         }
         if (currentScene == "Level4")
         {
+
             GetLevel5Scene();
         }
         if (currentScene == "Level5")

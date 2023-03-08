@@ -33,6 +33,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     public InventoryManager inventoryManager;
 
     [SerializeField] private GameObject prefabCollector;
+    Menuscript menuscript = new();
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -63,26 +64,94 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         this.slotText3 = data.slotText3;
     }
 
-    public void SaveSlot1()
+    //public void SaveSlot1()
+    //{
+    //    inCreate = true;
+    //    filename = "/AMaze1.json";
+    //    slotText1 = "AMaze1";
+    //    Time.timeScale = 0f;
+    //}
+    //public void SaveSlot2()
+    //{
+    //    inCreate = true;
+    //    filename = "/AMaze2.json";
+    //    slotText2 = "AMaze2";
+    //    Time.timeScale = 0f;
+    //}
+    //public void SaveSlot3()
+    //{
+    //    inCreate = true;
+    //    filename = "/AMaze3.json";
+    //    slotText3 = "AMaze3";
+    //    Time.timeScale = 0f;
+    //}
+    public void SaveSlots(int slotNumber)
     {
+        CheckExistingFile(slotNumber);
         inCreate = true;
-        filename = "/AMaze1.json";
-        slotText1 = "AMaze1";
+        if (slotNumber == 1)
+        {
+            filename = "/AMaze1.json";
+            slotText1 = "AMaze1";
+        }
+        else if (slotNumber == 2)
+        {
+            filename = "/AMaze2.json";
+            slotText2 = "AMaze2";
+        }
+        else if (slotNumber == 3)
+        {
+            filename = "/AMaze3.json";
+            slotText3 = "AMaze3";
+        }
+        else
+        {
+            Debug.Log("Slot does not exist");
+        }
         Time.timeScale = 0f;
     }
-    public void SaveSlot2()
+
+    private void CheckExistingFile(int slotNumber)
     {
-        inCreate = true;
-        filename = "/AMaze2.json";
-        slotText2 = "AMaze2";
-        Time.timeScale = 0f;
-    }
-    public void SaveSlot3()
-    {
-        inCreate = true;
-        filename = "/AMaze3.json";
-        slotText3 = "AMaze3";
-        Time.timeScale = 0f;
+        if (slotNumber == 1)
+        {
+            if (!(slotText1 == "Empty"))
+            {
+                PopUpDialog.Instance.ShowDialog("Do you want to create a new map in slot 1?", () =>
+                { }, () =>
+                {
+                    menuscript.GetCreateScene();
+                });
+            }
+        }
+        else if (slotNumber == 2)
+        {
+            if (!(slotText2 == "Empty"))
+            {
+                PopUpDialog.Instance.ShowDialog("Do you want to create a new map in slot 2?", () =>
+                { }, () =>
+                {
+                    Menuscript menuscript = new();
+                    menuscript.GetCreateScene();
+                });
+            }
+        }
+        else if (slotNumber == 3)
+        {
+            if (!(slotText3 == "Empty"))
+            {
+                PopUpDialog.Instance.ShowDialog("Do you want to create a new map in slot 3?", () =>
+                { }, () =>
+                {
+
+                    menuscript.GetCreateScene();
+                });
+            }
+        }
+        else
+        {
+            Debug.Log("Slot number out of bound");
+        }
     }
     public void SaveButton()
     {
@@ -133,34 +202,84 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         File.WriteAllText(Application.dataPath + filename, json);
     }
 
-    public void LoadSlot1()
+    //public void LoadSlot1()
+    //{
+    //    if (!(slotText1 == "Empty"))
+    //    {
+    //        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("File not found");
+    //        //ALSO CREATE A NEW CANVAS FOR NO FILES
+    //    }
+    //}
+    //public void LoadSlot2()
+    //{
+    //    if (!(slotText2 == "Empty"))
+    //    {
+    //        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("File not found");
+    //    }
+    //}
+    //public void LoadSlot3()
+    //{
+    //    if (!(slotText3 == "Empty"))
+    //    {
+    //        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
+    //    }
+    //    else
+    //    {
+    //        Debug.LogError("File not found");
+    //    }
+    //}
+
+    public void LoadSlots(int slotNumber)
     {
-        if (!(slotText1 == "Empty"))
+        if (slotNumber == 1)
         {
-            LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
+            if (!(slotText1 == "Empty"))
+            {
+                LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
+            }
+            else
+            {
+                OkDialog.Instance.ShowDialog("You have not created a map in this slot.", () =>
+                {
+                    menuscript.GetCreateScene();
+                });
+            }
         }
-        else
+        else if (slotNumber == 2)
         {
-            Debug.LogError("File not found");
-            //ALSO CREATE A NEW CANVAS FOR NO FILES
+            if (!(slotText2 == "Empty"))
+            {
+                LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
+            }
+            else
+            {
+                OkDialog.Instance.ShowDialog("You have not created a map in this slot.", () =>
+                {
+                    menuscript.GetCreateScene();
+                });
+            }
         }
-    }
-    public void LoadSlot2()
-    {
-        if (!(slotText2 == "Empty"))
+        else if (slotNumber == 3)
         {
-            LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
-        }
-        else
-        {
-            Debug.LogError("File not found");
-        }
-    }
-    public void LoadSlot3()
-    {
-        if (!(slotText3 == "Empty"))
-        {
-            LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
+            if (!(slotText3 == "Empty"))
+            {
+                LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
+            }
+            else
+            {
+                OkDialog.Instance.ShowDialog("You have not created a map in this slot.", () =>
+                {
+                    menuscript.GetCreateScene();
+                });
+            }
         }
         else
         {
@@ -211,18 +330,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     {
         prefabsData.Add(prefabId);
         prefabPositionData.Add(pos);
-    }
-
-    private void CheckExistingFile()
-    {
-        if (!(slotText1 == "Empty"))
-        {
-            //yes no dialog box
-        }
-    }
-    private void CheckEmptyFile()
-    {
-        // ok dialog box
     }
 }
 

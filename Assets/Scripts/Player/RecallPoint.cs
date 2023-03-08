@@ -3,7 +3,8 @@ using UnityEngine;
 public class RecallPoint : MonoBehaviour
 {
     public bool playerInRange;
-
+    public GameObject hoverText;
+    HoverText hoverTextScript = new();
     private void Update()
     {
         if (playerInRange)
