@@ -10,8 +10,15 @@ public class OkDialog : MonoBehaviour
     [SerializeField] private Button okButton;
     private void Awake()
     {
-        okButton = transform.Find("OkButton").GetComponent<Button>();
-        textMeshPro = transform.Find("AlertText").GetComponent<TextMeshProUGUI>();
+        try
+        {
+            okButton = transform.Find("OkButton").GetComponent<Button>();
+            textMeshPro = transform.Find("AlertText").GetComponent<TextMeshProUGUI>();
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e);
+        }
 
         Instance = this;
         Hide();

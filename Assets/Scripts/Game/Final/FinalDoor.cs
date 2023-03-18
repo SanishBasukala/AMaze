@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class FinalDoor : MonoBehaviour
 {
-    private int pointsToWin = 0;
+    private int pointsToWin = 6;
     private int currentPoints;
     private bool playerInRange;
     void Update()
     {
-        if (currentPoints >= pointsToWin && playerInRange)
+        if (currentPoints < pointsToWin && playerInRange)
+        {
+            // Do nothing when not enough points
+        }
+        else if (currentPoints == pointsToWin && playerInRange)
         {
             Menuscript menuscript = new();
             menuscript.GetFinalDoorScene();

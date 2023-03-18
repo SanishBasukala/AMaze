@@ -43,7 +43,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     {
         slotState[0].text = this.slotText1;
         slotState[3].text = this.slotText1;
-        //Check if this is null or empty and if not null empty then show 2 button, edit current and create new
         slotState[1].text = this.slotText2;
         slotState[4].text = this.slotText2;
         slotState[2].text = this.slotText3;
@@ -63,28 +62,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         this.slotText2 = data.slotText2;
         this.slotText3 = data.slotText3;
     }
-
-    //public void SaveSlot1()
-    //{
-    //    inCreate = true;
-    //    filename = "/AMaze1.json";
-    //    slotText1 = "AMaze1";
-    //    Time.timeScale = 0f;
-    //}
-    //public void SaveSlot2()
-    //{
-    //    inCreate = true;
-    //    filename = "/AMaze2.json";
-    //    slotText2 = "AMaze2";
-    //    Time.timeScale = 0f;
-    //}
-    //public void SaveSlot3()
-    //{
-    //    inCreate = true;
-    //    filename = "/AMaze3.json";
-    //    slotText3 = "AMaze3";
-    //    Time.timeScale = 0f;
-    //}
     public void SaveSlots(int slotNumber)
     {
         CheckExistingFile(slotNumber);
@@ -162,21 +139,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         //BoundsInt bounds = tilemap.cellBounds;
         LevelData levelData = new();
 
-        //for (int x = bounds.min.x; x < bounds.max.x; x++)
-        //{
-        //    for (int y = bounds.min.y; y < bounds.max.y; y++)
-        //    {
-        //        TileBase temp = tilemap.GetTile(new Vector3Int(x, y, 0));
-        //        CustomTile tempTile = tiles.Find(t => t.tile == temp);
-        //        if (tempTile != null)
-        //        {
-        //            levelData.tiles.Add(tempTile.id);
-        //            levelData.pos_x.Add(x);
-        //            levelData.pos_y.Add(y);
-        //        }
-        //    }
-        //}
-
         // Saving tiles
         foreach (int tile in tileData)
         {
@@ -195,47 +157,9 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         {
             levelData.prefabPosition.Add(prePos);
         }
-
-        //File.WriteAllText(Application.dataPath + "/AMaze.json", json);
-
         string json = JsonUtility.ToJson(levelData, true);
         File.WriteAllText(Application.dataPath + filename, json);
     }
-
-    //public void LoadSlot1()
-    //{
-    //    if (!(slotText1 == "Empty"))
-    //    {
-    //        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("File not found");
-    //        //ALSO CREATE A NEW CANVAS FOR NO FILES
-    //    }
-    //}
-    //public void LoadSlot2()
-    //{
-    //    if (!(slotText2 == "Empty"))
-    //    {
-    //        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("File not found");
-    //    }
-    //}
-    //public void LoadSlot3()
-    //{
-    //    if (!(slotText3 == "Empty"))
-    //    {
-    //        LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("File not found");
-    //    }
-    //}
 
     public void LoadSlots(int slotNumber)
     {
@@ -293,7 +217,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         playerCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
 
-        //json = File.ReadAllText(Application.dataPath + "/AMaze.json");
         LevelData data = JsonUtility.FromJson<LevelData>(json);
         tilemap.ClearAllTiles();
 

@@ -21,9 +21,16 @@ public class PopUpDialog : MonoBehaviour
     [SerializeField] private Button noButton;
     private void Awake()
     {
-        yesButton = transform.Find("YesButton").GetComponent<Button>();
-        noButton = transform.Find("NoButton").GetComponent<Button>();
-        textMeshPro = transform.Find("AlertText").GetComponent<TextMeshProUGUI>();
+        try
+        {
+            yesButton = transform.Find("YesButton").GetComponent<Button>();
+            noButton = transform.Find("NoButton").GetComponent<Button>();
+            textMeshPro = transform.Find("AlertText").GetComponent<TextMeshProUGUI>();
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e);
+        }
 
 
         Instance = this;

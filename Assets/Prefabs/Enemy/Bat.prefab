@@ -255,10 +255,10 @@ MonoBehaviour:
   health: 0
   baseAttack: 1
   deathEffect: {fileID: 4027054078158785658, guid: 22784f545fb30334ea59f22b734ef951, type: 3}
-  audioSource: {fileID: 0}
-  attackClip: {fileID: 0}
-  hurtClip: {fileID: 0}
-  deathClip: {fileID: 0}
+  audioSource: {fileID: -6229333700335928470}
+  attackClip: {fileID: 8300000, guid: fd25a15f9797641458336cccfb445343, type: 3}
+  hurtClip: {fileID: 8300000, guid: a285008a49588634abcf26478ed0d3a5, type: 3}
+  deathClip: {fileID: 8300000, guid: 3d85f3f4d22494a4daf59562cdaeb222, type: 3}
   chaseRadius: 5
   attackRadius: 1.8
   homePosition: {fileID: 4318525522638170772}
