@@ -4,7 +4,6 @@ using Realms.Sync.Exceptions;
 using System;
 using System.Threading.Tasks;
 using UnityEngine;
-
 public class RealmController : MonoBehaviour
 {
     private Realm _realm;

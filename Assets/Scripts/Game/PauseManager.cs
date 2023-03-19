@@ -5,7 +5,6 @@ public class PauseManager : MonoBehaviour
 {
     private bool isPaused;
     public GameObject pausePanel;
-    public string mainMenu;
 
     private void Start()
     {
@@ -33,9 +32,14 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void QuitToMain()
+    public void GetLevelScene()
     {
-        SceneManager.LoadScene(mainMenu);
-        Time.timeScale = 1f;
+        SceneManager.LoadScene("LevelScene");
+    }
+
+    public void RestartLevel()
+    {
+        Menuscript menuscript = new();
+        SceneManager.LoadScene(menuscript.GetCurrentScene());
     }
 }

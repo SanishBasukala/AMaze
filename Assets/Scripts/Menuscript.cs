@@ -5,8 +5,9 @@ using UnityEngine.UI;
 public class Menuscript : MonoBehaviour
 {
     string currentScene;
-    //public int levelPassed;
     public Button level2Button, level3Button, level4Button, level5Button;
+    private bool main = false;
+    public GameObject backgroundMusic;
     private void Start()
     {
         PlayerPrefs.SetInt("levelPassed", 0);
@@ -17,7 +18,8 @@ public class Menuscript : MonoBehaviour
     }
     private void Update()
     {
-        //print(PlayerPrefs.GetInt("levelPassed"));
+        RestartBGM();
+
         switch (PlayerPrefs.GetInt("levelPassed"))
         {
             case 1:
@@ -53,7 +55,16 @@ public class Menuscript : MonoBehaviour
     }
     public void GetMainScene()
     {
-        SceneManager.LoadScene("BackgroundScene");
+        main = true;
+        SceneManager.LoadScene("MenuScene");
+    }
+    public void RestartBGM()
+    {
+        if (main)
+        {
+            Destroy(backgroundMusic);
+        }
+        main = false;
     }
     public void GetLevelScene()
     {
@@ -122,6 +133,12 @@ public class Menuscript : MonoBehaviour
 
             Debug.Log("Game finished");
         }
+    }
+
+    public string GetCurrentScene()
+    {
+        currentScene = PlayerPrefs.GetString("currentScene");
+        return currentScene;
     }
     public void Exitgame()
     {
