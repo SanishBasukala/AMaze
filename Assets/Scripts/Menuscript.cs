@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,10 +12,18 @@ public class Menuscript : MonoBehaviour
     private void Start()
     {
         PlayerPrefs.SetInt("levelPassed", 0);
-        level2Button.interactable = false;
-        level3Button.interactable = false;
-        level4Button.interactable = false;
-        level5Button.interactable = false;
+        try
+        {
+            level2Button.interactable = false;
+            level3Button.interactable = false;
+            level4Button.interactable = false;
+            level5Button.interactable = false;
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e);
+        }
+
     }
     private void Update()
     {
