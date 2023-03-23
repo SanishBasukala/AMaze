@@ -6,9 +6,9 @@ public class EnemyMovement : MonoBehaviour
     public float moveSpeed;
     public int patrolDestination;
 
-    public Transform playerTransform;
-    public bool isChasing;
-    public float chaseDistance;
+    //public Transform playerTransform;
+    //public bool isChasing;
+    //public float chaseDistance;
 
     // Update is called once per frame
     void Update()
@@ -32,7 +32,7 @@ public class EnemyMovement : MonoBehaviour
         //}
         //else
         //{
-        isChasing = false;
+        //isChasing = false;
         if (patrolDestination == 0)
         {
             transform.position = Vector2.MoveTowards(transform.position, patrolPoints[0].position, moveSpeed * Time.deltaTime);

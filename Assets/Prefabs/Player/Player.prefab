@@ -330,6 +330,7 @@ MonoBehaviour:
   emptyHeart: {fileID: 392579275, guid: 517637c313ff913478f5fb9a0c8feca0, type: 3}
   playerSr: {fileID: 8782991794131147962}
   player: {fileID: 8782991794131147966}
+  DeadPanel: {fileID: 0}
   audioSource: {fileID: 7868084691238385388}
   hurtClip: {fileID: 8300000, guid: a98b95918d77d0a448df1db6d669825c, type: 3}
   gameOverClip: {fileID: 8300000, guid: a88af03f62e11fc42b33d8037168b8ca, type: 3}

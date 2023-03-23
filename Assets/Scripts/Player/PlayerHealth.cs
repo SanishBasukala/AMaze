@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
@@ -12,6 +13,8 @@ public class PlayerHealth : MonoBehaviour
 
     public SpriteRenderer playerSr;
     public Player player;
+    [SerializeField]
+    private GameObject DeadPanel;
 
     [SerializeField]
     private AudioSource audioSource;
@@ -59,6 +62,7 @@ public class PlayerHealth : MonoBehaviour
             audioSource.PlayOneShot(gameOverClip);
             playerSr.enabled = false;
             player.enabled = false;
+            StartCoroutine(YouDied());
         }
     }
     public void GainHealth()
@@ -77,5 +81,14 @@ public class PlayerHealth : MonoBehaviour
         playerSr.material.color = new Color(255, 255, 254);
         yield return new WaitForSeconds(.05f);
         playerSr.material.color = Color.white;
+    }
+
+    IEnumerator YouDied()
+    {
+        DeadPanel.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        DeadPanel.SetActive(false);
+        Menuscript menuscript = new();
+        SceneManager.LoadScene(menuscript.GetCurrentScene());
     }
 }
