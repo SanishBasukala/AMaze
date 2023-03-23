@@ -34,7 +34,7 @@ public class PauseManager : MonoBehaviour
 
     public void GetLevelScene()
     {
-        SceneManager.LoadScene("LevelScene");
+        SceneManager.LoadScene("MenuScene");
     }
 
     public void RestartLevel()

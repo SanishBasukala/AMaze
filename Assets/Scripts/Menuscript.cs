@@ -11,7 +11,6 @@ public class Menuscript : MonoBehaviour
     public GameObject backgroundMusic;
     private void Start()
     {
-        PlayerPrefs.SetInt("levelPassed", 0);
         try
         {
             level2Button.interactable = false;

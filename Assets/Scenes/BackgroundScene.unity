@@ -16911,9 +16911,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 841538654474284946}
     - target: {fileID: 8782991794131147958, guid: ca5620e91bb366d49a68c145cfb7fd40, type: 3}
+      propertyPath: halfHeart
+      value: 
+      objectReference: {fileID: -2034449706, guid: 517637c313ff913478f5fb9a0c8feca0, type: 3}
+    - target: {fileID: 8782991794131147958, guid: ca5620e91bb366d49a68c145cfb7fd40, type: 3}
       propertyPath: hurtAudio
       value: 
       objectReference: {fileID: 1994448758}
+    - target: {fileID: 8782991794131147958, guid: ca5620e91bb366d49a68c145cfb7fd40, type: 3}
+      propertyPath: numOfHearts
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782991794131147958, guid: ca5620e91bb366d49a68c145cfb7fd40, type: 3}
+      propertyPath: hearts.Array.size
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8782991794131147958, guid: ca5620e91bb366d49a68c145cfb7fd40, type: 3}
       propertyPath: hearts.Array.data[0]
       value: 
