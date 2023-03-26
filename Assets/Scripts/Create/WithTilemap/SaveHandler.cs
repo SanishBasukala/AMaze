@@ -1,6 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -39,6 +42,39 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         if (instance == null) instance = this;
         else Destroy(this);
     }
+
+    //--------------------------------------------------
+    [SerializeField]
+    private TextMeshProUGUI uiText;
+
+    private string jsonURL = "https://drive.google.com/uc?export=download&id=18fLu_SPhc39-_RzkbPEY8fRJqrBoQkF1";
+
+    public void LoadFromDrive()
+    {
+        StartCoroutine(GetData(jsonURL));
+    }
+    IEnumerator GetData(string url)
+    {
+        UnityWebRequest request = UnityWebRequest.Get(url);
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.ConnectionError)
+        {
+            Debug.Log("Error");
+        }
+        else
+        {
+            Debug.Log("Success");
+            string data = request.downloadHandler.text;
+            LoadLevel(data);
+        }
+
+        request.Dispose();
+    }
+
+    //------------------------------------------------
+
     private void Update()
     {
         slotState[0].text = this.slotText1;
@@ -210,6 +246,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
             Debug.LogError("File not found");
         }
     }
+
     public void LoadLevel(string json)
     {
         prefabCollector.SetActive(false);
