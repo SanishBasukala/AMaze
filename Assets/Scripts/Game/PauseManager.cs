@@ -38,6 +38,18 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("LevelScene");
     }
 
+    public void GetMenuScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MenuScene");
+    }
+
+    public void GetCreateScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Create");
+    }
+
     public void RestartLevel()
     {
         Time.timeScale = 1f;

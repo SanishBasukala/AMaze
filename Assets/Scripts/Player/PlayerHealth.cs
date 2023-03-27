@@ -86,7 +86,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator YouDied()
     {
         DeadPanel.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
         DeadPanel.SetActive(false);
         Menuscript menuscript = new();
         SceneManager.LoadScene(menuscript.GetCurrentScene());

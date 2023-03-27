@@ -159,7 +159,7 @@ public class Menuscript : MonoBehaviour
     {
         PopUpDialog.Instance.ShowDialog("Are you sure you want to quit?", () =>
         {
-            Debug.Log("bye");//Application.Quit();
+            Application.Quit();
         }, () =>
         {
             // Do nothing on close
