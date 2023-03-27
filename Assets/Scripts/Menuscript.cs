@@ -27,39 +27,46 @@ public class Menuscript : MonoBehaviour
     private void Update()
     {
         RestartBGM();
-
-        switch (PlayerPrefs.GetInt("levelPassed"))
+        try
         {
-            case 1:
-                level2Button.interactable = true;
-                level2Button.transform.Find("Locked").gameObject.SetActive(false);
-                break;
-            case 2:
-                level2Button.interactable = true;
-                level2Button.transform.Find("Locked").gameObject.SetActive(false);
-                level3Button.interactable = true;
-                level3Button.transform.Find("Locked").gameObject.SetActive(false);
-                break;
+            switch (PlayerPrefs.GetInt("levelPassed"))
+            {
+                case 1:
+                    level2Button.interactable = true;
+                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
+                    break;
+                case 2:
+                    level2Button.interactable = true;
+                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level3Button.interactable = true;
+                    level3Button.transform.Find("Locked").gameObject.SetActive(false);
+                    break;
 
-            case 3:
-                level2Button.interactable = true;
-                level2Button.transform.Find("Locked").gameObject.SetActive(false);
-                level3Button.interactable = true;
-                level3Button.transform.Find("Locked").gameObject.SetActive(false);
-                level4Button.interactable = true;
-                level4Button.transform.Find("Locked").gameObject.SetActive(false);
-                break;
-            case 4:
-                level2Button.interactable = true;
-                level2Button.transform.Find("Locked").gameObject.SetActive(false);
-                level3Button.interactable = true;
-                level3Button.transform.Find("Locked").gameObject.SetActive(false);
-                level4Button.interactable = true;
-                level4Button.transform.Find("Locked").gameObject.SetActive(false);
-                level5Button.interactable = true;
-                level5Button.transform.Find("Locked").gameObject.SetActive(false);
-                break;
+                case 3:
+                    level2Button.interactable = true;
+                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level3Button.interactable = true;
+                    level3Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level4Button.interactable = true;
+                    level4Button.transform.Find("Locked").gameObject.SetActive(false);
+                    break;
+                case 4:
+                    level2Button.interactable = true;
+                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level3Button.interactable = true;
+                    level3Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level4Button.interactable = true;
+                    level4Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level5Button.interactable = true;
+                    level5Button.transform.Find("Locked").gameObject.SetActive(false);
+                    break;
+            }
         }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e);
+        }
+
     }
     public void GetMainScene()
     {

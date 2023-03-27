@@ -8,6 +8,7 @@ public class DialogManager : MonoBehaviour
     public Text actorName;
     public Text messageText;
     public GameObject backgroundBox;
+    private bool EndDialogue = false;
 
     Message[] currentMessages;
     Actor[] currentActors;
@@ -68,6 +69,24 @@ public class DialogManager : MonoBehaviour
         {
             Time.timeScale = 1f;
             isActive = false;
+            EndDialogue = true;
+            FinalDialogueTrigger();
+            backgroundBox.SetActive(false);
+        }
+    }
+
+    public void FinalDialogueTrigger()
+    {
+        try
+        {
+            if (GameObject.Find("FinalChest").GetComponent<FinalChest>().EndDialogue == EndDialogue)
+            {
+                GameObject.Find("FinalChest").GetComponent<FinalChest>().EndCredits();
+            }
+        }
+        catch (NullReferenceException e)
+        {
+            Debug.Log(e);
             backgroundBox.SetActive(false);
         }
     }
