@@ -13,6 +13,7 @@ public class BuildingSystem : MonoBehaviour
 
     private Vector3Int highlightedTilePos;
     private bool highlighted;
+    private Item item;
 
     public Vector3Int changeposition;
 
@@ -22,7 +23,7 @@ public class BuildingSystem : MonoBehaviour
     [SerializeField] private Transform prefabCollector;
     private void Update()
     {
-        Item item = InventoryManager.instance.GetSelectedItem(); //false
+        item = InventoryManager.instance.GetSelectedItem(); //false
         if (item != null)
         {
             HighlightTile(item);
@@ -40,10 +41,10 @@ public class BuildingSystem : MonoBehaviour
                 {
                     mainTilemap.SetTile(highlightedTilePos, null);
                 }
-                else if (item.type == ItemType.Prefab)
-                {
-                    BuildPrefab(item, item.itemId);
-                }
+            }
+            if (item.type == ItemType.Prefab)
+            {
+                BuildPrefab(item, item.itemId);
             }
         }
 
@@ -76,21 +77,24 @@ public class BuildingSystem : MonoBehaviour
 
     private void HighlightTile(Item currentItem)
     {
-        Vector3Int mouseGridPos = GetMourseOnGirdPos();
-
-        if (highlightedTilePos != mouseGridPos)
+        if (item.type == ItemType.BuildingBlock || item.type == ItemType.Eraser)
         {
-            tempTilemap.SetTile(highlightedTilePos, null);
-            if (CheckCondition(mainTilemap.GetTile<RuleTileWithData>(mouseGridPos), currentItem))
-            {
-                tempTilemap.SetTile(mouseGridPos, highlightTile);
-                highlightedTilePos = mouseGridPos;
+            Vector3Int mouseGridPos = GetMourseOnGirdPos();
 
-                highlighted = true;
-            }
-            else
+            if (highlightedTilePos != mouseGridPos)
             {
-                highlighted = false;
+                tempTilemap.SetTile(highlightedTilePos, null);
+                if (CheckCondition(mainTilemap.GetTile<RuleTileWithData>(mouseGridPos), currentItem))
+                {
+                    tempTilemap.SetTile(mouseGridPos, highlightTile);
+                    highlightedTilePos = mouseGridPos;
+
+                    highlighted = true;
+                }
+                else
+                {
+                    highlighted = false;
+                }
             }
         }
     }
