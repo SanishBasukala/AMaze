@@ -23,6 +23,9 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField]
     private AudioClip gameOverClip;
 
+    public bool inLoad = false;
+    Menuscript menuscript = new();
+
     private void Update()
     {
         if (health > numOfHearts)
@@ -85,10 +88,19 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator YouDied()
     {
+        AudioListener.pause = true;
         DeadPanel.SetActive(true);
         yield return new WaitForSeconds(3f);
+        AudioListener.pause = false;
         DeadPanel.SetActive(false);
-        Menuscript menuscript = new();
-        SceneManager.LoadScene(menuscript.GetCurrentScene());
+        if (inLoad)
+        {
+            menuscript.GetCreateScene();
+            inLoad = false;
+        }
+        else
+        {
+            SceneManager.LoadScene(menuscript.GetCurrentScene());
+        }
     }
 }

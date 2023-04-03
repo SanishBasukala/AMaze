@@ -9,21 +9,7 @@ public class Menuscript : MonoBehaviour
     public Button level2Button, level3Button, level4Button, level5Button;
     private bool main = false;
     public GameObject backgroundMusic;
-    private void Start()
-    {
-        try
-        {
-            level2Button.interactable = false;
-            level3Button.interactable = false;
-            level4Button.interactable = false;
-            level5Button.interactable = false;
-        }
-        catch (NullReferenceException e)
-        {
-            Debug.Log(e);
-        }
 
-    }
     private void Update()
     {
         RestartBGM();
@@ -31,34 +17,36 @@ public class Menuscript : MonoBehaviour
         {
             switch (PlayerPrefs.GetInt("levelPassed"))
             {
+                case 0:
+                    level2Button.interactable = false;
+                    level3Button.interactable = false;
+                    level4Button.interactable = false;
+                    level5Button.interactable = false;
+                    break;
                 case 1:
                     level2Button.interactable = true;
-                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level3Button.interactable = false;
+                    level4Button.interactable = false;
+                    level5Button.interactable = false;
                     break;
                 case 2:
                     level2Button.interactable = true;
-                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
                     level3Button.interactable = true;
-                    level3Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level4Button.interactable = false;
+                    level5Button.interactable = false;
                     break;
 
                 case 3:
                     level2Button.interactable = true;
-                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
                     level3Button.interactable = true;
-                    level3Button.transform.Find("Locked").gameObject.SetActive(false);
                     level4Button.interactable = true;
-                    level4Button.transform.Find("Locked").gameObject.SetActive(false);
+                    level5Button.interactable = false;
                     break;
                 case 4:
                     level2Button.interactable = true;
-                    level2Button.transform.Find("Locked").gameObject.SetActive(false);
                     level3Button.interactable = true;
-                    level3Button.transform.Find("Locked").gameObject.SetActive(false);
                     level4Button.interactable = true;
-                    level4Button.transform.Find("Locked").gameObject.SetActive(false);
                     level5Button.interactable = true;
-                    level5Button.transform.Find("Locked").gameObject.SetActive(false);
                     break;
             }
         }
@@ -98,19 +86,28 @@ public class Menuscript : MonoBehaviour
     }
     public void GetLevel3Scene()
     {
-        PlayerPrefs.SetInt("levelPassed", 2);
+        if (PlayerPrefs.GetInt("levelPassed") < 2)
+        {
+            PlayerPrefs.SetInt("levelPassed", 2);
+        }
         PlayerPrefs.SetString("currentScene", "Level3");
         SceneManager.LoadScene("Level3");
     }
     public void GetLevel4Scene()
     {
-        PlayerPrefs.SetInt("levelPassed", 3);
+        if (PlayerPrefs.GetInt("levelPassed") < 3)
+        {
+            PlayerPrefs.SetInt("levelPassed", 3);
+        }
         PlayerPrefs.SetString("currentScene", "Level4");
         SceneManager.LoadScene("Level4");
     }
     public void GetLevel5Scene()
     {
-        PlayerPrefs.SetInt("levelPassed", 4);
+        if (PlayerPrefs.GetInt("levelPassed") < 4)
+        {
+            PlayerPrefs.SetInt("levelPassed", 4);
+        }
         PlayerPrefs.SetString("currentScene", "Level5");
         SceneManager.LoadScene("Level5");
     }

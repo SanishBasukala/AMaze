@@ -557,7 +557,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   messages:
   - actorId: 0
-    message: While walking through forest you come accross an injured man
+    message: (While walking through forest you come accross an injured man)
   - actorId: 2
     message: Help!
   - actorId: 1
@@ -565,12 +565,12 @@ MonoBehaviour:
   - actorId: 2
     message: I was attacked by the bandits and they stole everything
   - actorId: 1
-    message: Do you know where they went?
-  - actorId: 2
-    message: They went towards the labrynth
+    message: What is your name? Do you know where they went?
+  - actorId: 3
+    message: I am Bob. They went towards the labrynth
   - actorId: 0
-    message: You walk inside the labrynthn to return what was stolen and the door
-      behind u shuts down
+    message: (You walk inside the labrynthn to return what was stolen and the door
+      behind u shuts down)
   - actorId: 1
     message: There are chests around. They must have some valuables
   - actorId: 1
@@ -583,7 +583,9 @@ MonoBehaviour:
   - name: Player
     sprite: {fileID: -2117172978, guid: ebafd1876d9baa64397c95e824dc1480, type: 3}
   - name: Injured man
-    sprite: {fileID: 21300004, guid: f2ed27d6c1c3ccc48959bcca269d88f0, type: 3}
+    sprite: {fileID: 21300000, guid: cfc620fe203637c47af5adbb6fd173b1, type: 3}
+  - name: Bob
+    sprite: {fileID: 21300000, guid: cfc620fe203637c47af5adbb6fd173b1, type: 3}
 --- !u!114 &237788153
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1060,7 +1062,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 732685449046078014, guid: d32b76b0ce35c834e9e39d1cf7456c49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.4
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 732685449046078014, guid: d32b76b0ce35c834e9e39d1cf7456c49, type: 3}
       propertyPath: m_LocalPosition.y

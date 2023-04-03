@@ -22,6 +22,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     public bool inCreate;
     public Camera mainCamera;
     public Camera playerCamera;
+    public GameObject player;
 
     private List<int> tileData = new();
     private List<Vector3Int> tilePositionData = new();
@@ -43,7 +44,25 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         else Destroy(this);
     }
 
-    //--------------------------------------------------
+    private void Update()
+    {
+        if (inCreate)
+        {
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+        }
+
+        slotState[0].text = this.slotText1;
+        slotState[3].text = this.slotText1;
+        slotState[1].text = this.slotText2;
+        slotState[4].text = this.slotText2;
+        slotState[2].text = this.slotText3;
+        slotState[5].text = this.slotText3;
+    }
+
     [SerializeField]
     private TextMeshProUGUI uiText;
 
@@ -53,6 +72,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     {
         StartCoroutine(GetData(jsonURL));
     }
+    // Getting web request
     IEnumerator GetData(string url)
     {
         UnityWebRequest request = UnityWebRequest.Get(url);
@@ -73,17 +93,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         request.Dispose();
     }
 
-    //------------------------------------------------
-
-    private void Update()
-    {
-        slotState[0].text = this.slotText1;
-        slotState[3].text = this.slotText1;
-        slotState[1].text = this.slotText2;
-        slotState[4].text = this.slotText2;
-        slotState[2].text = this.slotText3;
-        slotState[5].text = this.slotText3;
-    }
     // For saving data of slots
     public void SaveData(ref GameData data)
     {
@@ -121,7 +130,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         {
             Debug.Log("Slot does not exist");
         }
-        Time.timeScale = 0f;
     }
 
     private void CheckExistingFile(int slotNumber)
@@ -172,7 +180,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     }
     public void SaveLevel(string filename)
     {
-        //BoundsInt bounds = tilemap.cellBounds;
         LevelData levelData = new();
 
         // Saving tiles
@@ -251,6 +258,9 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
     {
         prefabCollector.SetActive(false);
         inCreate = false;
+
+        FindObjectOfType<PlayerHealth>().inLoad = true;
+
         playerCamera.gameObject.SetActive(true);
         mainCamera.gameObject.SetActive(false);
 
