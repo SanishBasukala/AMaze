@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.Tilemaps;
@@ -63,14 +62,29 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         slotState[5].text = this.slotText3;
     }
 
-    [SerializeField]
-    private TextMeshProUGUI uiText;
+    private string[] jsonURLs = {
+                            "https://drive.google.com/uc?export=download&id=18fLu_SPhc39-_RzkbPEY8fRJqrBoQkF1",
+                            "https://drive.google.com/uc?export=download&id=1rq9LznA1J5LvydSofoMd3kJvDIwulLWd",
+                            "https://drive.google.com/uc?export=download&id=13xvs7HJIxWUq_KUiYlIddVae549gvn_f"
+    };
 
-    private string jsonURL = "https://drive.google.com/uc?export=download&id=18fLu_SPhc39-_RzkbPEY8fRJqrBoQkF1";
+    //private string jsonURL = "https://drive.google.com/uc?export=download&id=18fLu_SPhc39-_RzkbPEY8fRJqrBoQkF1";
 
-    public void LoadFromDrive()
+    public void LoadFromDrive(int mapID)
     {
-        StartCoroutine(GetData(jsonURL));
+        if (mapID == 1)
+        {
+            StartCoroutine(GetData(jsonURLs[0]));
+        }
+        else if (mapID == 2)
+        {
+            StartCoroutine(GetData(jsonURLs[1]));
+        }
+        else if (mapID == 3)
+        {
+            StartCoroutine(GetData(jsonURLs[2]));
+        }
+        //StartCoroutine(GetData(jsonURL));
     }
     // Getting web request
     IEnumerator GetData(string url)
