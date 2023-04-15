@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62afe879f2c90f248be9f3d65358727e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 17
   currentState: 0
   yellowKeyCount: 0
   yellowKeyCounter: {fileID: 0}
@@ -334,6 +334,7 @@ MonoBehaviour:
   audioSource: {fileID: 7868084691238385388}
   hurtClip: {fileID: 8300000, guid: a98b95918d77d0a448df1db6d669825c, type: 3}
   gameOverClip: {fileID: 8300000, guid: a88af03f62e11fc42b33d8037168b8ca, type: 3}
+  inLoad: 0
 --- !u!114 &8782991794131147959
 MonoBehaviour:
   m_ObjectHideFlags: 0

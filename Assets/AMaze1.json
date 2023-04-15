@@ -1,0 +1,14 @@
+{
+    "tiles": [
+        2
+    ],
+    "tilePosition": [
+        {
+            "x": -4,
+            "y": -15,
+            "z": 0
+        }
+    ],
+    "prefabs": [],
+    "prefabPosition": []
+}

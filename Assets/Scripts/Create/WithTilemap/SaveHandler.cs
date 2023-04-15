@@ -68,8 +68,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
                             "https://drive.google.com/uc?export=download&id=13xvs7HJIxWUq_KUiYlIddVae549gvn_f"
     };
 
-    //private string jsonURL = "https://drive.google.com/uc?export=download&id=18fLu_SPhc39-_RzkbPEY8fRJqrBoQkF1";
-
     public void LoadFromDrive(int mapID)
     {
         if (mapID == 1)
@@ -84,7 +82,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
         {
             StartCoroutine(GetData(jsonURLs[2]));
         }
-        //StartCoroutine(GetData(jsonURL));
     }
     // Getting web request
     IEnumerator GetData(string url)
