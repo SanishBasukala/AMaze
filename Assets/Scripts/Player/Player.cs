@@ -47,7 +47,8 @@ public class Player : MonoBehaviour
 	[SerializeField]
 	private AudioClip doorClip;
 
-
+	private bool canShoot = true;
+	public float arrowCooldown = 0.5f;
 	private void Start()
 	{
 		myRigidbody = GetComponent<Rigidbody2D>();
@@ -129,6 +130,7 @@ public class Player : MonoBehaviour
 	{
 		animator.SetBool("attacking", true);
 		audioSource.PlayOneShot(attackClip);
+		Debug.Log(audioSource);
 		currentState = PlayerState.attack;
 		yield return null; //wait one frame
 		animator.SetBool("attacking", false);
@@ -138,16 +140,24 @@ public class Player : MonoBehaviour
 
 	private IEnumerator SecondAttackCo()
 	{
+		if (!canShoot)
+			yield break; // Exit the coroutine if shooting is on cooldown
+
 		currentState = PlayerState.attack;
-		yield return null; //wait one frame
+		yield return null; // Wait one frame
 		MakeArrow();
-		yield return new WaitForSeconds(.3f);
+		canShoot = false; // Disable shooting temporarily
+		yield return new WaitForSeconds(arrowCooldown);
+		canShoot = true; // Enable shooting again
 		currentState = PlayerState.walk;
 	}
 
 	private void MakeArrow()
 	{
-		Vector2 tempDirection = new(animator.GetFloat("moveX"), animator.GetFloat("moveY")); //new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+		if (!canShoot)
+			return; // Exit the method if shooting is on cooldown
+
+		Vector2 tempDirection = new Vector2(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
 		Arrow arrow = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Arrow>();
 		arrow.Setup(tempDirection, ChooseArrowDirection());
 	}

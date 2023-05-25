@@ -8525,6 +8525,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8782991794131147966, guid: ca5620e91bb366d49a68c145cfb7fd40, type: 3}
+      propertyPath: speed
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782991794131147966, guid: ca5620e91bb366d49a68c145cfb7fd40, type: 3}
       propertyPath: redKeyCounter
       value: 
       objectReference: {fileID: 1675061795}

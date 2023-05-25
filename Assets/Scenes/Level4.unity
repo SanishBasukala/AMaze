@@ -2266,6 +2266,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8837161460884291565, guid: fd43a28e71ae93f40ba1f81c7fbf7e86, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a89be51e4d9f204285265c63f204cce, type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fd43a28e71ae93f40ba1f81c7fbf7e86, type: 3}
@@ -6603,6 +6607,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8837161460884291565, guid: fd43a28e71ae93f40ba1f81c7fbf7e86, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a89be51e4d9f204285265c63f204cce, type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fd43a28e71ae93f40ba1f81c7fbf7e86, type: 3}
@@ -7712,6 +7720,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8837161460884291565, guid: fd43a28e71ae93f40ba1f81c7fbf7e86, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4a89be51e4d9f204285265c63f204cce, type: 3}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: fd43a28e71ae93f40ba1f81c7fbf7e86, type: 3}
@@ -15858,9 +15870,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1de27a45d3784f6449df346c9681641f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrust: 5
+  thrust: 7
   knockTime: 0.3
-  damage: 2
+  damage: 1
 --- !u!114 &2126280047
 MonoBehaviour:
   m_ObjectHideFlags: 0

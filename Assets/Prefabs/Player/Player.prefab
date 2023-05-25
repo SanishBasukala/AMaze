@@ -301,6 +301,7 @@ MonoBehaviour:
   attackClip: {fileID: 8300000, guid: 48adfc9c43f7cb14b84874feaf799f28, type: 3}
   keyClip: {fileID: 8300000, guid: 36a8b7193377acf44a5c6ba0dbae1779, type: 3}
   doorClip: {fileID: 8300000, guid: d8d04c6f80a1140db85ede568dab1f51, type: 3}
+  arrowCooldown: 0.5
 --- !u!114 &8782991794131147958
 MonoBehaviour:
   m_ObjectHideFlags: 0
