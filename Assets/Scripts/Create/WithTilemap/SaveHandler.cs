@@ -12,9 +12,9 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 	public Tilemap tilemap;
 	public Text[] slotState;
 
-	private string slotText1;
-	private string slotText2;
-	private string slotText3;
+	//private string slotText1;
+	//private string slotText2;
+	//private string slotText3;
 
 	private string filename;
 
@@ -45,6 +45,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 
 	private void Update()
 	{
+
 		if (inCreate)
 		{
 			Time.timeScale = 0f;
@@ -54,27 +55,33 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 			Time.timeScale = 1f;
 		}
 
+		slotState[0].text = PlayerPrefs.GetString("Slot1");
+		slotState[3].text = PlayerPrefs.GetString("Slot1");
+		slotState[1].text = PlayerPrefs.GetString("Slot2");
+		slotState[4].text = PlayerPrefs.GetString("Slot2");
+		slotState[2].text = PlayerPrefs.GetString("Slot3");
+		slotState[5].text = PlayerPrefs.GetString("Slot3");
+
 		if (File.Exists(Application.dataPath + "/AMaze1.json"))
 		{
 			PlayerPrefs.SetString("Slot1", "AMaze1");
+			slotState[0].text = "AMaze1";
+			slotState[3].text = "AMaze1";
 		}
-		else if (File.Exists(Application.dataPath + "/AMaze2.json"))
+		if (File.Exists(Application.dataPath + "/AMaze2.json"))
 		{
 			PlayerPrefs.SetString("Slot2", "AMaze2");
+			slotState[1].text = "AMaze2";
+			slotState[4].text = "AMaze2";
 		}
-		else if (File.Exists(Application.dataPath + "/AMaze3.json"))
+		if (File.Exists(Application.dataPath + "/AMaze3.json"))
 		{
 			PlayerPrefs.SetString("Slot3", "AMaze3");
+			slotState[2].text = "AMaze3";
+			slotState[5].text = "AMaze3";
 		}
-		else
-		{
-			slotState[0].text = this.slotText1;
-			slotState[3].text = this.slotText1;
-			slotState[1].text = this.slotText2;
-			slotState[4].text = this.slotText2;
-			slotState[2].text = this.slotText3;
-			slotState[5].text = this.slotText3;
-		}
+
+
 	}
 
 	private string[] jsonURLs = {
@@ -122,16 +129,16 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 	// For saving data of slots
 	public void SaveData(ref GameData data)
 	{
-		data.slotText1 = this.slotText1;
-		data.slotText2 = this.slotText2;
-		data.slotText3 = this.slotText3;
+		data.slotText1 = PlayerPrefs.GetString("Slot1");
+		data.slotText2 = PlayerPrefs.GetString("Slot2");
+		data.slotText3 = PlayerPrefs.GetString("Slot3");
 	}
 	// For loading data of slots
 	public void LoadData(GameData data)
 	{
-		this.slotText1 = data.slotText1;
-		this.slotText2 = data.slotText2;
-		this.slotText3 = data.slotText3;
+		PlayerPrefs.SetString("Slot1", data.slotText1);
+		PlayerPrefs.SetString("Slot2", data.slotText2);
+		PlayerPrefs.SetString("Slot3", data.slotText3);
 	}
 	public void SaveSlots(int slotNumber)
 	{
@@ -140,17 +147,17 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 		if (slotNumber == 1)
 		{
 			filename = "/AMaze1.json";
-			slotText1 = "AMaze1";
+			PlayerPrefs.SetString("Slot1", "AMaze1");
 		}
 		else if (slotNumber == 2)
 		{
 			filename = "/AMaze2.json";
-			slotText2 = "AMaze2";
+			PlayerPrefs.SetString("Slot2", "AMaze2");
 		}
 		else if (slotNumber == 3)
 		{
 			filename = "/AMaze3.json";
-			slotText3 = "AMaze3";
+			PlayerPrefs.SetString("Slot3", "AMaze3");
 		}
 		else
 		{
@@ -162,10 +169,13 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 	{
 		if (slotNumber == 1)
 		{
-			if (!(slotText1 == "Empty"))
+			if (!(PlayerPrefs.GetString("Slot1") == "Empty"))
 			{
 				PopUpDialog.Instance.ShowDialog("Do you want to create a new map in slot 1?", () =>
-				{ }, () =>
+				{
+					PlayerPrefs.SetString("Slot1", "Empty");
+					tilemap.ClearAllTiles();
+				}, () =>
 				{
 					menuscript.GetCreateScene();
 				});
@@ -173,24 +183,28 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 		}
 		else if (slotNumber == 2)
 		{
-			if (!(slotText2 == "Empty"))
+			if (!(PlayerPrefs.GetString("Slot2") == "Empty"))
 			{
 				PopUpDialog.Instance.ShowDialog("Do you want to create a new map in slot 2?", () =>
-				{ }, () =>
 				{
-					Menuscript menuscript = new();
+					PlayerPrefs.SetString("Slot2", "Empty");
+					tilemap.ClearAllTiles();
+				}, () =>
+				{
 					menuscript.GetCreateScene();
 				});
 			}
 		}
 		else if (slotNumber == 3)
 		{
-			if (!(slotText3 == "Empty"))
+			if (!(PlayerPrefs.GetString("Slot3") == "Empty"))
 			{
 				PopUpDialog.Instance.ShowDialog("Do you want to create a new map in slot 3?", () =>
-				{ }, () =>
 				{
-
+					PlayerPrefs.SetString("Slot3", "Empty");
+					tilemap.ClearAllTiles();
+				}, () =>
+				{
 					menuscript.GetCreateScene();
 				});
 			}
@@ -202,6 +216,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 	}
 	public void SaveButton()
 	{
+		inCreate = false;
 		SaveLevel(filename);
 	}
 	public void SaveLevel(string filename)
@@ -234,7 +249,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 	{
 		if (slotNumber == 1)
 		{
-			if (!(slotText1 == "Empty"))
+			if (!(PlayerPrefs.GetString("Slot1") == "Empty"))
 			{
 				LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze1.json"));
 			}
@@ -248,7 +263,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 		}
 		else if (slotNumber == 2)
 		{
-			if (!(slotText2 == "Empty"))
+			if (!(PlayerPrefs.GetString("Slot2") == "Empty"))
 			{
 				LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze2.json"));
 			}
@@ -262,7 +277,7 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 		}
 		else if (slotNumber == 3)
 		{
-			if (!(slotText3 == "Empty"))
+			if (!(PlayerPrefs.GetString("Slot3") == "Empty"))
 			{
 				LoadLevel(File.ReadAllText(Application.dataPath + "/AMaze3.json"));
 			}

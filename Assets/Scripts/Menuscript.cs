@@ -11,10 +11,11 @@ public class Menuscript : MonoBehaviour
 	public GameObject backgroundMusic;
 
 	// Make level start from 0
-	//private void Start()
-	//{
-	//	PlayerPrefs.SetInt("levelPassed", 0);
-	//}
+	private void Start()
+	{
+		Time.timeScale = 1;
+		//PlayerPrefs.SetInt("levelPassed", 4);
+	}
 	private void Update()
 	{
 		RestartBGM();
@@ -85,7 +86,10 @@ public class Menuscript : MonoBehaviour
 	}
 	public void GetLevel2Scene()
 	{
-		PlayerPrefs.SetInt("levelPassed", 1);
+		if (PlayerPrefs.GetInt("levelPassed") < 1)
+		{
+			PlayerPrefs.SetInt("levelPassed", 1);
+		}
 		PlayerPrefs.SetString("currentScene", "Level2");
 		SceneManager.LoadScene("Level2");
 	}

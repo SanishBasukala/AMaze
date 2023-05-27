@@ -67,19 +67,7 @@ public class Bat : Enemy
 	private IEnumerator AttackCo()
 	{
 		ChangeState(EnemyState.attack);
-
-		// Check the target's position relative to the bat
-		float horizontalDifference = target.position.x - transform.position.x;
-
-		if (horizontalDifference > 0)
-		{
-			anim.SetTrigger("attackRight");
-		}
-		else if (horizontalDifference < 0)
-		{
-			anim.SetTrigger("attackLeft");
-		}
-
+		anim.SetBool("attacking", true);
 		audioSource.PlayOneShot(attackClip);
 		yield return new WaitForSeconds(1f);
 		ChangeState(EnemyState.walk);
