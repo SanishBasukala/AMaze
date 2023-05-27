@@ -8647,7 +8647,7 @@ MonoBehaviour:
     message: Better be careful of him
   actors:
   - name: Narrator
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: ed92219e6c7a9c1488ca22ba4f76eedd, type: 3}
   - name: Player
     sprite: {fileID: -2117172978, guid: ebafd1876d9baa64397c95e824dc1480, type: 3}
 --- !u!114 &1272105090
@@ -17093,7 +17093,7 @@ MonoBehaviour:
     message: (The traveler rest for a while and sets off on his next journey)
   actors:
   - name: Narrator
-    sprite: {fileID: 0}
+    sprite: {fileID: 21300000, guid: ed92219e6c7a9c1488ca22ba4f76eedd, type: 3}
   - name: Player
     sprite: {fileID: -2117172978, guid: ebafd1876d9baa64397c95e824dc1480, type: 3}
   - name: Bob
