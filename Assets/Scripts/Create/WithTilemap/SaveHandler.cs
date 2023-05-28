@@ -12,10 +12,6 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 	public Tilemap tilemap;
 	public Text[] slotState;
 
-	//private string slotText1;
-	//private string slotText2;
-	//private string slotText3;
-
 	private string filename;
 
 	public bool inCreate;
@@ -336,6 +332,17 @@ public class SaveHandler : MonoBehaviour, IDataPersistence
 	{
 		tileData.Add(tileId);
 		tilePositionData.Add(pos);
+	}
+	public void RemoveTiles(Vector3Int pos, int tileId)
+	{
+		for (int i = tileData.Count - 1; i >= 0; i--)
+		{
+			if (tilePositionData[i] == pos && tileData[i] == tileId)
+			{
+				tileData.RemoveAt(i);
+				tilePositionData.RemoveAt(i);
+			}
+		}
 	}
 	public void CollectPrefabs(Vector2 pos, int prefabId)
 	{

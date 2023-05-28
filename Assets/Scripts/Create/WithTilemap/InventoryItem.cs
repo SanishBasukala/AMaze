@@ -1,15 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryItem : MonoBehaviour/*, IBeginDragHandler, IDragHandler, IEndDragHandler*/
+public class InventoryItem : MonoBehaviour
 {
 	[Header("UI")]
 	public Image image;
 
 	[HideInInspector] public Item item;
-	[HideInInspector] public int count;
-	[HideInInspector] public Transform parentAfterDrag;
-
 
 	public void InitialiseItem(Item newItem)
 	{

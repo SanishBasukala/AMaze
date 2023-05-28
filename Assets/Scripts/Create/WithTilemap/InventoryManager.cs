@@ -71,7 +71,7 @@ public class InventoryManager : MonoBehaviour
 		InventoryItem inventoryItem = newItemGO.GetComponent<InventoryItem>();
 		inventoryItem.InitialiseItem(item);
 	}
-	public Item GetSelectedItem()//bool use
+	public Item GetSelectedItem()
 	{
 		InventorySlot slot = inventorySlots[selectedSlot];
 		InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();

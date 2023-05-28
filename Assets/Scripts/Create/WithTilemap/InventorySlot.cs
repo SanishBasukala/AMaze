@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour/*, IDropHandler*/
+public class InventorySlot : MonoBehaviour
 {
 	public Image image;
 	public Color selectedColor, notSelectedColor;

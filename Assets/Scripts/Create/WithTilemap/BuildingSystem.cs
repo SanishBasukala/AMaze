@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
@@ -21,9 +22,11 @@ public class BuildingSystem : MonoBehaviour
 	public SaveHandler saveHandler;
 
 	[SerializeField] private Transform prefabCollector;
+
+	public List<Item> items;
 	private void Update()
 	{
-		item = InventoryManager.instance.GetSelectedItem(); //false
+		item = InventoryManager.instance.GetSelectedItem();
 		if (item != null)
 		{
 			HighlightTile(item);
@@ -40,16 +43,14 @@ public class BuildingSystem : MonoBehaviour
 				else if (item.type == ItemType.Eraser)
 				{
 					mainTilemap.SetTile(highlightedTilePos, null);
+					RemoveBuild(highlightedTilePos, item, item.itemId + 1);
 				}
 			}
 			if (item.type == ItemType.Prefab)
 			{
 				BuildPrefab(item, item.itemId);
 			}
-		}
 
-		if (Input.GetMouseButtonDown(0))
-		{
 			Vector2 rayOrigin = cam.ScreenToWorldPoint(Input.mousePosition);
 			RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.zero);
 
@@ -60,6 +61,7 @@ public class BuildingSystem : MonoBehaviour
 					if (!hit.collider.gameObject.CompareTag("Player"))
 					{
 						Destroy(hit.collider.gameObject);
+
 					}
 				}
 			}
@@ -118,12 +120,21 @@ public class BuildingSystem : MonoBehaviour
 	{
 		if (!EventSystem.current.IsPointerOverGameObject())
 		{
-			InventoryManager.instance.GetSelectedItem(); //true
+			InventoryManager.instance.GetSelectedItem();
 
 			tempTilemap.SetTile(position, null);
 			highlighted = false;
 			mainTilemap.SetTile(position, itemToBuild.tile);
 			saveHandler.CollectTiles(position, tileId);
+		}
+	}
+
+	private void RemoveBuild(Vector3Int position, Item itemToBuild, int tileId)
+	{
+		if (!EventSystem.current.IsPointerOverGameObject())
+		{
+			mainTilemap.SetTile(position, null);
+			saveHandler.RemoveTiles(position, tileId);
 		}
 	}
 	private void BuildPrefab(Item myPrefab, int prefabId)

@@ -61,16 +61,6 @@ public class Player : MonoBehaviour
 	}
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.U))
-		{
-			PopUpDialog.Instance.ShowDialog("this is it", () =>
-			{
-				Debug.Log("Yes");
-			}, () =>
-			{
-				Debug.Log("No");
-			});
-		}
 		if (change != Vector3.zero)
 		{
 			currentState = PlayerState.walk;
@@ -111,7 +101,6 @@ public class Player : MonoBehaviour
 			currentState != PlayerState.stagger &&
 			currentState != PlayerState.walk)
 		{
-
 			StartCoroutine(AttackCo());
 		}
 		else if (Input.GetButtonDown("Second Weapon") &&
@@ -130,7 +119,6 @@ public class Player : MonoBehaviour
 	{
 		animator.SetBool("attacking", true);
 		audioSource.PlayOneShot(attackClip);
-		Debug.Log(audioSource);
 		currentState = PlayerState.attack;
 		yield return null; //wait one frame
 		animator.SetBool("attacking", false);
